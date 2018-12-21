@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- 
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -12,36 +12,44 @@
         <!--<link rel="stylesheet" type="text/css" href="./css/style.css"/>-->
         <title>Εύδοξος</title>
     </head>
- 
+
     <body>
- 
-        <br></br><h2 align="center"> Καταχώρηση Συγγράμματος </h2>
- 
+      <!-- 1rst level (logo,login,signup) -->
+        <div class="row" style="margin-bottom:1%;">
+            <div class="col-9" style="padding-top:1%; padding-left:1%;">
+              <a  href="./index.html">
+                <img src="../src/logo.jpg" class="rounded">
+              </a>
+            </div>
+        </div>
+
+        <h2 align="center"> Καταχώρηση Συγγράμματος </h2>
+
         <div id="upperPart" class="container">
             <br></br><br></br>
             <div class="row">
-                <div class="col-sm-8">
-                    <label class="col-sm-8 control-label"><h6>Στοιχεία Συγγράμματος</h6></label>
+                <div class="col-8">
+                    <label class="col-8 control-label"><h6>Στοιχεία Συγγράμματος</h6></label>
                     <div class="form-inline">
                         <div style="border: 1px solid #e5e5e5; height: 500px; width: 700px; overflow: auto; padding: 10px;">
                             <div class="row text-center">
-                                <div class="col-sm-4"><label for="title">Τίτλος</label></div>
-                                <div class="col-sm-6"><input type="text" class="form-control" id="title"></div>
-                                <div class="col-sm-2"><p> ? * </p></div>
+                                <div class="col-4"><label for="title">Τίτλος</label></div>
+                                <div class="col-6"><input type="text" class="form-control" id="title"></div>
+                                <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
-                                <div class="col-sm-4"><label for="authors">Συγγραφείς</label></div>
-                                <div class="col-sm-6"><input type="text" class="form-control" id="authors"></div>
-                                <div class="col-sm-2"><p> ? * </p></div>
+                                <div class="col-4"><label for="authors">Συγγραφείς</label></div>
+                                <div class="col-6"><input type="text" class="form-control" id="authors"></div>
+                                <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
-                                <div class="col-sm-4"><label for="subtitle">Υπότιτλος</label></div>
-                                <div class="col-sm-6"><input type="text" class="form-control" id="subtitle"></div>
-                                <div class="col-sm-2"><p> ? * </p></div>
+                                <div class="col-4"><label for="subtitle">Υπότιτλος</label></div>
+                                <div class="col-6"><input type="text" class="form-control" id="subtitle"></div>
+                                <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
-                                <div class="col-sm-4"><label for="quality">Κατάσταση</label></div>
-                                <div class="col-sm-6">
+                                <div class="col-4"><label for="quality">Κατάσταση</label></div>
+                                <div class="col-6">
                                     <select class="form-control custom-select" style="width:236px" id="quality">
                                         <option>Άριστη</option>
                                         <option>Καλή</option>
@@ -49,11 +57,11 @@
                                         <option>Κακή</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-2"><p> ? * </p></div>
+                                <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
-                                <div class="col-sm-4"><label for="category">Είδος</label></div>
-                                <div class="col-sm-6">
+                                <div class="col-4"><label for="category">Είδος</label></div>
+                                <div class="col-6">
                                     <select class="form-control custom-select" style="width:236px" id="category">
                                         <option>Φυσική</option>
                                         <option>Φιλολογία</option>
@@ -62,33 +70,33 @@
                                         <option>Λογοτεχνία</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-2"><p> ? * </p></div>
+                                <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
-                                <div class="col-sm-4"><label for="publisher">Εκδόσεις</label></div>
-                                <div class="col-sm-6"><input type="text" class="form-control" id="publisher"></div>
-                                <div class="col-sm-2"><p> ? * </p></div>
+                                <div class="col-4"><label for="publisher">Εκδόσεις</label></div>
+                                <div class="col-6"><input type="text" class="form-control" id="publisher"></div>
+                                <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
-                                <div class="col-sm-4"><label for="dimensions">Διαστάσεις</label></div>
-                                <div class="col-sm-6"><input type="text" class="form-control" id="dimensions"></div>
-                                <div class="col-sm-2"><p> ? * </p></div>
+                                <div class="col-4"><label for="dimensions">Διαστάσεις</label></div>
+                                <div class="col-6"><input type="text" class="form-control" id="dimensions"></div>
+                                <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
-                                <div class="col-sm-4"><label for="firstPublishingYear">Έτος 1ης Έκδοσης</label></div>
-                                <div class="col-sm-6"><input type="text" class="form-control" id="firstPublishingYear"></div>
-                                <div class="col-sm-2"><p> ? * </p></div>
+                                <div class="col-4"><label for="firstPublishingYear">Έτος 1ης Έκδοσης</label></div>
+                                <div class="col-6"><input type="text" class="form-control" id="firstPublishingYear"></div>
+                                <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
-                                <div class="col-sm-4"><label for="pricetag">Τιμή Κοστολόγησης</label></div>
-                                <div class="col-sm-6"><input type="text" class="form-control" id="pricetag"></div>
-                                <div class="col-sm-2"><p> ? * </p></div>
+                                <div class="col-4"><label for="pricetag">Τιμή Κοστολόγησης</label></div>
+                                <div class="col-6"><input type="text" class="form-control" id="pricetag"></div>
+                                <div class="col-2"><p> ? * </p></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <label class="col-sm-4 control-label"><h6>Όροι Χρήσης</h6></label>
+                <div class="col-4">
+                    <label class="col-4 control-label"><h6>Όροι Χρήσης</h6></label>
                     <div class="form-group">
                         <div style="border: 1px solid #e5e5e5; height: 450px; width: 300px; overflow: auto; padding: 10px;">
                             <p>1. Η Ηλεκτρονική Υπηρεσία Ολοκληρωμένης Διαχείρισης Πανεπιστημιακών Συγγραμμάτων ΕΥΔΟΞΟΣ παρέχεται από το Υπουργείο Παιδείας, Έρευνας και Θρησκευμάτων με την υποστήριξη του Εθνικού Δικτύου Έρευνας και Τεχνολογίας ΑΕ (εφεξής ΕΔΕΤ Α.Ε.). Αντικείμενο και σκοπός της υπηρεσίας είναι η ορθολογική διαχείριση της επιλογής και διανομής συγγραμμάτων για τους φοιτητές της Τριτοβάθμιας Εκπαίδευσης. Κάθε συμμετέχων φοιτητής οφείλει να διαβάσει προσεκτικά τους παρόντες όρους και προϋποθέσεις συμμετοχής πριν από την συμμετοχή του στο πρόγραμμα «ΕΥΔΟΞΟΣ – Ηλεκτρονική Υπηρεσία Ολοκληρωμένης Διαχείρισης Συγγραμμάτων». Η συμμετοχή του στο πρόγραμμα συνεπάγεται την αυτόματη αποδοχή των παρόντων όρων συμμετοχής.</p>
@@ -121,7 +129,7 @@
                 </div>
             </div>
         </div>
- 
+
         <div id="lowerPart" class="container">
             <br></br><br></br>
             <div class="row">
@@ -130,22 +138,22 @@
                     <div class="form-inline">
                         <div style="border: 1px solid #e5e5e5; height: 200px; width: 1060px; overflow: auto; padding: 10px;">
                             <div class="row text-center">
-                                <div class="col-sm-3">
+                                <div class="col-3">
                                     <h6>Εξώφυλλο</h6>
                                     <button class="btn"><i class="far fa-plus-square" style="font-size:96px"></i></button>
                                     <br><a class="button" href="#">cancel</a>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-3">
                                     <h6>Οπισθόφυλλο</h6>
                                     <button class="btn"><i class="far fa-plus-square" style="font-size:96px"></i></button>
                                     <br><a class="button" href="#">cancel</a>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-3">
                                     <h6>Πίνακας Πειρεχομένων</h6>
                                     <button class="btn"><i class="far fa-plus-square" style="font-size:96px"></i></button>
                                     <br><a class="button" href="#">cancel</a>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-3">
                                     <h6>Ενδεικτικό Απόσπασμα</h6>
                                     <button class="btn"><i class="far fa-plus-square" style="font-size:96px"></i></button>
                                     <br><a class="button" href="#">cancel</a>
@@ -156,15 +164,15 @@
                 </div>
             </div>
         </div>
- 
+
         <div id="finalButtons" class="container">
             <br></br><br></br>
             <div class="row align-items-center justify-content-center">
-                <div class="col-sm-4"><button type="submit" class="btn btn-success btn-lg" href"#">Καταχώρηση Συγγράμματος</button></div>
-                <div class="col-sm-2"><a class="button" href="#">Ακύρωση</a></div>
+                <div class="col-4"><button type="submit" class="btn btn-success btn-lg" href"#">Καταχώρηση Συγγράμματος</button></div>
+                <div class="col-2"><a class="button" href="#">Ακύρωση</a></div>
             </div>
             <br></br><br></br>
         </div>
- 
+
     </body>
 </html>
