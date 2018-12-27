@@ -1,4 +1,6 @@
- @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+* {
+  outline:none
+}
 
 .dropdown:hover>.dropdown-menu {
   display: block;
@@ -49,10 +51,6 @@
 }
 
 .info{
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 20px;
-}
-
-.hinfo{
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 18px;
+  color:#525456;
 }

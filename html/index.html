@@ -9,10 +9,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/bower_components/bootstrap-horizon/bootstrap-horizon.css">
 </head>
 
-<body>
+<body style="font-family: 'Alegreya Sans', sans-serif;">
     <div class="container-fluid">
         <!-- 1rst level (logo,login,signup) -->
         <div class="row" style="margin-bottom:1%;">
@@ -39,8 +40,8 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="./selectionOfBooks.html"> Δήλωση Συγγραμάτων </a>
-                            <a class="dropdown-item" href="#"> Ανταλλαγή Συγγραμάτων </a>
+                            <a class="dropdown-item" href="./selectionOfBooks.html"> Δήλωση Συγγραμμάτων </a>
+                            <a class="dropdown-item" href="#"> Ανταλλαγή Συγγραμμάτων </a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -87,7 +88,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./eudoxusinfo.html" style="position:absolute;right:12%;"> Εύδοξος </a>
+                        <a class="nav-link" href="./eudoxusinfo.html" style="position:absolute;right:12%;"> Τι είναι ο Εύδοξος </a>
                     </li>
                     <li class="nav-item" style="position:absolute;right:2%;">
                         <a class="nav-link" href="#"> Επικοινωνία </a>
@@ -101,35 +102,37 @@
         <!-- 3rd level (book season,search bar,exchange) -->
         <div class="row justify-content-center" style="margin-top: 7%;">
           <div class="col contain center-block text-center" style="margin-left:0%;">
-            <img src="../img/dhlwsh.jpeg"> </img>
+            <img src="../img/dhlwsh2.png"> </img>
             <button type="button" class="btn btn-info"> Μάθετε Περισσότερα </button>
           </div>
-          <div class="col search center-block text-center" style="margin-left:4%">
-            <img src="../img/anazhthsh.jpg"> </img>
+          <div class="col search center-block text-center" style="margin-left:4%;">
+            <img src="../img/anazhthsh2.png" style="padding-top:1%;"> </img>
             <div class="input-group search bar">
-              <div class="input-group-btn search-panel">
-                <button type="button" class="btn search btn-default dropdown-toggle" data-toggle="dropdown">
+              <div class="input-group-btn search-panel" style="margin-top:3%;">
+                <button type="button" class="btn search btn-default dropdown-toggle" data-toggle="dropdown"
+                style="  margin-left:1%;  -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px;">
                   <span id="search_concept">Ψάχνω για</span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu filters" role="menu">
-                  <li><a href="#contains"> Σημειώσεις </a></li>
-                  <li><a href="#its_equal"> Σύγγραμα </a></li>
+                  <li><a href="#contains" style="color:#008FD7;"> Σημειώσεις </a></li>
+                  <li><a href="#its_equal" style="color:#008FD7;"> Σύγγραμμα </a></li>
                   <div class="dropdown-divider"></div>
-                  <li><a href="#all"> Οτιδήποτε </a></li>
+                  <li><a href="#all" style="color:#008FD7;"> Οτιδήποτε </a></li>
                 </ul>
               </div>
               <input type="hidden" name="search_param" value="all" id="search_param">
-              <input type="text" class="form-control" name="x" placeholder="Αναζήτηση...">
+              <input type="text" class="form-control searchbar" name="x" placeholder="Αναζήτηση..."
+              style="margin-top:3%;margin-left:2%;  -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px;">
             </div>
           </div>
           <div class="col contain center-block text-center" style="margin-left:5%;">
-            <img src="../img/antallagh.jpg"> </img>
+            <img src="../img/antallagh2.png"> </img>
             <button type="button" class="btn btn-outline-info">Eudoxus+</button>
           </div>
         </div>
         <!-- 4th level (news) -->
-        <div class="row row-horizon justify-content-center" style="margin-top: 12%;">
-          <h2 style="color:#aab2bf;"> Ανακοινώσεις </h2>
+        <div class="row row-horizon justify-content-center" style="margin-top: 11%;">
+          <h2 style="color:#64686d;"> Ανακοινώσεις </h2>
           <div class="card-group" style="margin-left:2%;margin-right:2%;margin-top:1%;">
             <div class="card">
               <div class="card-body">
@@ -149,7 +152,7 @@
               <div class="card-body">
                 <h5 class="card-title"> Αναβάθμιση eudoxus </h5>
                 <p class="card-text" style="color:#4c4d51;">Με χαρά ανακοινώνουμε την ανανέωση του eudoxu, με την χρήση κορυφέων τεχνολογιών. Έχει επιλεχθεί η καλύτερη ομάδα προγραμματιστών σε διεθνής επίπεδο και θα προχωρήσει στις κατάλληλες αλλαγές τις επομένες ημέρες.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <p class="card-text"><small class="text-muted">Last updated 6 days ago</small></p>
               </div>
             </div>
           </div>
