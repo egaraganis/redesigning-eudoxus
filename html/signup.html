@@ -28,11 +28,12 @@
     <div class="row justify-content-center">
       <h2 style="color:#2AA2DE;"> Εγγραφή Χρηστών </h3>
     </div>
+    </br>
     <div class="row">
       <div class="col">
         <div class="row">
+          <h4>Βασικά Στοιχεία Λογαριασμού</h4>
           <div style="border: 1px solid #e5e5e5; overflow: auto; padding: 1%; width: 90%;">
-            <h4>Στοιχεία Λογαρισμού</h4>
             <form>
               <div class="form-group row">
                 <label for="staticEmail" class="col col-form-label">Όνομα Λογαριασμού</label>
@@ -62,58 +63,121 @@
           </div>
         </div>
         </br>
-        <div class="btn-group">
-          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Action
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
+        <div>
+          <select id="idiothta">
+            <option disabled selected>Ποιά είναι η ιδιότητα σας; </option>
+            <option value="foithths">Φοιτητής</option>
+              <option value="ekdoths">Εκδότης</option>
+              <option value="shmeiodianomhs">Σημείο Διανομής</option>
+              <option value="diathethsshmeiwsewn">Διαθέτης Σημειώσεων</option>
+              <option value="idrymata">Ιδρύματα</option>
+          </select>
         </div>
         </br></br>
         <div class="row">
+          <h4>Επιπρόσθετα Στοιχεία</h4>
           <div style="border: 1px solid #e5e5e5; overflow: auto; padding: 1%; width: 90%;">
-            <h4>Στοιχεία Λογαρισμού</h4>
             <form>
-              <div class="form-group row">
-                <label for="staticEmail" class="col col-form-label">Όνομα Λογαριασμού</label>
-                <div class="col">
-                  <input class="form-control" type="text">
+              <div id="foithths" class="idiothtes" style="display:none"> 
+                <div class="form-group row">
+                  <select id="panepisthmio">
+                    <option disabled selected>Πανεπιστήμιο</option>
+                    <option>ΕΚΠΑ</option>
+                     <option>ΟΠΑ</option>
+                     <option>ΑΣΣΟΕ</option>
+                  </select></br></br>
                 </div>
+                <div class="form-group row">
+                  <select id="sxolh">
+                    <option disabled selected>Σχολή</option>
+                    <option>ΦΠΨ</option>
+                     <option>ΜΙΘΕ</option>
+                     <option>ΘΕΟΛΟΓΙΚΟ</option>
+                  </select>
+                 </div>
               </div>
-              <div class="form-group row">
-                <label for="staticEmail" class="col col-form-label">Email</label>
-                <div class="col">
-                  <input class="form-control" type="text">
-                </div>
+              <div id="ekdoths" class="idiothtes" style="display:none"> 
+                <div class="form-group row">
+                      <label for="staticEmail" class="col col-form-label">Επωνυμία</label>
+                      <div class="col">
+                        <input class="form-control" type="text">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
+                      <div class="col">
+                        <input class="form-control" type="tel">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputPassword" class="col col-form-label">Ιστοσελίδα</label>
+                      <div class="col">
+                        <input type="password" class="form-control">
+                      </div>
+                    </div>
               </div>
-              <div class="form-group row">
-                <label for="inputPassword" class="col col-form-label">Κωδικός Πρόσβασης</label>
-                <div class="col">
-                  <input type="password" class="form-control" id="inputPassword">
-                </div>
+              <div id="shmeiodianomhs" class="idiothtes" style="display:none"> 
+                <div class="form-group row">
+                      <label for="staticEmail" class="col col-form-label">Επωνυμία</label>
+                      <div class="col">
+                        <input class="form-control" type="text">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
+                      <div class="col">
+                        <input class="form-control" type="tel">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputPassword" class="col col-form-label">Διεύθυνση</label>
+                      <div class="col">
+                        <input type="password" class="form-control">
+                      </div>
+                    </div>
               </div>
-              <div class="form-group row">
-                <label for="inputPassword" class="col col-form-label">Επιβεβαίωση Κωδικού</label>
-                <div class="col">
-                  <input type="password" class="form-control" id="inputPassword">
+              <div id="diathethsshmeiwsewn" class="idiothtes" style="display:none"> 
+                <div class="form-group row">
+                      <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
+                      <div class="col">
+                        <input class="form-control" type="tel">
+                      </div>
+                  </div>
+              </div>
+              <div id="idrymata" class="idiothtes" style="display:none">
+                <div class="form-group row">
+                  <select id="panepisthmio">
+                    <option disabled selected>Πανεπιστήμιο</option>
+                    <option>ΕΚΠΑ</option>
+                     <option>ΟΠΑ</option>
+                     <option>ΑΣΣΟΕ</option>
+                  </select></br></br>
                 </div>
+                <div class="form-group row">
+                  <select id="sxolh">
+                    <option disabled selected>Σχολή</option>
+                    <option>ΦΠΨ</option>
+                     <option>ΜΙΘΕ</option>
+                     <option>ΘΕΟΛΟΓΙΚΟ</option>
+                  </select>
+                 </div>
+                 <div class="form-group row">
+                  <select id="thesh">
+                    <option disabled selected>Θέση</option>
+                    <option>Γραμματεία</option>
+                     <option>Υπεύθυνος Βιβλίων</option>
+                  </select>
+                 </div>
               </div>
             </form>
           </div>
         </div>
       </div>
       <div class="col">
-
+        <h4>Όροι χρήσης</h4>
         <div class="form-group">
-          <label class="col-xs-3 control-label">
-          <h5">Όροι χρήσης</h5></label>
           <div class="col-xs-9">
-            <div style="border: 1px solid #e5e5e5; height: 400px; width: 90%; overflow: auto; padding: 1%;">
+            <div style="border: 1px solid #e5e5e5; height: 500px; width: 90%; overflow: auto; padding: 1%;">
                 <p>1. Η Ηλεκτρονική Υπηρεσία Ολοκληρωμένης Διαχείρισης Πανεπιστημιακών Συγγραμμάτων ΕΥΔΟΞΟΣ παρέχεται από το Υπουργείο Παιδείας, Έρευνας και Θρησκευμάτων με την υποστήριξη του Εθνικού Δικτύου Έρευνας και Τεχνολογίας ΑΕ (εφεξής ΕΔΕΤ Α.Ε.). Αντικείμενο και σκοπός της υπηρεσίας είναι η ορθολογική διαχείριση της επιλογής και διανομής συγγραμμάτων για τους φοιτητές της Τριτοβάθμιας Εκπαίδευσης. Κάθε συμμετέχων φοιτητής οφείλει να διαβάσει προσεκτικά τους παρόντες όρους και προϋποθέσεις συμμετοχής πριν από την συμμετοχή του στο πρόγραμμα «ΕΥΔΟΞΟΣ – Ηλεκτρονική Υπηρεσία Ολοκληρωμένης Διαχείρισης Συγγραμμάτων». Η συμμετοχή του στο πρόγραμμα συνεπάγεται την αυτόματη αποδοχή των παρόντων όρων συμμετοχής.</p>
                 <p>2. Ο συμμετέχων φοιτητής στο πρόγραμμα «ΕΥΔΟΞΟΣ – Ηλεκτρονική Υπηρεσία Ολοκληρωμένης Διαχείρισης Συγγραμμάτων» αποδέχεται ότι τα στοιχεία που δηλώνει στο πρόγραμμα είναι αληθή και επίκαιρα και ότι κάθε δήλωσή του στο πρόγραμμα επέχει θέση Υπεύθυνης Δήλωσης κατά την έννοια και με τις συνέπειες του ν.1599/1986.</p>
                 <p>3. Ο συμμετέχων φοιτητής δηλώνει ότι τα Συγγράμματα που επιλέγει και παραλαμβάνει μέσω του προγράμματος, αντιστοιχούν στα μαθήματα τα οποία έχει δηλώσει κατά την εγγραφή του και νομίμως παρακολουθεί στο ακαδημαϊκό του Τμήμα κατά το τρέχον εξάμηνο και για τα οποία διατηρεί το δικαίωμα της παραλαβής των αντίστοιχων Συγγραμμάτων.</p>
@@ -134,18 +198,19 @@
             </div>
           </div>
         </div>
-
+        </br>
+        <input type="checkbox" name="vehicle1" value="Bike">Αποδέχομαι οτι το web development είναι gtp
+        <br>
+        </br>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
+    <div class="row">
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col">
+          <a type="button" class="btn btn-danger">Ολοκλήρωση Εγγραφής</a>
+      </div>
+  </div>
   </div>
 
   <!-- Optional JavaScript -->
@@ -153,6 +218,59 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>  
+    $(document).ready(function(){
+        $('#idiothta').on('change', function() {
+        
+          //If ekdoths is selected, show ekdoths, hide shmeiodianomhs and diathethsshmeiwsewn.
+          if ( this.value == 'foithths')
+          {
+            $("#foithths").show();
+            $("#ekdoths").hide();
+            $("#shmeiodianomhs").hide();
+            $("#diathethsshmeiwsewn").hide();
+            $("#idrymata").hide();
+          }
+          if ( this.value == 'ekdoths')
+          {
+            $("#foithths").hide();
+            $("#ekdoths").show();
+            $("#shmeiodianomhs").hide();
+            $("#diathethsshmeiwsewn").hide();
+            $("#idrymata").hide();
+          }
+          
+          //If shmeiodianomhs is selected, show shmeiodianomhs, hide ekdoths and diathethsshmeiwsewn.
+          if ( this.value == 'shmeiodianomhs')
+          {
+            $("#foithths").hide();
+            $("#ekdoths").hide();
+            $("#shmeiodianomhs").show();
+            $("#diathethsshmeiwsewn").hide();
+            $("#idrymata").hide();
+          }
+          
+          //If diathethsshmeiwsewn is selected, show diathethsshmeiwsewn hide ekdoths and shmeiodianomhs.
+          if ( this.value == 'diathethsshmeiwsewn')
+          {
+            $("#foithths").hide();
+            $("#ekdoths").hide();
+            $("#shmeiodianomhs").hide();
+            $("#diathethsshmeiwsewn").show();
+            $("#idrymata").hide();
+          }
+          if ( this.value == 'idrymata')
+          {
+            $("#foithths").hide();
+            $("#ekdoths").hide();
+            $("#shmeiodianomhs").hide();
+            $("#diathethsshmeiwsewn").hide();
+            $("#idrymata").show();
+          }
+          
+        });
+    });
+  </script>
 </body>
 
 </html>
