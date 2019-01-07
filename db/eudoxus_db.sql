@@ -1,5 +1,3 @@
-Terminal close -- exit!
-trib 8.0.13, for Linux (x86_64)
 --
 -- Host: localhost    Database: eudoxus
 -- ------------------------------------------------------
