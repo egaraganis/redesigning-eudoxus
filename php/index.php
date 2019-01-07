@@ -12,6 +12,23 @@
 </head>
 
 <body style="font-family: 'Alegreya Sans', sans-serif;">
+
+ <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "eudoxus";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password,$database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?> 
+
     <div class="container-fluid">
         <!-- 1rst level (logo,login,signup) -->
         <div class="row" style="margin-bottom:1%;">
