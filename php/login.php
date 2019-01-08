@@ -28,14 +28,14 @@
         <!-- 3rd level login options -->
         <div class="row justify-content-center" style="margin-top:1%;">
             <div class="col-3">
-                <form style="  border-radius: 5px;">
+                <form action="./uservalidation.php" method="post" style="border-radius: 5px;">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Ηλεκτρονικό Ταχυδρομείο</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Πληκτρολογήστε την διεύθυνση σας">
+                        <input name="mail" type="email" class="form-control" id="inputEmail1" placeholder="Πληκτρολογήστε την διεύθυνση σας">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Κωδικός Πρόσβασης</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Πληκτρολογήστε τον κωδικό σας">
+                        <input name="password" type="password" class="form-control" id="inputPassword1" placeholder="Πληκτρολογήστε τον κωδικό σας">
                     </div>
                     <div class="row justify-content-center" style="padding-top:2%;">
                         <button type="submit" class="btn btn-info"> Σύνδεση </button>

@@ -12,23 +12,6 @@
 </head>
 
 <body style="font-family: 'Alegreya Sans', sans-serif;">
-
- <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "eudoxus";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password,$database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully";
-?> 
-
     <div class="container-fluid">
         <!-- 1rst level (logo,login,signup) -->
         <div class="row" style="margin-bottom:1%;">
@@ -39,7 +22,7 @@ echo "Connected successfully";
             </div>
             <div class="col-3">
                 <div class="btn-group ls" role="group" aria-label="Basic example">
-                    <a class="btn btn-info" href="./login.html" role="button"> Σύνδεση </a>
+                    <a class="btn btn-info" href="./login.php" role="button"> Σύνδεση </a>
                     <a class="btn btn-outline-info" href="./signup.html" role="button">Εγγραφή</a>
                 </div>
             </div>
