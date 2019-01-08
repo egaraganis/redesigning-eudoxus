@@ -29,7 +29,7 @@ CREATE TABLE `AccessPoints` (
   `brandName` varchar(45) NOT NULL,
   `telephone` varchar(45) NOT NULL,
   `address` varchar(64) NOT NULL,
-  `map` varchar(512) NOT NULL COMMENT 'Map embed url',
+  `map` varchar(512) NOT NULL,
   PRIMARY KEY (`idAccessPoint`),
   UNIQUE KEY `idAccessPoint_UNIQUE` (`idAccessPoint`),
   CONSTRAINT `fk_AccessPoint_User1` FOREIGN KEY (`idAccessPoint`) REFERENCES `Users` (`idUser`)
@@ -84,20 +84,20 @@ CREATE TABLE `Books` (
   `idBook` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
   `subtitle` varchar(45) DEFAULT NULL,
-  `author` varchar(45) NOT NULL,
+  `author` varchar(45) DEFAULT NULL,
   `situation` varchar(45) NOT NULL,
   `category` varchar(45) NOT NULL,
   `dimensions` varchar(45) NOT NULL,
   `firstYearPublished` int(11) NOT NULL,
   `pricetag` int(11) NOT NULL,
-  `coverPage` varchar(256) DEFAULT NULL COMMENT 'Picture url, same below',
+  `coverPage` varchar(256) DEFAULT NULL,
   `backPage` varchar(256) DEFAULT NULL,
-  `contentArray` varchar(256) DEFAULT NULL COMMENT 'Pdf url, same below',
+  `contentArray` varchar(256) DEFAULT NULL,
   `exampleSnippet` varchar(256) DEFAULT NULL,
   `publisherId` int(11) NOT NULL,
-  `lessonId` int(11) DEFAULT NULL COMMENT 'Not necessarily linked to a lesson',
+  `lessonId` int(11) DEFAULT NULL,
   `accessPointId1` int(11) NOT NULL,
-  `accessPointId2` int(11) DEFAULT NULL COMMENT 'Optionial 2nd access point',
+  `accessPointId2` int(11) DEFAULT NULL,
   PRIMARY KEY (`idBook`),
   UNIQUE KEY `idBook_UNIQUE` (`idBook`),
   KEY `fk_Books_1_idx` (`publisherId`),
@@ -132,7 +132,6 @@ CREATE TABLE `Departments` (
   `idDepartment` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `universityId` int(11) NOT NULL,
-  `numOfBooksOffered` int(11) NOT NULL,
   PRIMARY KEY (`idDepartment`),
   UNIQUE KEY `idDepartments_UNIQUE` (`idDepartment`),
   KEY `fk_Departments_1_idx` (`universityId`),
@@ -146,7 +145,7 @@ CREATE TABLE `Departments` (
 
 LOCK TABLES `Departments` WRITE;
 /*!40000 ALTER TABLE `Departments` DISABLE KEYS */;
-INSERT INTO `Departments` VALUES (1,'Faculty of Philology',1,0),(2,'School of Dentistry',2,0),(3,'Department of Informatics and Telecom.',1,40);
+INSERT INTO `Departments` VALUES (1,'Faculty of Philology',1),(2,'School of Dentistry',2),(3,'Department of Informatics and Telecom.',1);
 /*!40000 ALTER TABLE `Departments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,8 +188,8 @@ CREATE TABLE `Notes` (
   `idNote` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
   `category` varchar(45) NOT NULL,
-  `content` varchar(256) NOT NULL COMMENT 'Pdf url',
-  `coverPage` varchar(256) DEFAULT NULL COMMENT 'Picture url',
+  `content` varchar(256) NOT NULL,
+  `coverPage` varchar(256) DEFAULT NULL,
   `noteProviderId` int(11) NOT NULL,
   `lessonId` int(11) DEFAULT NULL,
   PRIMARY KEY (`idNote`),
@@ -280,6 +279,7 @@ CREATE TABLE `Semesters` (
   `departmentId` int(11) NOT NULL,
   PRIMARY KEY (`idSemester`),
   UNIQUE KEY `idSemester_UNIQUE` (`idSemester`),
+  UNIQUE KEY `name_UNIQUE` (`name`),
   KEY `fk_Semesters_1_idx` (`departmentId`),
   CONSTRAINT `fk_Semesters_1` FOREIGN KEY (`departmentId`) REFERENCES `Departments` (`idDepartment`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -296,34 +296,6 @@ INSERT INTO `Semesters` VALUES (1,'1ο Εξάμηνο',3),(2,'2ο Εξάμηνο
 UNLOCK TABLES;
 
 --
--- Table structure for table `StudentHasBook`
---
-
-DROP TABLE IF EXISTS `StudentHasBook`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `StudentHasBook` (
-  `studentId` int(11) NOT NULL,
-  `bookId` int(11) NOT NULL,
-  `statementDate` varchar(100) DEFAULT NULL COMMENT 'Null when selected, insert date when received',
-  KEY `StudentHasBook_Books_FK` (`bookId`),
-  KEY `StudentHasBook_Students_FK` (`studentId`),
-  CONSTRAINT `StudentHasBook_Books_FK` FOREIGN KEY (`bookId`) REFERENCES `Books` (`idBook`),
-  CONSTRAINT `StudentHasBook_Students_FK` FOREIGN KEY (`studentId`) REFERENCES `Students` (`idStudent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `StudentHasBook`
---
-
-LOCK TABLES `StudentHasBook` WRITE;
-/*!40000 ALTER TABLE `StudentHasBook` DISABLE KEYS */;
-INSERT INTO `StudentHasBook` VALUES (2,1,'7-10-2014'),(5,1,'7-10-2014'),(5,2,'23-04-2015');
-/*!40000 ALTER TABLE `StudentHasBook` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Students`
 --
 
@@ -336,7 +308,7 @@ CREATE TABLE `Students` (
   `departmentId` int(11) NOT NULL,
   `numOfReceivedBooks` int(11) NOT NULL,
   `numOfRemainingBooks` int(11) NOT NULL,
-  `booksPoints` int(11) NOT NULL COMMENT 'Eudoxus+ not implemented, random value',
+  `booksPoints` int(11) NOT NULL,
   PRIMARY KEY (`idStudent`),
   UNIQUE KEY `idStudent_UNIQUE` (`idStudent`),
   KEY `fk_Students_1_idx` (`universityId`),
@@ -353,7 +325,7 @@ CREATE TABLE `Students` (
 
 LOCK TABLES `Students` WRITE;
 /*!40000 ALTER TABLE `Students` DISABLE KEYS */;
-INSERT INTO `Students` VALUES (2,1,3,1,39,0),(5,1,3,2,38,12);
+INSERT INTO `Students` VALUES (2,1,3,27,13,0),(5,1,3,32,8,12);
 /*!40000 ALTER TABLE `Students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -457,4 +429,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-08 16:27:15
+-- Dump completed on 2019-01-08  5:07:46
