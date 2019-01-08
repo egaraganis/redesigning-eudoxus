@@ -61,7 +61,7 @@
                       </div>
                     </div>
                   </div>
-                  <div>
+                  <div style="margin-top:4%;">
                     <select class="form-control" id="idiothta" style="width:70%;margin-left:3%;">
                       <option disabled="disabled" selected="selected">
                         Ποιά είναι η ιδιότητα σας;
@@ -84,10 +84,11 @@
                     </select>
                   </div>
                   <br />
+                  <br />
                   <h4>
                     Επιπρόσθετα Στοιχεία
                   </h4>
-                    <div style="border: 1px solid #e5e5e5; padding: 1%; width: 90%;">
+                  <div style="border: 1px solid #e5e5e5; padding: 1%; width: 90%;">
                       <div id="foithths" class="idiothtes" style="display:none">
                           <div class="form-group row">
                             <select class="form-control" id="panepisthmio" style="width:75%;margin-left:3%;">
