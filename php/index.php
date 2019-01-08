@@ -1,7 +1,3 @@
-<?php
-  session_start();
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -13,8 +9,6 @@
     <link rel="stylesheet" href="../css/index.css">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/bower_components/bootstrap-horizon/bootstrap-horizon.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-            integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body style="font-family: 'Alegreya Sans', sans-serif;">
@@ -22,33 +16,16 @@
         <!-- 1rst level (logo,login,signup) -->
         <div class="row" style="margin-bottom:1%;">
             <div class="col-9" style="padding-top:1%; padding-left:1%;">
-              <a  href="./index.php">
-                <img src="../img/logo.jpg" class="rounded">
-              </a>
+                <a href="./index.html">
+                    <img src="../img/logo.jpg" class="rounded">
+                </a>
             </div>
-            <?php if(!isset($_SESSION['mail'])): ?>
             <div class="col-3">
                 <div class="btn-group ls" role="group" aria-label="Basic example">
                     <a class="btn btn-info" href="./login.php" role="button"> Σύνδεση </a>
-                    <a class="btn btn-outline-info" href="./signup.php" role="button">Εγγραφή</a>
+                    <a class="btn btn-outline-info" href="./signup.html" role="button">Εγγραφή</a>
                 </div>
             </div>
-            <?php else: ?>
-            <div class="col" style="margin-left:6%;">
-                    <div class="dropdown">
-                      <a data-toggle="dropdown">
-                        <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496;padding-left:32%;">
-                          <i class="fas fa-user" style="margin-top:11%;"></i>
-                        </span>
-                      </a>
-                      <ul class="dropdown-menu" style="margin: auto;padding-top:2%;padding-left:2%;text-align: center;">
-                        <li><a href="./profile.php"> Προφίλ</a></li>
-                        <li><a href="./logout.php"> Αποσύνδεση</a></li>
-                    </ul>
-                  </div>
-              </div>
-            <?php endif; ?>
-          </div>
         </div>
         <!-- 2nd level (navbar) -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -59,9 +36,9 @@
                           Φοιτητές
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./eudoxusinfo.php#section1"> Τι προσφέρει ο Εύδοξος </a>
+                            <a class="dropdown-item" href="./eudoxusinfo.html#section1"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="./bookseason1.php"> Δήλωση Συγγραμμάτων </a>
+                            <a class="dropdown-item" href="./bookseason1.html"> Δήλωση Συγγραμμάτων </a>
                             <a class="dropdown-item" href="#"> Ανταλλαγή Συγγραμμάτων </a>
                         </div>
                     </li>
@@ -70,9 +47,9 @@
                           Εκδότες
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
+                            <a class="dropdown-item" href="./eudoxusinfo.html#section2"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="./bookinsertion.php"> Προσθήκη Συγγράμματος </a>
+                            <a class="dropdown-item" href="./bookinsertion.html"> Προσθήκη Συγγράμματος </a>
                             <a class="dropdown-item" href="#"> Επισκόπηση Συγγραμάτων </a>
                         </div>
                     </li>
@@ -81,7 +58,7 @@
                           Σημεία Διανομής
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
+                            <a class="dropdown-item" href="./eudoxusinfo.html#section2"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"> Προσθήκη Σημείου Διανομής </a>
                             <a class="dropdown-item" href="#"> Διανομή Σε Φοιτητές  </a>
@@ -92,7 +69,7 @@
                           Διαθέτες Σημειώσεων
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
+                            <a class="dropdown-item" href="./eudoxusinfo.html#section3"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"> Ανέβασμα Σημειώσεων </a>
                             <a class="dropdown-item" href="#"> Επισκόπηση Συγγραμάτων </a>
@@ -103,13 +80,13 @@
                           Υπηρεσίες Ιδρυμάτων
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
+                            <a class="dropdown-item" href="./eudoxusinfo.html#section3"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"> Τροποποίηση Προγράμματος Σπουδών </a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./eudoxusinfo.php" style="position:absolute;right:12%;"> Τι είναι ο Εύδοξος </a>
+                        <a class="nav-link" href="./eudoxusinfo.html" style="position:absolute;right:12%;"> Τι είναι ο Εύδοξος </a>
                     </li>
                     <li class="nav-item" style="position:absolute;right:2%;">
                         <a class="nav-link" href="#"> Επικοινωνία </a>
@@ -152,47 +129,59 @@
         <!-- 4th level (news) -->
         <div class="row row-horizon justify-content-center" style="margin-top: 11%;">
             <h2 style="color:#64686d;"> Ανακοινώσεις </h2>
+        </div>
+        <div class="row row-horizon justify-content-center" style="margin-top: 1%;">
             <div class="card-group" style="margin-left:2%;margin-right:2%;margin-top:1%;">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Άνοιξε η δήλωση μαθημάτων</h5>
-                        <p class="card-text" style="color:#4c4d51;">Το έγγραφο του Υπουργείου Παιδείας, Έρευνας και Θρησκευμάτων σχετικά με την έναρξη των δηλώσεων και της διανομής συγγραμμάτων για τη χειμερινή περιόδο του ακαδημαϊκού έτους 2018-19 μπορείτε να βρείτε εδώ. </p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Πρόβλημα με Mozilla</h5>
-                        <p class="card-text" style="color:#4c4d51;">Σας ενημερώνουμε οτι λόγω απροσδόκητου προβλήματος που οφείλεται σε νεότερη έκδοση του περιηγητή Mozilla Firefox, η χρήση της εφαρμογής των Εκδοτών υπό τον συγκεκριμένο browser παρουσιάζει προσωρινή αρρυθμία...</p>
-                        <p class="card-text"><small class="text-muted">Last updated 4 days ago</small></p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"> Αναβάθμιση eudoxus </h5>
-                        <p class="card-text" style="color:#4c4d51;">Με χαρά ανακοινώνουμε την ανανέωση του eudoxu, με την χρήση κορυφέων τεχνολογιών. Έχει επιλεχθεί η καλύτερη ομάδα προγραμματιστών σε διεθνής επίπεδο και θα προχωρήσει στις κατάλληλες αλλαγές τις επομένες ημέρες.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 6 days ago</small></p>
-                    </div>
-                </div>
+                <?php
+                    if (isset($_GET['pageno'])) {
+                        $pageno = $_GET['pageno'];
+                    } else {
+                        $pageno = 1;
+                    }
+                    $no_of_records_per_page = 2;
+                    $offset = ($pageno-1) * $no_of_records_per_page;
+
+                    require_once 'db_connect.php';
+                    $conn=new mysqli("$hn","$un","$pw","$db");
+                    // Check connection
+                    if (mysqli_connect_errno()){
+                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                        die();
+                    }
+
+                    $total_pages_sql = "SELECT COUNT(*) FROM Announcements";
+                    $result = mysqli_query($conn,$total_pages_sql);
+                    $total_rows = mysqli_fetch_array($result)[0];
+                    $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+                    $sql = "SELECT * FROM Announcements LIMIT $offset, $no_of_records_per_page";
+                    $res_data = mysqli_query($conn,$sql);
+                    while($row = mysqli_fetch_array($res_data)){
+                        echo '<div class="card">
+                            <div class="card-body"> 
+                                <h5 class="card-title">' . $row["title"] . '</h5>
+                                <p class="card-text" style="color:#4c4d51;">' . $row["content"] . ' </p>
+                            </div>
+                        </div> ';
+
+                        }
+                    mysqli_close($conn);
+                ?>
             </div>
+        </div>
+        <div class="row row-horizon justify-content-center" style="margin-top: 2%;">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
+                    <li><a class="page-link" href="?pageno=1">First</a></li>
+                    <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+                        <a class="page-link" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                    <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+                        <a class="page-link" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
                     </li>
+                    <li><a class="page-link" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
                 </ul>
+
             </nav>
         </div>
         <!-- 5th level (footer) -->
@@ -222,3 +211,4 @@
 </body>
 
 </html>
+
