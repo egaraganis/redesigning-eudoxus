@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -20,7 +24,7 @@
       <!-- 1rst level (logo,login,signup) -->
       <div class="row" style="margin-bottom:1%;">
           <div class="col-9" style="padding-top:1%; padding-left:1%;">
-            <a  href="./index.html">
+            <a  href="./index.php">
               <img src="../img/logo.jpg" class="rounded">
             </a>
           </div>
@@ -32,8 +36,8 @@
                 </span>
               </a>
               <ul class="dropdown-menu" style="margin: auto;padding-top:2%;padding-left:2%;text-align: center;">
-                <li><a href="./profile.html"> Προφίλ</a></li>
-                <li><a href="./index.html"> Αποσύνδεση</a></li>
+                <li><a href="./profile.php"> Προφίλ</a></li>
+                <li><a href="./logout.php"> Αποσύνδεση</a></li>
             </ul>
           </div>
         </div>
@@ -116,24 +120,24 @@
       <div class="row justify-content-center" style="margin-top: 5%;margin-bottom:5%;">
          <div class="col-5 profilediv" style="overflow:auto;">
              <div class="row justify-content-center" style="font-size:23px;color:#008FD7;margin:2%;">
-               <a href="./bookseason1.html"> Δήλωση Συγγραμμάτων </a>
+               <a href="./bookseason1.php"> Δήλωση Συγγραμμάτων </a>
              </div>
              <div class="row justify-content-center" style="font-size:23px;color:#008FD7;margin:2%;">
-               <a href="index.html"> Ανταλλαγή Συγγραμάτων </a>
+               <a href="index.php"> Ανταλλαγή Συγγραμάτων </a>
              </div>
          </div>
          <div class="col-5 profilediv" style="margin-left:5%">
              <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
-               <a href="./index.html"> Δήλωση Συγγραμμάτων 26/11 </a>
+               <a href="./index.php"> Δήλωση Συγγραμμάτων 26/11 </a>
              </div>
              <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
-               <a href="./index.html"> Ανταλλαγή Συγγραμάτος 3/11 </a>
+               <a href="./index.php"> Ανταλλαγή Συγγραμάτος 3/11 </a>
              </div>
              <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
-               <a href="./index.html"> Ανταλλαγή Συγγραμάτος 3/11 </a>
+               <a href="./index.php"> Ανταλλαγή Συγγραμάτος 3/11 </a>
              </div>
              <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
-               <a href="./index.html"> Ανταλλαγή Συγγραμάτος 3/11 </a>
+               <a href="./index.php"> Ανταλλαγή Συγγραμάτος 3/11 </a>
              </div>
          </div>
       </div>

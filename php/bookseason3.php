@@ -18,7 +18,7 @@
         <!-- 1rst level (logo,login,signup) -->
         <div class="row" style="margin-bottom:1%;">
             <div class="col-9" style="padding-top:1%; padding-left:1%;">
-                <a href="./index.html">
+                <a href="./index.php">
                     <img src="../img/logo.jpg" class="rounded">
                 </a>
             </div>
@@ -30,8 +30,8 @@
                         </span>
                       </a>
                       <ul class="dropdown-menu" style="margin: auto;padding-top:2%;padding-left:2%;text-align: center;">
-                        <li><a href="./profile.html"> Προφίλ</a></li>
-                        <li><a href="./index.html"> Αποσύνδεση</a></li>
+                        <li><a href="./profile.php"> Προφίλ</a></li>
+                        <li><a href="./index.php"> Αποσύνδεση</a></li>
                     </ul>
                   </div>
                 </div>
@@ -39,7 +39,7 @@
         <div class="mx-auto" style="width: 80%;">
             <div class="row" style="margin-top:6%;">
                 <div class="col">
-                    <a type="submit" class="btn btn-info" href="bookseason2.html">Προηγούμενο Βήμα</a>
+                    <a type="submit" class="btn btn-info" href="bookseason2.php">Προηγούμενο Βήμα</a>
                 </div>
                 <div class="col">
                     <h3 style="color:#2AA2DE;">3.Υποβολή Δήλωσης</h3>

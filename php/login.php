@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['fail'])):
+    $_SESSION['fail'] = false;
+  endif;
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -16,7 +23,7 @@
         <!-- 1rst level (logo) -->
         <div class="row justify-content-center" style="margin-bottom:1%; padding-right:5%;">
             <div style="padding-top:1%;">
-                <a href="./index.html">
+                <a href="./index.php">
                     <img src="../img/logo.jpg" class="rounded" style="width:120%;">
                 </a>
             </div>
@@ -25,17 +32,25 @@
         <div class="row justify-content-center">
             <h3 style="color:#2AA2DE;"> Σύνδεση Χρηστών </h3>
         </div>
+        <div class="row justify-content-center">
+          <?php if(($_SESSION['fail']) == true ): ?>
+            <div class="alert alert-danger alert-dismissable" style="width:25%;margin-top:2%;">
+              Βεβαιωθείται οτι τα στοιχεία σας είναι σωστά
+              <?php unset($_SESSION['fail']); ?>
+            </div>
+          <?php endif; ?>
+        </div>
         <!-- 3rd level login options -->
         <div class="row justify-content-center" style="margin-top:1%;">
             <div class="col-3">
                 <form action="./uservalidation.php" method="post" style="border-radius: 5px;">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Ηλεκτρονικό Ταχυδρομείο</label>
-                        <input name="mail" type="email" class="form-control" id="inputEmail1" placeholder="Πληκτρολογήστε την διεύθυνση σας">
+                        <input required="required" name="mail" type="email" class="form-control" id="inputEmail1" placeholder="Πληκτρολογήστε την διεύθυνση σας">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Κωδικός Πρόσβασης</label>
-                        <input name="password" type="password" class="form-control" id="inputPassword1" placeholder="Πληκτρολογήστε τον κωδικό σας">
+                        <input required="required" name="password" type="password" class="form-control" id="inputPassword1" placeholder="Πληκτρολογήστε τον κωδικό σας">
                     </div>
                     <div class="row justify-content-center" style="padding-top:2%;">
                         <button type="submit" class="btn btn-info"> Σύνδεση </button>
@@ -45,7 +60,7 @@
         </div>
         <!-- 4rth level alternative links -->
         <div class="row justify-content-center" style="margin-top:2%;">
-            <a href="signup.html"> Δεν έχω λογαριασμό, Εγγραφή </a>
+            <a href="signup.php"> Δεν έχω λογαριασμό, Εγγραφή </a>
         </div>
     </div>
     <!-- Optional JavaScript -->

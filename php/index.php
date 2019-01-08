@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -9,6 +13,8 @@
     <link rel="stylesheet" href="../css/index.css">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/bower_components/bootstrap-horizon/bootstrap-horizon.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+            integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body style="font-family: 'Alegreya Sans', sans-serif;">
@@ -16,16 +22,33 @@
         <!-- 1rst level (logo,login,signup) -->
         <div class="row" style="margin-bottom:1%;">
             <div class="col-9" style="padding-top:1%; padding-left:1%;">
-                <a href="./index.html">
-                    <img src="../img/logo.jpg" class="rounded">
-                </a>
+              <a  href="./index.php">
+                <img src="../img/logo.jpg" class="rounded">
+              </a>
             </div>
+            <?php if(!isset($_SESSION['mail'])): ?>
             <div class="col-3">
                 <div class="btn-group ls" role="group" aria-label="Basic example">
                     <a class="btn btn-info" href="./login.php" role="button"> Σύνδεση </a>
-                    <a class="btn btn-outline-info" href="./signup.html" role="button">Εγγραφή</a>
+                    <a class="btn btn-outline-info" href="./signup.php" role="button">Εγγραφή</a>
                 </div>
             </div>
+            <?php else: ?>
+            <div class="col" style="margin-left:6%;">
+                    <div class="dropdown">
+                      <a data-toggle="dropdown">
+                        <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496;padding-left:32%;">
+                          <i class="fas fa-user" style="margin-top:11%;"></i>
+                        </span>
+                      </a>
+                      <ul class="dropdown-menu" style="margin: auto;padding-top:2%;padding-left:2%;text-align: center;">
+                        <li><a href="./profile.php"> Προφίλ</a></li>
+                        <li><a href="./logout.php"> Αποσύνδεση</a></li>
+                    </ul>
+                  </div>
+              </div>
+            <?php endif; ?>
+          </div>
         </div>
         <!-- 2nd level (navbar) -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,9 +59,9 @@
                           Φοιτητές
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./eudoxusinfo.html#section1"> Τι προσφέρει ο Εύδοξος </a>
+                            <a class="dropdown-item" href="./eudoxusinfo.php#section1"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="./bookseason1.html"> Δήλωση Συγγραμμάτων </a>
+                            <a class="dropdown-item" href="./bookseason1.php"> Δήλωση Συγγραμμάτων </a>
                             <a class="dropdown-item" href="#"> Ανταλλαγή Συγγραμμάτων </a>
                         </div>
                     </li>
@@ -47,9 +70,9 @@
                           Εκδότες
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./eudoxusinfo.html#section2"> Τι προσφέρει ο Εύδοξος </a>
+                            <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="./bookinsertion.html"> Προσθήκη Συγγράμματος </a>
+                            <a class="dropdown-item" href="./bookinsertion.php"> Προσθήκη Συγγράμματος </a>
                             <a class="dropdown-item" href="#"> Επισκόπηση Συγγραμάτων </a>
                         </div>
                     </li>
@@ -58,7 +81,7 @@
                           Σημεία Διανομής
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./eudoxusinfo.html#section2"> Τι προσφέρει ο Εύδοξος </a>
+                            <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"> Προσθήκη Σημείου Διανομής </a>
                             <a class="dropdown-item" href="#"> Διανομή Σε Φοιτητές  </a>
@@ -69,7 +92,7 @@
                           Διαθέτες Σημειώσεων
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./eudoxusinfo.html#section3"> Τι προσφέρει ο Εύδοξος </a>
+                            <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"> Ανέβασμα Σημειώσεων </a>
                             <a class="dropdown-item" href="#"> Επισκόπηση Συγγραμάτων </a>
@@ -80,13 +103,13 @@
                           Υπηρεσίες Ιδρυμάτων
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./eudoxusinfo.html#section3"> Τι προσφέρει ο Εύδοξος </a>
+                            <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"> Τροποποίηση Προγράμματος Σπουδών </a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./eudoxusinfo.html" style="position:absolute;right:12%;"> Τι είναι ο Εύδοξος </a>
+                        <a class="nav-link" href="./eudoxusinfo.php" style="position:absolute;right:12%;"> Τι είναι ο Εύδοξος </a>
                     </li>
                     <li class="nav-item" style="position:absolute;right:2%;">
                         <a class="nav-link" href="#"> Επικοινωνία </a>

@@ -1,3 +1,11 @@
+<?php
+  session_start();
+?>
+
+<?php if(!isset($_SESSION['mail'])): ?>
+  <? header('Location: '."./login.php"); ?>
+<?php endif; ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -18,22 +26,32 @@
       <!-- 1rst level (logo,login,signup) -->
         <div class="row" style="margin-bottom:1%;">
             <div class="col-9" style="padding-top:1%; padding-left:1%;">
-              <a  href="./index.html">
+              <a  href="./index.php">
                 <img src="../img/logo.jpg" class="rounded">
               </a>
             </div>
-            <div class="col" style="margin-left:6%;">
-              <div class="dropdown">
-                <a data-toggle="dropdown">
-                  <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496;padding-left:32%;">
-                    <i class="fas fa-user" style="margin-top:11%;"></i>
-                  </span>
-                </a>
-                <ul class="dropdown-menu" style="margin: auto;padding-top:2%;padding-left:2%;text-align: center;">
-                  <li><a href="./profile.html"> Προφίλ</a></li>
-                  <li><a href="./index.html"> Αποσύνδεση</a></li>
-              </ul>
+            <?php if(!isset($_SESSION['mail'])): ?>
+            <div class="col-3">
+                <div class="btn-group ls" role="group" aria-label="Basic example">
+                    <a class="btn btn-info" href="./login.php" role="button"> Σύνδεση </a>
+                    <a class="btn btn-outline-info" href="./signup.php" role="button">Εγγραφή</a>
+                </div>
             </div>
+            <?php else: ?>
+            <div class="col" style="margin-left:6%;">
+                    <div class="dropdown">
+                      <a data-toggle="dropdown">
+                        <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496;padding-left:32%;">
+                          <i class="fas fa-user" style="margin-top:11%;"></i>
+                        </span>
+                      </a>
+                      <ul class="dropdown-menu" style="margin: auto;padding-top:2%;padding-left:2%;text-align: center;">
+                        <li><a href="./profile.php"> Προφίλ</a></li>
+                        <li><a href="./logout.php"> Αποσύνδεση</a></li>
+                    </ul>
+                  </div>
+              </div>
+            <?php endif; ?>
           </div>
         </div>
         <h2 align="center" style="color:#2AA2DE;margin-bottom:2%"> Καταχώρηση Συγγράμματος </h2>

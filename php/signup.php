@@ -1,5 +1,8 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<?php
+  session_start();
+?>
 
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>
         Eudoxus
@@ -17,7 +20,7 @@
         <!-- 1rst level (logo) -->
         <div class="row justify-content-center" style="margin-bottom:1%; padding-right:5%;">
             <div style="padding-top:1%;">
-                <a href="./index.html"><img src="../img/logo.jpg" class="rounded" style="width:120%;" /></a>
+                <a href="./index.php"><img src="../img/logo.jpg" class="rounded" style="width:120%;" /></a>
             </div>
         </div>
         <!-- 2nd level header -->
@@ -296,7 +299,7 @@
               </a>
           </div>
           <div class="row justify-content-center" style="margin-top:2%;margin-bottom: 4%;">
-              <a href="login.html">Έχω λογαριασμό, Σύνδεση</a>
+              <a href="login.php">Έχω λογαριασμό, Σύνδεση</a>
           </div>
         </form>
     </div>

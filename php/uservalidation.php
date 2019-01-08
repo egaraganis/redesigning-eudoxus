@@ -6,8 +6,6 @@
   // Legal SQL string
   $mail = mysqli_real_escape_string($conn, $_REQUEST['mail']);
   $password = mysqli_real_escape_string($conn, $_REQUEST['password']);
-  echo "Mail typed: ".$mail."    ";
-  echo "Password typed:".$password;
 
   // Will run a query
   mysqli_query($conn, "SET NAMES 'utf8'");
@@ -22,11 +20,11 @@
     $_SESSION['mail'] = $mail;
     $_SESSION['loggedin'] = true;
     mysqli_close($conn); // close connection
-    echo "SUCCESS!";
-
+    header('Location: '."index.php");
   }
   else {
+    $_SESSION['fail'] = true;
     mysqli_close($conn); // close connection
-    echo "FAIL!";
+    header('Location: '."login.php");
   }
 ?>

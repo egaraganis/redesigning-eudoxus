@@ -1,6 +1,10 @@
+<?php
+  session_start();
+?>
+
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,12 +18,16 @@
 </head>
 
 <body style="font-family: 'Alegreya Sans', sans-serif;">
-    <div class="container-fluid">
 
+    <?php if(!isset($_SESSION['mail'])): ?>
+      <? header('Location: '."./login.php"); ?>
+    <?php endif; ?>
+
+    <div class="container-fluid">
         <!-- 1rst level (logo,login,signup) -->
         <div class="row" style="margin-bottom:1%;">
             <div class="col-9" style="padding-top:1%; padding-left:1%;">
-                <a href="./index.html">
+                <a href="./index.php">
                     <img src="../img/logo.jpg" class="rounded">
                 </a>
             </div>
@@ -31,11 +39,11 @@
                         </span>
                       </a>
                       <ul class="dropdown-menu" style="margin: auto;padding-top:2%;padding-left:2%;text-align: center;">
-                        <li><a href="./profile.html"> Προφίλ</a></li>
-                        <li><a href="./index.html"> Αποσύνδεση</a></li>
+                        <li><a href="./profile.php"> Προφίλ</a></li>
+                        <li><a href="./logout.php"> Αποσύνδεση</a></li>
                     </ul>
                   </div>
-                </div>
+              </div>
         </div>
         <div class="mx-auto" style="width: 80%;">
             <div class="row" style="margin-top:6%;">
@@ -44,7 +52,7 @@
                     <h3 style="color:#2AA2DE;margin-left: 14%">1.Επιλογή Συγγραμμάτων</h3>
                 </div>
                 <div class="col">
-                    <a type="submit" class="btn btn-info" href="bookseason2.html">Επόμενο Βήμα</a>
+                    <a type="submit" class="btn btn-info" href="bookseason2.php">Επόμενο Βήμα</a>
                 </div>
             </div>
             </br>
