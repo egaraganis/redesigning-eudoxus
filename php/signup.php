@@ -1,7 +1,11 @@
 <?php
   session_start();
+  if(!isset($_SESSION['fail'])):
+    $_SESSION['fail'] = false;
+  endif;
 ?>
 
+<!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>
@@ -31,7 +35,8 @@
         </div>
         <br />
         <!-- signup options -->
-        <form>
+
+        <form action="./postUser.php" method="post">
           <div class="row justify-content-center">
               <div class="col-5">
                 <div class="row justify-content-center">
@@ -40,95 +45,122 @@
                   </h4>
                   <div style="border: 1px solid #e5e5e5; padding: 1%; width: 90%;">
                     <div class="form-group row">
-                      <label for="staticEmail" class="col col-form-label">Όνομα Λογαριασμού</label>
+                      <label for="staticEmail" class="col col-form-label">Όνομα</label>
                       <div class="col">
-                        <input placeholder="Πληκτρολογήστε το username σας" class="form-control" type="text" />
+                        <input placeholder="Πληκτρολογήστε το όνομά σας" class="form-control" type="text" id="name" name="name"/>
                       </div>
                     </div>
+
+                    <div class="form-group row">
+                      <label for="staticEmail" class="col col-form-label">Eπίθετο</label>
+                      <div class="col">
+                        <input placeholder="Πληκτρολογήστε το επίθετό σας" class="form-control" type="text" id="surname" name="surname"/>
+                      </div>
+                    </div>
+
                     <div class="form-group row">
                       <label for="staticEmail" class="col col-form-label">Email</label>
                       <div class="col">
-                        <input placeholder="Πληκτρολογήστε την διέθυνσή σας" class="form-control" type="text" />
+                        <input placeholder="Πληκτρολογήστε την διέθυνσή σας" class="form-control" type="text" id="email" name="email"/>
                       </div>
                     </div>
+
                     <div class="form-group row">
                       <label for="inputPassword" class="col col-form-label">Κωδικός Πρόσβασης</label>
                       <div class="col">
-                        <input placeholder="Πλητρκολογήστε τον κωδικό σας" type="password" class="form-control" id="inputPassword" />
+                        <input placeholder="Πλητρκολογήστε τον κωδικό σας" type="password" class="form-control" id="password" name="password"/>
                       </div>
                     </div>
+
                     <div class="form-group row">
                       <label for="inputPassword" class="col col-form-label">Επιβεβαίωση Κωδικού</label>
                       <div class="col">
-                        <input placeholder="Επαναλάβετε τον κωδικό σας" type="password" class="form-control" id="inputPassword" />
+                        <input placeholder="Επαναλάβετε τον κωδικό σας" type="password" class="form-control" id="password1" name="password1"/>
                       </div>
                     </div>
+
                   </div>
+                </div>
+  
+                <div class="row justify-content-center">
                   <div style="margin-top:4%;">
-                    <select class="form-control" id="idiothta" style="width:70%;margin-left:3%;">
-                      <option disabled="disabled" selected="selected">
+                    <select class="form-control" id="typeofuser" name="typeofuser" style="width:100%;margin-left:3%;">
+                      <option disabled="disabled" selected="selected" id="no" name "non">
                         Ποιά είναι η ιδιότητα σας;
                       </option>
-                      <option value="foithths">
+                      <option value="student" id="st" name="stu">
                         Φοιτητής
                       </option>
-                      <option value="ekdoths">
+                      <option value="publisher" id="pu" name="pub">
                         Εκδότης
                       </option>
-                      <option value="shmeiodianomhs">
+                      <option value="accesspoint" id="ac" name="acc">
                         Σημείο Διανομής
                       </option>
-                      <option value="diathethsshmeiwsewn">
+                      <option value="notesprovider" id="no" name="not">
                         Διαθέτης Σημειώσεων
                       </option>
-                      <option value="idrymata">
+                      <option value="userdepartment" id="us" name="use">
                         Ιδρύματα
                       </option>
                     </select>
+                    <br />
+                    <h4>
+                      Επιπρόσθετα Στοιχεία
+                    </h4>
                   </div>
-                  <br />
-                  <br />
-                  <h4>
-                    Επιπρόσθετα Στοιχεία
-                  </h4>
+                </div>
+                <div class="row justify-content-center">
                   <div style="border: 1px solid #e5e5e5; padding: 1%; width: 90%;">
-                      <div id="foithths" class="idiothtes" style="display:none">
-                          <div class="form-group row">
-                            <select class="form-control" id="panepisthmio" style="width:75%;margin-left:3%;">
-                              <option disabled="disabled" selected="selected">
+                      <div id="student" class="idiothtes" style="display:none">
+                          <!--<div class="row">
+                            <select class="form-control" id="university" name="university" style="width:75%;margin-left:3%;">
+                              <option disabled="disabled" selected="selected" value="">
                                 Πανεπιστήμιο
                               </option>
-                              <option>
-                                ΕΚΠΑ
-                              </option>
-                              <option>
-                                ΟΠΑ
-                              </option>
-                              <option>
-                                ΑΣΣΟΕ
-                              </option>
+                              <?php 
+                                /*require_once 'db_connect.php';
+                                $conn=new mysqli("$hn","$un","$pw","$db");
+                                // Check connection
+                                if (mysqli_connect_errno()){
+                                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                    die();
+                                }
+                                $sql = "SELECT * FROM Universities";
+                                $res_data = mysqli_query($conn,$sql);
+                                while($row = mysqli_fetch_array($res_data)){
+                                    echo '<option value="'. $row["id"] .'">' . $row["name"] . '</option>';
+                                }
+                                mysqli_close($conn);*/
+                              ?>
                             </select>
                             <br>
                             <br>
-                          </div>
-                          <div class="form-group row">
-                            <select class="form-control" id="sxolh" style="width:75%;margin-left:3%;">
+                          </div>-->
+                          <div class="row">
+                            <select class="form-control" id="department" style="width:75%;margin-left:3%;">
                               <option disabled="disabled" selected="selected">
                                 Σχολή
                               </option>
-                              <option>
-                                ΦΠΨ
-                              </option>
-                              <option>
-                                ΜΙΘΕ
-                              </option>
-                              <option>
-                                ΘΕΟΛΟΓΙΚΟ
-                              </option>
+                              <?php 
+                                require_once 'db_connect.php';
+                                $conn=new mysqli("$hn","$un","$pw","$db");
+                                // Check connection
+                                if (mysqli_connect_errno()){
+                                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                    die();
+                                }
+                                $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Departments, Universities where Universities.idUniversity = Departments.idDepartment";
+                                $res_data = mysqli_query($conn,$sql);
+                                while($row = mysqli_fetch_array($res_data)){
+                                    echo '<option>' . $row[0] . ',&nbsp;' . $row[1] . '</option>';
+                                }
+                                mysqli_close($conn);
+                              ?>
                             </select>
                           </div>
                         </div>
-                      <div id="ekdoths" class="idiothtes" style="display:none">
+                      <div id="publisher" class="idiothtes" style="display:none">
                           <div class="form-group row">
                             <label for="staticEmail" class="col col-form-label">Επωνυμία</label>
                             <div class="col">
@@ -148,7 +180,7 @@
                             </div>
                           </div>
                         </div>
-                      <div id="shmeiodianomhs" class="idiothtes" style="display:none">
+                      <div id="accesspoints" class="idiothtes" style="display:none">
                           <div class="form-group row">
                             <label for="staticEmail" class="col col-form-label">Επωνυμία</label>
                             <div class="col">
@@ -168,7 +200,7 @@
                             </div>
                           </div>
                         </div>
-                      <div id="diathethsshmeiwsewn" class="idiothtes" style="display:none">
+                      <div id="notesprovider" class="idiothtes" style="display:none">
                           <div class="form-group row">
                             <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
                             <div class="col">
@@ -176,7 +208,7 @@
                             </div>
                           </div>
                         </div>
-                      <div id="idrymata" class="idiothtes" style="display:none">
+                      <div id="userdepartment" class="idiothtes" style="display:none">
                           <div class="form-group row">
                             <select class="form-control" id="panepisthmio" style="width:75%;margin-left:3%;">
                               <option disabled="disabled" selected="selected">
@@ -294,9 +326,9 @@
           </div>
           <br />
           <div class="row justify-content-center">
-              <a type="submit" class="btn" style="color: white;background-color: #FE8946;">Ολοκλήρωση
+              <button type="submit" class="btn" style="color: white;background-color: #FE8946;">Ολοκλήρωση
                 Εγγραφής
-              </a>
+              </button>
           </div>
           <div class="row justify-content-center" style="margin-top:2%;margin-bottom: 4%;">
               <a href="login.php">Έχω λογαριασμό, Σύνδεση</a>
@@ -314,47 +346,47 @@
     <script type="text/javascript">
         //<![CDATA[
         $(document).ready(function() {
-            $('#idiothta').on('change', function() {
+            $('#typeofuser').on('change', function() {
 
-                //If ekdoths is selected, show ekdoths, hide shmeiodianomhs and diathethsshmeiwsewn.
-                if (this.value == 'foithths') {
-                    $("#foithths").show();
-                    $("#ekdoths").hide();
-                    $("#shmeiodianomhs").hide();
-                    $("#diathethsshmeiwsewn").hide();
-                    $("#idrymata").hide();
+                //If publisher is selected, show publisher, hide accesspoints and notesprovider.
+                if (this.value == 'student') {
+                    $("#student").show();
+                    $("#publisher").hide();
+                    $("#accesspoint").hide();
+                    $("#notesprovider").hide();
+                    $("#userdepartment").hide();
                 }
-                if (this.value == 'ekdoths') {
-                    $("#foithths").hide();
-                    $("#ekdoths").show();
-                    $("#shmeiodianomhs").hide();
-                    $("#diathethsshmeiwsewn").hide();
-                    $("#idrymata").hide();
-                }
-
-                //If shmeiodianomhs is selected, show shmeiodianomhs, hide ekdoths and diathethsshmeiwsewn.
-                if (this.value == 'shmeiodianomhs') {
-                    $("#foithths").hide();
-                    $("#ekdoths").hide();
-                    $("#shmeiodianomhs").show();
-                    $("#diathethsshmeiwsewn").hide();
-                    $("#idrymata").hide();
+                if (this.value == 'publisher') {
+                    $("#student").hide();
+                    $("#publisher").show();
+                    $("#accesspoint").hide();
+                    $("#notesprovider").hide();
+                    $("#userdepartment").hide();
                 }
 
-                //If diathethsshmeiwsewn is selected, show diathethsshmeiwsewn hide ekdoths and shmeiodianomhs.
-                if (this.value == 'diathethsshmeiwsewn') {
-                    $("#foithths").hide();
-                    $("#ekdoths").hide();
-                    $("#shmeiodianomhs").hide();
-                    $("#diathethsshmeiwsewn").show();
-                    $("#idrymata").hide();
+                //If accesspoints is selected, show accesspoints, hide publisher and notesprovider.
+                if (this.value == 'accesspoint') {
+                    $("#student").hide();
+                    $("#publisher").hide();
+                    $("#accesspoint").show();
+                    $("#notesprovider").hide();
+                    $("#userdepartment").hide();
                 }
-                if (this.value == 'idrymata') {
-                    $("#foithths").hide();
-                    $("#ekdoths").hide();
-                    $("#shmeiodianomhs").hide();
-                    $("#diathethsshmeiwsewn").hide();
-                    $("#idrymata").show();
+
+                //If notesprovider is selected, show notesprovider hide publisher and accesspoints.
+                if (this.value == 'notesprovider') {
+                    $("#student").hide();
+                    $("#publisher").hide();
+                    $("#accesspoint").hide();
+                    $("#notesprovider").show();
+                    $("#userdepartment").hide();
+                }
+                if (this.value == 'userdepartment') {
+                    $("#student").hide();
+                    $("#publisher").hide();
+                    $("#accesspoint").hide();
+                    $("#notesprovider").hide();
+                    $("#userdepartment").show();
                 }
 
             });
