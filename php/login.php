@@ -33,6 +33,7 @@
             <h3 style="color:#2AA2DE;"> Σύνδεση Χρηστών </h3>
         </div>
         <div class="row justify-content-center">
+          <!-- if user tried to logged in and failed -->
           <?php if(($_SESSION['fail']) == true ): ?>
             <div class="alert alert-danger alert-dismissable" style="width:25%;margin-top:2%;">
               Βεβαιωθείται οτι τα στοιχεία σας είναι σωστά
@@ -43,6 +44,7 @@
         <!-- 3rd level login options -->
         <div class="row justify-content-center" style="margin-top:1%;">
             <div class="col-3">
+                <!-- login form -->
                 <form action="./uservalidation.php" method="post" style="border-radius: 5px;">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Ηλεκτρονικό Ταχυδρομείο</label>

@@ -28,6 +28,7 @@
             <img src="../img/logo.jpg" class="rounded">
           </a>
         </div>
+        <!-- if user is not logged in -->
         <?php if(!isset($_SESSION['mail'])): ?>
         <div class="col-3">
             <div class="btn-group ls" role="group" aria-label="Basic example">
@@ -35,6 +36,7 @@
                 <a class="btn btn-outline-info" href="./signup.php" role="button">Εγγραφή</a>
             </div>
         </div>
+        <!-- else -->
         <?php else: ?>
         <div class="col" style="margin-left:6%;">
                 <div class="dropdown">

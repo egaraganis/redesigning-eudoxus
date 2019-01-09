@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="../css/index.css">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/bower_components/bootstrap-horizon/bootstrap-horizon.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-            integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
 <body style="font-family: 'Alegreya Sans', sans-serif;">
@@ -26,6 +25,7 @@
                 <img src="../img/logo.jpg" class="rounded">
               </a>
             </div>
+            <!-- if user is not logged in -->
             <?php if(!isset($_SESSION['mail'])): ?>
             <div class="col-3">
                 <div class="btn-group ls" role="group" aria-label="Basic example">
@@ -33,6 +33,7 @@
                     <a class="btn btn-outline-info" href="./signup.php" role="button">Εγγραφή</a>
                 </div>
             </div>
+            <!-- else -->
             <?php else: ?>
             <div class="col" style="margin-left:6%;">
                     <div class="dropdown">
@@ -154,45 +155,46 @@
             <h2 style="color:#64686d;"> Ανακοινώσεις </h2>
         </div>
         <div class="row row-horizon justify-content-center">
-            <div class="card-group" style="margin-left:2%;margin-right:2%;margin-top:1%;">
-                <?php
-                    if (isset($_GET['pageno'])) {
-                        $pageno = $_GET['pageno'];
-                    } else {
-                        $pageno = 1;
-                    }
-                    $no_of_records_per_page = 3;
-                    $offset = ($pageno-1) * $no_of_records_per_page;
+          <!--  Get announcements from backend -->
+          <div class="card-group" style="margin-left:2%;margin-right:2%;margin-top:1%;">
+              <?php
+                  if (isset($_GET['pageno'])) {
+                      $pageno = $_GET['pageno'];
+                  } else {
+                      $pageno = 1;
+                  }
+                  $no_of_records_per_page = 3;
+                  $offset = ($pageno-1) * $no_of_records_per_page;
 
-                    require_once 'db_connect.php';
-                    $conn=new mysqli("$hn","$un","$pw","$db");
-                    // Check connection
-                    if (mysqli_connect_errno()){
-                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                        die();
-                    }
-                    mysqli_query($conn, "SET NAMES 'utf8'");
-                    $total_pages_sql = "SELECT COUNT(*) FROM Announcements";
-                    $result = mysqli_query($conn,$total_pages_sql);
-                    $total_rows = mysqli_fetch_array($result)[0];
-                    $total_pages = ceil($total_rows / $no_of_records_per_page);
+                  require_once 'db_connect.php';
+                  $conn=new mysqli("$hn","$un","$pw","$db");
+                  // Check connection
+                  if (mysqli_connect_errno()){
+                      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                      die();
+                  }
+                  mysqli_query($conn, "SET NAMES 'utf8'");
+                  $total_pages_sql = "SELECT COUNT(*) FROM Announcements";
+                  $result = mysqli_query($conn,$total_pages_sql);
+                  $total_rows = mysqli_fetch_array($result)[0];
+                  $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-                    $sql = "SELECT * FROM Announcements LIMIT $offset, $no_of_records_per_page";
-                    $res_data = mysqli_query($conn,$sql);
-                    while($row = mysqli_fetch_array($res_data)){
-                        echo
-                          '<div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title">' . $row["title"] . '</h5>
-                              <h6 class="card-subtitle mb-2 text-muted">'. $row["date"] .'</h6>
-                              <p class="card-text" style="color:#4c4d51;">' . $row["content"] . ' </p>
-                            </div>
-                           </div> ';
+                  $sql = "SELECT * FROM Announcements LIMIT $offset, $no_of_records_per_page";
+                  $res_data = mysqli_query($conn,$sql);
+                  while($row = mysqli_fetch_array($res_data)){
+                      echo
+                        '<div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">' . $row["title"] . '</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">'. $row["date"] .'</h6>
+                            <p class="card-text" style="color:#4c4d51;">' . $row["content"] . ' </p>
+                          </div>
+                         </div> ';
 
-                        }
-                    mysqli_close($conn);
-                ?>
-            </div>
+                      }
+                  mysqli_close($conn);
+              ?>
+          </div>
         </div>
         <div class="row row-horizon justify-content-center">
             <nav aria-label="Page navigation example">
