@@ -85,7 +85,7 @@
                 <div class="row justify-content-center">
                   <div style="margin-top:4%;">
                     <select class="form-control" id="typeofuser" name="typeofuser" style="width:100%;margin-left:3%;">
-                      <option disabled="disabled" selected="selected" id="no" name "non">
+                      <option disabled="disabled" selected="selected" id="no" name="non">
                         Ποιά είναι η ιδιότητα σας;
                       </option>
                       <option value="student" id="st" name="stu">
@@ -113,32 +113,8 @@
                 <div class="row justify-content-center">
                   <div style="border: 1px solid #e5e5e5; padding: 1%; width: 90%;">
                       <div id="student" class="idiothtes" style="display:none">
-                          <!--<div class="row">
-                            <select class="form-control" id="university" name="university" style="width:75%;margin-left:3%;">
-                              <option disabled="disabled" selected="selected" value="">
-                                Πανεπιστήμιο
-                              </option>
-                              <?php 
-                                /*require_once 'db_connect.php';
-                                $conn=new mysqli("$hn","$un","$pw","$db");
-                                // Check connection
-                                if (mysqli_connect_errno()){
-                                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                                    die();
-                                }
-                                $sql = "SELECT * FROM Universities";
-                                $res_data = mysqli_query($conn,$sql);
-                                while($row = mysqli_fetch_array($res_data)){
-                                    echo '<option value="'. $row["id"] .'">' . $row["name"] . '</option>';
-                                }
-                                mysqli_close($conn);*/
-                              ?>
-                            </select>
-                            <br>
-                            <br>
-                          </div>-->
                           <div class="row">
-                            <select class="form-control" id="department" style="width:75%;margin-left:3%;">
+                            <select class="form-control" id="sdepartment" name="sdepartment" style="width:75%;margin-left:3%;">
                               <option disabled="disabled" selected="selected">
                                 Σχολή
                               </option>
@@ -153,7 +129,7 @@
                                 $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Departments, Universities where Universities.idUniversity = Departments.idDepartment";
                                 $res_data = mysqli_query($conn,$sql);
                                 while($row = mysqli_fetch_array($res_data)){
-                                    echo '<option>' . $row[0] . ',&nbsp;' . $row[1] . '</option>';
+                                    echo '<option value="'. $row[2] . '">' . $row[0] . ',&nbsp;' . $row[1] . '</option>';
                                 }
                                 mysqli_close($conn);
                               ?>
@@ -164,94 +140,76 @@
                           <div class="form-group row">
                             <label for="staticEmail" class="col col-form-label">Επωνυμία</label>
                             <div class="col">
-                              <input placeholder="Πληκτρολογήστε την επωνυμία σας" class="form-control" type="text" />
+                              <input placeholder="Πληκτρολογήστε την επωνυμία σας" class="form-control" type="text" id="pbrandname" name="pbrandname"/>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
                               <div class="col">
-                                <input placeholder="Πληκτρολογήστε το τηλέφωνο σας" class="form-control" type="tel" />
+                                <input placeholder="Πληκτρολογήστε το τηλέφωνο σας" class="form-control" type="text" id="ptelephone" name="ptelephone"/>
                               </div>
                             </div>
                           <div class="form-group row">
                             <label for="staticSite" class="col col-form-label">Ιστοσελίδα</label>
                             <div class="col">
-                              <input placeholder="Πληκτρολογήστε την διεύθυνση της σελίδας σας" class="form-control" type="text" />
+                              <input placeholder="Πληκτρολογήστε την διεύθυνση της σελίδας σας" class="form-control" type="text" id="pwebpage" name="pwebpage"/>
                             </div>
                           </div>
                         </div>
-                      <div id="accesspoints" class="idiothtes" style="display:none">
+                      <div id="accesspoint" class="idiothtes" style="display:none">
                           <div class="form-group row">
                             <label for="staticEmail" class="col col-form-label">Επωνυμία</label>
                             <div class="col">
-                              <input placeholder="Πλητρκολογήστε την επωνυμία σας" class="form-control" type="text" />
+                              <input placeholder="Πληκτρολογήστε την επωνυμία σας" class="form-control" type="text" id="abrandname" name="abrandname"/>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
-                            <div class="col">
-                              <input placeholder="Πλητρκολογήστε το τηλέφωνο σας" class="form-control" type="tel" />
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
-                            <div class="col">
-                              <input placeholder="Πλητρκολογήστε την διέθυνσή της σελίδας σας" class="form-control" type="tel" />
-                            </div>
+                              <div class="col">
+                                <input placeholder="Πληκτρολογήστε το τηλέφωνο σας" class="form-control" type="text" id="atelephone" name="atelephone"/>
+                              </div>
                           </div>
                         </div>
                       <div id="notesprovider" class="idiothtes" style="display:none">
-                          <div class="form-group row">
-                            <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
-                            <div class="col">
-                              <input placeholder="Πληκτρολογήστε το τηλέφωνο σας" class="form-control" type="tel" />
-                            </div>
+                        <div class="form-group row">
+                          <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
+                              <div class="col">
+                                <input placeholder="Πληκτρολογήστε το τηλέφωνο σας" class="form-control" type="text" id="ntelephone" name="ntelephone"/>
+                              </div>
                           </div>
                         </div>
                       <div id="userdepartment" class="idiothtes" style="display:none">
                           <div class="form-group row">
-                            <select class="form-control" id="panepisthmio" style="width:75%;margin-left:3%;">
-                              <option disabled="disabled" selected="selected">
-                                Πανεπιστήμιο
-                              </option>
-                              <option>
-                                ΕΚΠΑ
-                              </option>
-                              <option>
-                                ΟΠΑ
-                              </option>
-                              <option>
-                                ΑΣΣΟΕ
-                              </option>
-                            </select>
-                            <br />
-                            <br />
-                          </div>
-                          <div class="form-group row">
-                            <select class="form-control" id="sxolh" style="width:75%;margin-left:3%;">
+                            <select class="form-control" id="udepartment" name="udepartment" style="width:75%;margin-left:3%;">
                               <option disabled="disabled" selected="selected">
                                 Σχολή
                               </option>
-                              <option>
-                                ΦΠΨ
-                              </option>
-                              <option>
-                                ΜΙΘΕ
-                              </option>
-                              <option>
-                                ΘΕΟΛΟΓΙΚΟ
-                              </option>
+                              <?php 
+                                require_once 'db_connect.php';
+                                $conn1=new mysqli("$hn","$un","$pw","$db");
+                                // Check connection
+                                if (mysqli_connect_errno()){
+                                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                    die();
+                                }
+                                $sql1 = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Departments, Universities where Universities.idUniversity = Departments.idDepartment";
+                                $res_data1 = mysqli_query($conn1,$sql1);
+                                while($row1 = mysqli_fetch_array($res_data1)){
+                                    echo '<option value="'. $row1[2] . '">' . $row1[0] . ',&nbsp;' . $row1[1] . $row1[2] .'</option>';
+                                }
+                                mysqli_close($conn1);
+                              ?>
                             </select>
                           </div>
                           <div class="form-group row">
-                            <select class="form-control" id="thesh" style="width:75%;margin-left:3%;">
-                              <option disabled="disabled" selected="selected">
+                            <select class="form-control" id="uposition" name="uposition" style="width:75%;margin-left:3%;">
+                              <option disabled="disabled" selected="selected" id="no" name="non">
                                 Θέση
                               </option>
-                              <option>
+                              <option value="secretariat" id="se" name="sec">
                                 Γραμματεία
                               </option>
-                              <option>
+                              <option value="bookkeeper" id="bo" name="boo">
                                 Υπεύθυνος Βιβλίων
                               </option>
                             </select>
