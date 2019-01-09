@@ -171,7 +171,7 @@
                         echo "Failed to connect to MySQL: " . mysqli_connect_error();
                         die();
                     }
-
+                    mysqli_query($conn, "SET NAMES 'utf8'");
                     $total_pages_sql = "SELECT COUNT(*) FROM Announcements";
                     $result = mysqli_query($conn,$total_pages_sql);
                     $total_rows = mysqli_fetch_array($result)[0];
