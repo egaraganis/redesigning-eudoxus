@@ -1,0 +1,46 @@
+<?php header("content-type: text/html;charset=utf-8") ?>
+<?php
+  echo "Hello to book instertion";
+  require_once 'db_connect.php';
+  $conn = new mysqli($hn,$un,$pw,$db);
+  if ($conn->connect_error) die ($conn->connect_error);
+  $title = mysqli_real_escape_string($conn, $_REQUEST['title']);
+  $authors = mysqli_real_escape_string($conn, $_REQUEST['authors']);
+  $subtitle = mysqli_real_escape_string($conn, $_REQUEST['subtitle']);
+  $quality = mysqli_real_escape_string($conn, $_REQUEST['quality']);
+  $category = mysqli_real_escape_string($conn, $_REQUEST['category']);
+  $size1 = mysqli_real_escape_string($conn, $_REQUEST['size1']);
+  $size2 = mysqli_real_escape_string($conn, $_REQUEST['size2']);
+  $firstpublishingyear = mysqli_real_escape_string($conn, $_REQUEST['firstpublishingyear']);
+  $pricetag = mysqli_real_escape_string($conn, $_REQUEST['pricetag']);
+  $contentarray = mysqli_real_escape_string($conn, $_REQUEST['contentarray']);
+  $cover = mysqli_real_escape_string($conn, $_REQUEST['cover']);
+  $backcover = mysqli_real_escape_string($conn, $_REQUEST['backcover']);
+  $examplesnippet = mysqli_real_escape_string($conn, $_REQUEST['examplesnippet']);
+  echo $title;
+  echo "<br>";
+  echo $authors;
+  echo "<br>";
+  echo $subtitle;
+  echo "<br>";
+  echo $quality;
+  echo "<br>";
+  echo $category;
+  echo "<br>";
+  echo $size1;
+  echo "<br>";
+  echo $size2;
+  echo "<br>";
+  echo $firstpublishingyear;
+  echo "<br>";
+  echo $pricetag;
+  echo "<br>";
+  echo $cover;
+  echo "<br>";
+  echo $backcover;
+  echo "<br>";
+  echo $examplesnippet;
+  echo "<br>";
+  echo $contentarray;
+  echo "<br>";
+  ?>

@@ -55,7 +55,7 @@
           </div>
         </div>
         <h2 align="center" style="color:#2AA2DE;margin-bottom:2%"> Καταχώρηση Συγγράμματος </h2>
-        <form>
+        <form action="./postbook.php" method="post">
           <div id="upperPart" class="container">
               <div class="row" style="margin-top:2%;">
                   <div class="col-8">
@@ -63,27 +63,27 @@
                         <div style="border: 1px solid #e5e5e5; height: 500px; width: 700px; overflow: auto; padding: 10px;">
                             <div class="row text-center">
                                 <div class="col-4"><label for="title">Τίτλος</label></div>
-                                <div class="col-6"><input type="text" class="form-control" id="title"></div>
+                                <div class="col-6"><input required="required" type="text" name="title" class="form-control" id="title"></div>
                                 <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
                                 <div class="col-4"><label for="authors">Συγγραφείς</label></div>
-                                <div class="col-6"><input type="text" class="form-control" id="authors"></div>
+                                <div class="col-6"><input required="required" type="text" name="authors"  class="form-control" id="authors"></div>
                                 <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
                                 <div class="col-4"><label for="subtitle">Υπότιτλος</label></div>
-                                <div class="col-6"><input type="text" class="form-control" id="subtitle"></div>
+                                <div class="col-6"><input required="required" type="text" name="subtitle" class="form-control" id="subtitle"></div>
                                 <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
                                 <div class="col-4"><label for="quality">Κατάσταση</label></div>
                                 <div class="col-6">
-                                    <select class="form-control custom-select" style="width:310px" id="quality">
-                                        <option>Άριστη</option>
-                                        <option>Καλή</option>
-                                        <option>Μέτρια</option>
-                                        <option>Κακή</option>
+                                    <select name="quality" class="form-control custom-select" style="width:325px" id="quality">
+                                        <option value="4" >Άριστη</option>
+                                        <option value="3">Καλή</option>
+                                        <option value="2">Μέτρια</option>
+                                        <option value="1">Κακή</option>
                                     </select>
                                 </div>
                                 <div class="col-2"><p> ? * </p></div>
@@ -91,29 +91,30 @@
                             <div class="row text-center">
                                 <div class="col-4"><label for="category">Είδος</label></div>
                                 <div class="col-6">
-                                    <select class="form-control custom-select" style="width:310px" id="category">
-                                        <option>Φυσική</option>
-                                        <option>Φιλολογία</option>
-                                        <option>Ιστορία</option>
-                                        <option>Πληροφορική</option>
-                                        <option>Λογοτεχνία</option>
+                                    <select class="form-control custom-select" style="width:325px" name="category" id="category">
+                                        <option value="1">Φυσική</option>
+                                        <option value="2">Φιλολογία</option>
+                                        <option value="3">Ιστορία</option>
+                                        <option value="4">Πληροφορική</option>
+                                        <option value="5">Λογοτεχνία</option>
                                     </select>
                                 </div>
                                 <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
                                 <div class="col-4"><label for="dimensions">Διαστάσεις</label></div>
-                                <div class="col-6"><input type="text" class="form-control" id="dimensions"></div>
+                                <div class="col-3"><input required="required" name="size1" type="text" class="form-control" id="dimensions" placeholder="Ύψος σε εκ."></div>
+                                <div class="col-3"><input required="required" name="size2" type="text" class="form-control" id="dimensions" placeholder="Πλάτος σε εκ."></div>
                                 <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
                                 <div class="col-4"><label for="firstPublishingYear">Έτος 1ης Έκδοσης</label></div>
-                                <div class="col-6"><input type="text" class="form-control" id="firstPublishingYear"></div>
+                                <div class="col-6"><input name="firstpublishingyear" type="text" class="form-control" id="firstPublishingYear"></div>
                                 <div class="col-2"><p> ? * </p></div>
                             </div>
                             <div class="row text-center">
                                 <div class="col-4"><label for="pricetag">Τιμή Κοστολόγησης</label></div>
-                                <div class="col-6"><input type="text" class="form-control" id="pricetag"></div>
+                                <div class="col-6"><input name="pricetag" type="text" class="form-control" id="pricetag"></div>
                                 <div class="col-2"><p> ? * </p></div>
                             </div>
                       </div>
@@ -148,7 +149,7 @@
                                 <p>17. Για κάθε απορία τους, οι χρήστες των υπηρεσιών ΕΥΔΟΞΟΣ και ΕΥΔΟΞΟΣ+ μπορούν να απευθύνονται στο τηλέφωνο 215-215-7850 ή ηλεκτρονικά στο http://eudoxus.gr/OnlineReport.aspx. Σε κάθε περίπτωση η ΕΔΕΤ Α.Ε. διατηρεί το δικαίωμα τροποποίησης των παρόντων όρων και προϋποθέσεων κατόπιν ενημέρωσης των συμμετεχόντων φοιτητών μέσω της παρούσας ιστοσελίδας. Για τον λόγο αυτό οι συμμετέχοντες φοιτητές οφείλουν να επισκέπτονται τακτικά την ιστοσελίδα του έργου και να ελέγχουν τους όρους και τις προϋποθέσεις συμμετοχής.</p>
                           </div>
                           <br>
-                          <input type="checkbox" name="termsAccept" value="Bike"> &nbsp; Αποδέχομαι τους Όρους Χρήσης</br>
+                          <input type="checkbox" required="required" name="termsAccept" value="Bike"> &nbsp; Αποδέχομαι τους Όρους Χρήσης</br>
                       </div>
                   </div>
               </div>
@@ -157,27 +158,95 @@
               <div class="row" style="margin-top:2%;">
                   <div class="col">
                       <label class="col control-label"><h6>Ενδεικτικά Μέρη Συγγράματος</h6></label>
-                        <div style="border: 1px solid #e5e5e5; height: 200px; width: 1060px; overflow: auto; padding: 10px;">
+                        <div style="border: 1px solid #e5e5e5; height: 200px; width: 1060px; padding: 10px;">
                             <div class="row text-center">
                                 <div class="col-3">
                                     <h6>Εξώφυλλο</h6>
-                                    <button class="btn"><i class="far fa-plus-square" style="font-size:96px"></i></button>
-                                    <br><a class="button" href="#">cancel</a>
+                                    <button class="btn" type="button" data-toggle="modal" data-target="#modal1"><i class="far fa-plus-square" style="font-size:96px"></i></button>
+                                    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Πληκτρολογήστε τον υπερσύνδεσμο του εξωφύλλου</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div><input type="text" name="cover" class="form-control" id="bookcover"></div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </div>
                                 <div class="col-3">
                                     <h6>Οπισθόφυλλο</h6>
-                                    <button class="btn"><i class="far fa-plus-square" style="font-size:96px"></i></button>
-                                    <br><a class="button" href="#">cancel</a>
+                                    <button class="btn" type="button" data-toggle="modal" data-target="#modal2"><i class="far fa-plus-square" style="font-size:96px"></i></button>
+                                    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Πληκτρολογήστε τον υπερσύνδεσμο του οπισθοφύλλου</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div><input type="text" name="backcover" class="form-control" id="backcover"></div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </div>
                                 <div class="col-3">
                                     <h6>Πίνακας Πειρεχομένων</h6>
-                                    <button class="btn"><i class="far fa-plus-square" style="font-size:96px"></i></button>
-                                    <br><a class="button" href="#">cancel</a>
+                                    <button class="btn" type="button" data-toggle="modal" data-target="#modal3"><i class="far fa-plus-square" style="font-size:96px"></i></button>
+                                    <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Πληκτρολογήστε τον υπερσύνδεσμο του πίνακα περιεχομένων</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div><input type="text" name="contentarray" class="form-control" id="contentarray"></div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </div>
                                 <div class="col-3">
                                     <h6>Ενδεικτικό Απόσπασμα</h6>
-                                    <button class="btn"><i class="far fa-plus-square" style="font-size:96px"></i></button>
-                                    <br><a class="button" href="#">cancel</a>
+                                    <button class="btn" type="button" data-toggle="modal" data-target="#modal4"><i class="far fa-plus-square" style="font-size:96px"></i></button>
+                                    <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Πληκτρολογήστε τον υπερσύνδεσμο ενδεικτικού αποσπάσματος</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div><input type="text" name="examplesnippet" class="form-control" id="examplesnippet"></div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +255,7 @@
           </div>
           <div id="finalButtons" class="container" style="margin-top:2%;">
               <div class="row align-items-center justify-content-center">
-                  <div class="col-4"><button type="submit" class="btn btn-info btn-lg" href"#">Καταχώρηση Συγγράμματος</button></div>
+                  <div class="col-4"><button type="submit" class="btn btn-info btn-lg">Καταχώρηση Συγγράμματος</button></div>
                   <div class="col-2"><a class="button" href="#">Ακύρωση</a></div>
               </div>
               <br></br><br></br>
