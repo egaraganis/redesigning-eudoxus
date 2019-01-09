@@ -153,7 +153,7 @@
         <div class="row row-horizon justify-content-center" style="margin-top: 11%;">
             <h2 style="color:#64686d;"> Ανακοινώσεις </h2>
         </div>
-        <div class="row row-horizon justify-content-center" style="margin-top: 1%;">
+        <div class="row row-horizon justify-content-center">
             <div class="card-group" style="margin-left:2%;margin-right:2%;margin-top:1%;">
                 <?php
                     if (isset($_GET['pageno'])) {
