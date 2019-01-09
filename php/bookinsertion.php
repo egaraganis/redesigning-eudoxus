@@ -55,6 +55,19 @@
           </div>
         </div>
         <h2 align="center" style="color:#2AA2DE;margin-bottom:2%"> Καταχώρηση Συγγράμματος </h2>
+        <?php if(isset($_SESSION['bookinsertion'])): ?>
+          <?php if(($_SESSION['bookinsertion']) == true ): ?>
+            <div class="row align-items-center justify-content-center alert alert-success alert-dismissable" style="width:30%;margin-top:2%;margin-left:35%;">
+              Επιτυχής προσθήκη συγγράμματος !
+              <?php unset($_SESSION['bookinsertion']); ?>
+            </div>
+          <?php else: ?>
+            <div class="row alert alert-danger alert-dismissable justify-content-center" style="width:30%;margin-top:2%;margin-left:35%;">
+              Η προσθήκη συγγράμματος προσωρινά απέτυχε!
+              <?php unset($_SESSION['bookinsertion']); ?>
+            </div>
+          <?php endif; ?>
+        <?php endif; ?>
         <form action="./postbook.php" method="post">
           <div id="upperPart" class="container">
               <div class="row" style="margin-top:2%;">
@@ -80,10 +93,10 @@
                                 <div class="col-4"><label for="quality">Κατάσταση</label></div>
                                 <div class="col-6">
                                     <select name="quality" class="form-control custom-select" style="width:325px" id="quality">
-                                        <option value="4" >Άριστη</option>
-                                        <option value="3">Καλή</option>
-                                        <option value="2">Μέτρια</option>
-                                        <option value="1">Κακή</option>
+                                        <option value="Άριστη" >Άριστη</option>
+                                        <option value="Καλή">Καλή</option>
+                                        <option value="Μέτρια">Μέτρια</option>
+                                        <option value="Κακή">Κακή</option>
                                     </select>
                                 </div>
                                 <div class="col-2"><p> ? * </p></div>
@@ -92,11 +105,11 @@
                                 <div class="col-4"><label for="category">Είδος</label></div>
                                 <div class="col-6">
                                     <select class="form-control custom-select" style="width:325px" name="category" id="category">
-                                        <option value="1">Φυσική</option>
-                                        <option value="2">Φιλολογία</option>
-                                        <option value="3">Ιστορία</option>
-                                        <option value="4">Πληροφορική</option>
-                                        <option value="5">Λογοτεχνία</option>
+                                        <option value="Φυσική">Φυσική</option>
+                                        <option value="Φιλολογία">Φιλολογία</option>
+                                        <option value="Ιστορία">Ιστορία</option>
+                                        <option value="Πληροφορική">Πληροφορική</option>
+                                        <option value="Λογοτεχνία">Λογοτεχνία</option>
                                     </select>
                                 </div>
                                 <div class="col-2"><p> ? * </p></div>

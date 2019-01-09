@@ -18,6 +18,7 @@
   if($res->num_rows == 1 && $password == $row['password']) {
     // store in session that user is logged in
     $_SESSION['mail'] = $mail;
+    $_SESSION['userID'] = $row['idUser'];
     $_SESSION['loggedin'] = true;
     mysqli_close($conn); // close connection
     header('Location: '."index.php");
