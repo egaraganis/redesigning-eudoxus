@@ -48,12 +48,31 @@
       <!-- 2nd level -->
       <div class="row justify-content-center" style="margin-top:2%;">
         <div class="col-5 profilediv">
+          <?php 
+            $id=$_SESSION['userID'];
+            require_once 'db_connect.php';
+            $conn=new mysqli("$hn","$un","$pw","$db");
+            // Check connection
+            if (mysqli_connect_errno()){
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                die();
+            }
+            $sql = "SELECT Users.email, Users.name, Users.surname 
+                    FROM Users
+                    where Users.idUser =" . $id ;
+            $res_data = mysqli_query($conn,$sql);
+            $row = mysqli_fetch_array($res_data);
+            $email = $row[0];
+            $name = $row[1];
+            $surname = $row[2];
+            mysqli_close($conn);
+          ?>
           <div class="row">
             <div class="col">
               <p style="padding-top:3%;"> Όνομα </p>
             </div>
             <div class="col">
-              <p style="padding-top:3%;font-weight:bold;"> Ευάγγελος </p>
+              <p style="padding-top:3%;font-weight:bold;"> <?php echo $name ?> </p>
             </div>
           </div>
           <div class="row">
@@ -61,7 +80,7 @@
               <p > Επώνυμο </p>
             </div>
             <div class="col">
-              <p style="padding-top:3%;font-weight:bold;"> Γκαραγκάνης </p>
+              <p style="padding-top:3%;font-weight:bold;"> <?php echo $surname ?> </p>
             </div>
           </div>
           <div class="row">
@@ -77,7 +96,7 @@
               <p > Ηλεκτρονική Διεύθυνση </p>
             </div>
             <div class="col">
-              <p style="padding-top:3%;font-weight:bold;"> developpmentt@gmail.com </p>
+              <p style="padding-top:3%;font-weight:bold;"> <?php echo $email ?> </p>
             </div>
           </div>
         </div>
