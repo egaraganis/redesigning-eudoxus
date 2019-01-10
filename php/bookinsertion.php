@@ -274,5 +274,12 @@
               <br></br><br></br>
           </div>
         </form>
+        <?php if($_SESSION['typeofuser'] != 2): ?>
+            <script>
+              alert("Πρέπει να είστε συνδεδεμένος σαν εκδότης! ");
+              window.history.back();
+            </script>
+          }
+        <?php endif; ?>
     </body>
 </html>

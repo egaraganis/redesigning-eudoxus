@@ -2,7 +2,7 @@
   session_start();
 ?>
 
-  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -329,6 +329,14 @@
         </div>
         </div>
     </div>
+
+    <?php if($_SESSION['typeofuser'] != 1): ?>
+        <script>
+          alert("Πρέπει να είστε συνδεδεμένος σαν φοιτητής! ");
+          window.history.back();
+        </script>
+      }
+    <?php endif; ?>
 
     <script>
         var toggler = document.getElementsByClassName("caret");
