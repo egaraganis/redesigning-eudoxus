@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,10 +12,8 @@
     <link rel="stylesheet" href="../css/index.css">
     <title> Eudoxus </title>
 </head>
-
 <body style="font-family: 'Alegreya Sans', sans-serif;">
     <div class="container-fluid">
-
         <!-- 1rst level (logo,login,signup) -->
         <div class="row" style="margin-bottom:1%;">
             <div class="col-9" style="padding-top:1%; padding-left:1%;">
@@ -38,7 +35,9 @@
                   </div>
                 </div>
         </div>
+        <!-- 2nd row, the second stop of books declaration -->
         <div class="mx-auto" style="width: 80%;">
+            <!-- navigation bar -->
             <div class="row" style="margin-top:6%;">
                 <div class="col">
                     <a type="submit" class="btn btn-info" href="bookseason1.php">Προηγούμενο Βήμα</a>
@@ -51,8 +50,8 @@
                 </div>
             </div>
             </br>
+            <!-- for each book, choose receipt method -->
             <div class="row">
-                <!--jumbotron jumbotron-fluid-->
                 <div style="border: 1px solid #e5e5e5;overflow: auto; padding: 1%; width: 90%;">
                     <ul id="myUL">
                         <li><span class="caret">ΣΥΓΓΡΑΜΜΑ 1</span>
@@ -108,11 +107,9 @@
                     </ul>
                 </div>
             </div>
-
-        </div>
         </div>
     </div>
-
+    <!-- tree view js -->
     <script>
         var toggler = document.getElementsByClassName("caret");
         var i;
@@ -124,6 +121,7 @@
             });
         }
     </script>
+    <!-- buggy js code for gmaps-->
     <script>
         function myMap() {
             var mapProp = {
@@ -134,7 +132,5 @@
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
-
 </body>
-
 </html>

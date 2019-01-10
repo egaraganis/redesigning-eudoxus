@@ -1,13 +1,12 @@
 <?php
   session_start();
 ?>
-
+<!-- User should be authorized to submit a book -->
 <?php if(!isset($_SESSION['mail'])): ?>
   <? header('Location: '."./login.php"); ?>
 <?php endif; ?>
 
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -15,13 +14,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-            integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="../css/index.css"/>
         <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
         <title>Eudoxus</title>
     </head>
-
     <body style="font-family: 'Alegreya Sans', sans-serif;">
       <!-- 1rst level (logo,login,signup) -->
         <div class="row" style="margin-bottom:1%;">
@@ -55,6 +52,7 @@
           </div>
         </div>
         <h2 align="center" style="color:#2AA2DE;margin-bottom:2%"> Καταχώρηση Συγγράμματος </h2>
+        <!-- if user tried to submit a book, display a status message -->
         <?php if(isset($_SESSION['bookinsertion'])): ?>
           <?php if(($_SESSION['bookinsertion']) == true ): ?>
             <div class="row align-items-center justify-content-center alert alert-success alert-dismissable" style="width:30%;margin-top:2%;margin-left:35%;">
@@ -68,7 +66,9 @@
             </div>
           <?php endif; ?>
         <?php endif; ?>
+        <!-- The form -->
         <form action="./postbook.php" method="post">
+          <!-- basic fields -->
           <div id="upperPart" class="container">
               <div class="row" style="margin-top:2%;">
                   <div class="col-8">
@@ -167,6 +167,7 @@
                   </div>
               </div>
           </div>
+          <!-- cover photos -->
           <div id="lowerPart" class="container">
               <div class="row" style="margin-top:2%;">
                   <div class="col">
@@ -266,6 +267,7 @@
                   </div>
               </div>
           </div>
+          <!-- form butoons-->
           <div id="finalButtons" class="container" style="margin-top:2%;">
               <div class="row align-items-center justify-content-center">
                   <div class="col-4"><button type="submit" class="btn btn-info btn-lg">Καταχώρηση Συγγράμματος</button></div>
@@ -274,6 +276,7 @@
               <br></br><br></br>
           </div>
         </form>
+        <!-- only publishers can submit books -->
         <?php if($_SESSION['typeofuser'] != 2): ?>
             <script>
               alert("Πρέπει να είστε συνδεδεμένος σαν εκδότης! ");

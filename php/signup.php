@@ -47,44 +47,44 @@
                     <div class="form-group row">
                       <label for="staticEmail" class="col col-form-label">Όνομα</label>
                       <div class="col">
-                        <input placeholder="Πληκτρολογήστε το όνομά σας" class="form-control" type="text" id="name" name="name"/>
+                        <input required="required" placeholder="Πληκτρολογήστε το όνομά σας" class="form-control" type="text" id="name" name="name"/>
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label for="staticEmail" class="col col-form-label">Eπίθετο</label>
                       <div class="col">
-                        <input placeholder="Πληκτρολογήστε το επίθετό σας" class="form-control" type="text" id="surname" name="surname"/>
+                        <input required="required" placeholder="Πληκτρολογήστε το επίθετό σας" class="form-control" type="text" id="surname" name="surname"/>
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label for="staticEmail" class="col col-form-label">Email</label>
                       <div class="col">
-                        <input placeholder="Πληκτρολογήστε την διέθυνσή σας" class="form-control" type="text" id="email" name="email"/>
+                        <input required="required" placeholder="Πληκτρολογήστε την διέθυνσή σας" class="form-control" id="email" name="email"/>
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label for="inputPassword" class="col col-form-label">Κωδικός Πρόσβασης</label>
                       <div class="col">
-                        <input placeholder="Πλητρκολογήστε τον κωδικό σας" type="password" class="form-control" id="password" name="password"/>
+                        <input required="required" placeholder="Πλητρκολογήστε τον κωδικό σας" type="password" class="form-control" id="password" name="password"/>
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label for="inputPassword" class="col col-form-label">Επιβεβαίωση Κωδικού</label>
                       <div class="col">
-                        <input placeholder="Επαναλάβετε τον κωδικό σας" type="password" class="form-control" id="password1" name="password1"/>
+                        <input required="required" placeholder="Επαναλάβετε τον κωδικό σας" type="password" class="form-control" id="password1" name="password1"/>
                       </div>
                     </div>
 
                   </div>
                 </div>
-  
+
                 <div class="row justify-content-center">
                   <div style="margin-top:4%;">
-                    <select class="form-control" id="typeofuser" name="typeofuser" style="width:100%;margin-left:3%;">
+                    <select required="required" class="form-control" id="typeofuser" name="typeofuser" style="width:100%;margin-left:3%;">
                       <option disabled="disabled" selected="selected" id="no" name="non">
                         Ποιά είναι η ιδιότητα σας;
                       </option>
@@ -118,7 +118,7 @@
                               <option disabled="disabled" selected="selected">
                                 Σχολή
                               </option>
-                              <?php 
+                              <?php
                                 require_once 'db_connect.php';
                                 $conn=new mysqli("$hn","$un","$pw","$db");
                                 // Check connection
@@ -184,7 +184,7 @@
                               <option disabled="disabled" selected="selected">
                                 Σχολή
                               </option>
-                              <?php 
+                              <?php
                                 require_once 'db_connect.php';
                                 $conn1=new mysqli("$hn","$un","$pw","$db");
                                 // Check connection
@@ -279,7 +279,7 @@
                           </div>
                       </div>
                 </div>
-                <input type="checkbox" name="vehicle1" value="Bike" /> Αποδέχομαι τους όρους χρήσης
+                <input required="required" type="checkbox"/> Αποδέχομαι τους όρους χρήσης
               </div>
           </div>
           <br />

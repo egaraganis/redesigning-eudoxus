@@ -17,6 +17,7 @@
   $id = $row['idUser'];
 
   if($res->num_rows == 1 && $password == $row['password']) {
+    // find the type of user
     $typeofuser = -1;
     if($typeofuser == -1){
       $query1 = "SELECT * FROM Students WHERE idStudent = '$id'";
