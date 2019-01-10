@@ -74,5 +74,11 @@
 							   VALUES ('$email','$password', '$name','$surname')";
 		mysqli_query($conn, $snewInsert);
 	}
+
+	// store in session that user is now logged in
+    /*$_SESSION['mail'] = $mail;
+    $_SESSION['userID'] = $row['idUser'];
+    $_SESSION['loggedin'] = true;
+    $_SESSION['typeofuser'] = $typeofuser;*/
 	mysqli_close($conn); // close connection
 ?>
