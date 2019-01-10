@@ -28,16 +28,14 @@
 								 VALUES ('$email','$password', '$name','$surname')";
 		mysqli_query($conn, $snewInsert);
 
-		$getID = "SELECT Users.idUser
-                FROM Users
-                WHERE Users.email =" . $email ;
-        $ID_data = mysqli_query($conn,$getID);
-        $id = mysqli_fetch_array($ID_data);
-        echo $id;
-		$snewInsert="INSERT INTO Students (idStudent,universityId,departmentId,numOfReceivedBooks,numOfRemainingBooks,bookPoints)
-							   VALUES (". $id . ",'$suniID','$sdepartment','0', '50','0')";
-		mysqli_query($conn, $snewInsert);
-	  	//header('Location: '."index.php");
+		$sgetID = "SELECT Users.idUser FROM Users WHERE Users.email = '" . $email . "'";
+        $sID_data = mysqli_query($conn,$sgetID);
+        $sid = mysqli_fetch_array($sID_data);
+        echo $sid[0];
+		$snewInsert1="INSERT INTO Students (idStudent,universityId,departmentId,numOfReceivedBooks,numOfRemainingBooks,bookPoints)
+							   VALUES ('". $sid[0] . "','$suniID','$sdepartment','0', '50','0')";
+		mysqli_query($conn, $snewInsert1);
+	  	header('Location: '."index.php");
 	}
 	if($typeofuser == "publisher") {
 		$brandname = mysqli_real_escape_string($conn, $_REQUEST['pbrandname']);
