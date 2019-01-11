@@ -17,5 +17,5 @@
 	    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 	}
 	mysqli_close($conn);
-	//header("Location: .php");
+	header("Location: profile.php");
 ?>

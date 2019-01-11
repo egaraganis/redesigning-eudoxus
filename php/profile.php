@@ -179,9 +179,6 @@
               </div>
             </div>
           </div>
-          <div class="row" style="margin-top:0.5%;">
-            <a href="#" style="padding-left:5.8%;"> Επεξεργασία Στοιχείων </a>
-          </div>
            <!-- 3rd level -->
           <div class="row justify-content-center" style="margin-top: 5%;margin-bottom:5%;">
              <div class="col-5 profilediv" style="overflow:auto;">
@@ -354,7 +351,7 @@
             </div>
           </div>
           <div class="row" style="margin-top:0.5%;">
-            <a href="#" style="padding-left:5.8%;"> Επεξεργασία Στοιχείων </a>
+            <a href="editprofile.php" style="padding-left:5.8%;"> Επεξεργασία Στοιχείων </a>
           </div>
            <!-- 3rd level -->
            <div class="row row-horizon justify-content-center" style="margin-top:4%;width:80;">
