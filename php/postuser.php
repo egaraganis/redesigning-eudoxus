@@ -2,78 +2,96 @@
 <?php
 	session_start();
 	require_once 'db_connect.php';
-  $conn=new mysqli("$hn","$un","$pw","$db");
-  // Check connection
-  if (mysqli_connect_errno()){
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-      die();
-  }
-  $name = mysqli_real_escape_string($conn, $_REQUEST['name']);
+	$conn=new mysqli("$hn","$un","$pw","$db");
+  	// Check connection
+  	if (mysqli_connect_errno()){
+   		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      	die();
+  	}
+  	//get general info
+  	$name = mysqli_real_escape_string($conn, $_REQUEST['name']);
 	$surname= mysqli_real_escape_string($conn, $_REQUEST['surname']);
 	$email = mysqli_real_escape_string($conn, $_REQUEST['email']);
 	$password = mysqli_real_escape_string($conn, $_REQUEST['password']);
 	$typeofuser = mysqli_real_escape_string($conn, $_REQUEST['typeofuser']);
-
-	echo $name . "<br>" . $surname ."<br>" . $email . "<br>" . $password . "<br>". $typeofuser . "<br>";
+	//insert in User table
+	mysqli_query($conn, "SET NAMES 'utf8'"); // greek characters support
+	$sql="INSERT INTO Users (email,password,name,surname)
+			VALUES ('$email','$password', '$name','$surname')";
+	if(mysqli_query($conn, $sql)){
+	    echo "inserted into User table successfully." . "<br>";
+	} else {
+	    echo "ERROR. 1" . mysqli_error($conn);
+	}
 
 	if($typeofuser == "student") {
-		$sdepartment = mysqli_real_escape_string($conn, $_REQUEST['sdepartment']);
-	  $ssql = "SELECT Departments.universityId FROM Departments WHERE Departments.idDepartment = " . $sdepartment;
-	  $sres_data = mysqli_query($conn,$ssql);
-	  $srow = mysqli_fetch_array($sres_data);
-	  $suniID= $srow[0];
-		echo $sdepartment . "<br>" . $suniID . "<br>";
-		$snewInsert="INSERT INTO Users (email,password,name,surname)
-								 VALUES ('$email','$password', '$name','$surname')";
-		mysqli_query($conn, $snewInsert);
-		echo $email;
-		$getID = "SELECT Users.idUser
-              FROM Users
-              WHERE Users.email = '$email'" ;
-    $ID_data = mysqli_query($conn,$getID);
-    $id = mysqli_fetch_array($ID_data);
-		$ii = $id['idUser'];
-		$snewInsert="INSERT INTO Students (idStudent,universityId,departmentId,numOfReceivedBooks,numOfRemainingBooks,bookPoints)
-							   VALUES ('$ii','$suniID','$sdepartment','0', '50','0')";
-		mysqli_query($conn, $snewInsert);
-	  //header('Location: '."index.php");
+		//read student's special info
+		$depID = mysqli_real_escape_string($conn, $_REQUEST['department']);
+	  	//get university id
+	  	mysqli_query($conn, "SET NAMES 'utf8'"); // greek characters support
+	  	$sql = "SELECT Departments.universityId FROM Departments WHERE Departments.idDepartment = " . $depID;
+	  	if($res_data = mysqli_query($conn,$sql)){
+		    echo "get university id successfully." . "<br>";
+		} else {
+		    echo "ERROR. 2" . mysqli_error($conn);
+		}
+	  	$row = mysqli_fetch_array($res_data);
+	  	$uniID= $row['universityId'];
+	  	//get user id
+	  	mysqli_query($conn, "SET NAMES 'utf8'"); // greek characters support
+		$sql = "SELECT Users.idUser FROM Users WHERE Users.email = '$email'";
+    	if($res_data = mysqli_query($conn,$sql)){
+		    echo "get user id successfully." . "<br>";;
+		} else {
+		    echo "ERROR. 3 " . mysqli_error($conn);
+		}
+    	$row = mysqli_fetch_array($res_data);
+		$id = $row['idUser'];
+		//insert in Students table
+		mysqli_query($conn, "SET NAMES 'utf8'"); // greek characters support
+		$sql="INSERT INTO Students (idStudent,universityId,departmentId,numOfReceivedBooks,numOfRemainingBooks,booksPoints)
+				VALUES ('$id','$uniID','$depID','0', '50','0')";
+		if(mysqli_query($conn, $sql)){
+		    echo "Records added successfully.";
+		} else {
+		    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+		}
+	  	header('Location: '."index.php");
 	}
 	if($typeofuser == "publisher") {
-		$brandname = mysqli_real_escape_string($conn, $_REQUEST['pbrandname']);
-		$telephone= mysqli_real_escape_string($conn, $_REQUEST['ptelephone']);
-		$webpage = mysqli_real_escape_string($conn, $_REQUEST['pwebpage']);
+		$brandname = mysqli_real_escape_string($conn, $_REQUEST['brandname']);
+		$telephone= mysqli_real_escape_string($conn, $_REQUEST['telephone']);
+		$webpage = mysqli_real_escape_string($conn, $_REQUEST['webpage']);
 		echo $brandname . "<br>" . $telephone ."<br>" . $webpage . "<br>";
-		$snewInsert="INSERT INTO Users (email,password,name,surname)
-								 VALUES ('$email','$password', '$name','$surname')";
-		mysqli_query($conn, $snewInsert);
+		//get user id
+		mysqli_query($conn, "SET NAMES 'utf8'"); // greek characters support
+		$sql = "SELECT Users.idUser FROM Users WHERE Users.email = '$email'";
+    	if($res_data = mysqli_query($conn,$sql)){
+		    echo "get user id successfully." . "<br>";;
+		} else {
+		    echo "ERROR. 1" . mysqli_error($conn);
+		}
+		$row = mysqli_fetch_array($res_data);
+		$id = $row['idUser'];
+		mysqli_query($conn, "SET NAMES 'utf8'"); // greek characters support
+		$sql="INSERT INTO Publishers (idPublisher,brandname,telephone,website)
+				VALUES ('$id','$brandname','$telephone','$webpage')";
+		if(mysqli_query($conn, $sql)){
+		    echo "Records added successfully.";
+		} else {
+		    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+		}
+	  	header('Location: '."index.php");
+
 	}
 	if($typeofuser == "accesspoint") {
-		$abrandname = mysqli_real_escape_string($conn, $_REQUEST['abrandname']);
-		$atelephone= mysqli_real_escape_string($conn, $_REQUEST['atelephone']);
-		echo $abrandname . "<br>" . $atelephone ."<br>";
-		$snewInsert="INSERT INTO Users (email,password,name,surname)
-								 VALUES ('$email','$password', '$name','$surname')";
-		mysqli_query($conn, $snewInsert);
+		//accesspoint disabled
 	}
 	if($typeofuser == "notesprovider") {
-		$ntelephone= mysqli_real_escape_string($conn, $_REQUEST['ntelephone']);
-		echo $ntelephone ."<br>";
-		$snewInsert="INSERT INTO Users (email,password,name,surname)
-								 VALUES ('$email','$password', '$name','$surname')";
-		mysqli_query($conn, $snewInsert);
+		//accesspoint disabled
 	}
 	if($typeofuser == "userdepartment") {
-		$udepartment = mysqli_real_escape_string($conn, $_REQUEST['udepartment']);
-		$uposition = mysqli_real_escape_string($conn, $_REQUEST['uposition']);
-
-    $usql = "SELECT Departments.universityId FROM Departments WHERE Departments.idDepartment = " . $udepartment;
-    $ures_data = mysqli_query($conn,$usql);
-    $urow = mysqli_fetch_array($ures_data);
-    $uuniID= $urow[0];
-		echo $udepartment . "<br>" . $uuniID . "<br>" . $uposition . "<br>";
-		$snewInsert="INSERT INTO Users (email,password,name,surname)
-							   VALUES ('$email','$password', '$name','$surname')";
-		mysqli_query($conn, $snewInsert);
+		//accesspoint disabled
 	}
 	mysqli_close($conn); // close connection
 ?>

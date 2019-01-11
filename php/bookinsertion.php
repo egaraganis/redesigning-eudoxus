@@ -55,10 +55,10 @@
         <!-- if user tried to submit a book, display a status message -->
         <?php if(isset($_SESSION['bookinsertion'])): ?>
           <?php if(($_SESSION['bookinsertion']) == true ): ?>
-            <div class="row align-items-center justify-content-center alert alert-success alert-dismissable" style="width:30%;margin-top:2%;margin-left:35%;">
+            <!--<div class="row align-items-center justify-content-center alert alert-success alert-dismissable" style="width:30%;margin-top:2%;margin-left:35%;">
               Επιτυχής προσθήκη συγγράμματος !
               <?php unset($_SESSION['bookinsertion']); ?>
-            </div>
+            </div>-->
           <?php else: ?>
             <div class="row alert alert-danger alert-dismissable justify-content-center" style="width:30%;margin-top:2%;margin-left:35%;">
               Η προσθήκη συγγράμματος προσωρινά απέτυχε!
@@ -190,7 +190,7 @@
                                             <div><input type="text" name="cover" class="form-control" id="bookcover"></div>
                                           </div>
                                           <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ΟΚ</button>
                                           </div>
                                         </div>
                                       </div>
@@ -212,7 +212,7 @@
                                             <div><input type="text" name="backcover" class="form-control" id="backcover"></div>
                                           </div>
                                           <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ΟΚ</button>
                                           </div>
                                         </div>
                                       </div>
@@ -234,7 +234,7 @@
                                             <div><input type="text" name="contentarray" class="form-control" id="contentarray"></div>
                                           </div>
                                           <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ΟΚ</button>
                                           </div>
                                         </div>
                                       </div>
@@ -256,7 +256,7 @@
                                             <div><input type="text" name="examplesnippet" class="form-control" id="examplesnippet"></div>
                                           </div>
                                           <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ΟΚ</button>
                                           </div>
                                         </div>
                                       </div>

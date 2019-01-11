@@ -277,7 +277,7 @@
               <h6 style="margin-left: 12.3%;"> Βασικά Στοιχεία</h6> 
             </div>
             <div class="col-5">
-              <h6 style="margin-left: 25.3%;"> Επιπρόσθετα Στοιχεία </h6> 
+              <h6 style="margin-left: 25.3%;"> Δυνατές Ενέργειες </h6> 
             </div>
           </div>
           <div class="row justify-content-center" style="margin-top:0.5%;">
@@ -424,20 +424,81 @@
                      }
                      $userId = $_SESSION['userID'];
                       mysqli_query($conn, "SET NAMES 'utf8'");
-                     $sql = "SELECT Books.idBook, Books.title, Books.author, Books.category FROM Books WHERE Books.PublisherId = $userId LIMIT $offset, $no_of_records_per_page";
+                     $sql = "SELECT Books.idBook, Books.title, Books.author, Books.category, Books.coverPage, Books.subtitle, Books.firstYearPublished, Books.dimensions FROM Books WHERE Books.PublisherId = $userId LIMIT $offset, $no_of_records_per_page";
                      $res_data = mysqli_query($conn,$sql);
                      while($row = mysqli_fetch_array($res_data)){
                         $bookId = $row["idBook"];
                        echo
                          '<div class="card">
                            <div class="card-body">
-                             <h5 class="card-title">' . $row["title"] . '</h5>
-                             <h6 class="card-subtitle mb-2 text-muted">'. $row["category"] .'</h6>
-                             <h6 class="card-subtitle mb-2 text-muted">'. $row["author"] .'</h6>
-                             <form method ="post" action="./deleteBook.php">
-                                <input class="form-control" type="text" id="bookId" name="bookId" value='. $bookId . ' hidden/>
-                                <button type="submit" class="btn btn-danger btn-sm">Διαγραφή</button>
-                              </form>
+                              <h5 class="card-title">' . $row["title"] . '</h5>
+                               <h6 class="card-subtitle mb-2 text-muted">'. $row["category"] .'</h6>
+                               <h6 class="card-subtitle mb-2 text-muted">'. $row["author"] .'</h6>
+                               <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#bookModal'.$bookId.'" >Περισσότερα</button>
+                               <!-- Modal -->
+                              <div class="modal fade" id="bookModal'.$bookId.'" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">' . $row["title"] . '</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="row">
+                                        <div class="col">
+                                          <img src="' . $row["coverPage"] . '" class="img-fluid" alt="Image not found" height="295" width="209">
+                                        </div>
+
+                                        <div class="col">
+                                          <div class="row">
+                                            <p style="color:grey; font-style: italic;" > ' . $row["subtitle"] . '</p>
+                                          </div>
+                                          <div class="row" style="margin-top:10%;">
+                                          <div class="col">
+                                            <b>Συγγραφέας:</b>
+                                          </div>
+                                          <div class="col">
+                                          ' .  $row["author"] . '
+                                          </div>
+                                        </div>
+                                          <div class="row" style="margin-top:5%;">
+                                            <div class="col">
+                                              <b>Είδος:</b>
+                                            </div>
+                                            <div class="col">
+                                            ' .  $row["category"] . '
+                                            </div>
+                                          </div>
+
+                                        <div class="row" style="margin-top:5%;">
+                                          <div class="col">
+                                            <b>Έτος έκδοσης:</b>
+                                          </div>
+                                          <div class="col">
+                                          ' .  $row["firstYearPublished"] . '
+                                          </div>
+                                        </div>
+                                        <div class="row" style="margin-top:5%;">
+                                          <div class="col">
+                                            <b>Διαστάσεις:</b>
+                                          </div>
+                                          <div class="col">
+                                          ' .  $row["dimensions"] . '
+                                          </div>
+                                        </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                               <form method ="post" action="./deleteBook.php" style="margin-top:0.5%;">
+                                  <input class="form-control" type="text" id="bookId" name="bookId" value='. $bookId . ' hidden/>
+                                  <button type="submit" class="btn btn-danger btn-sm">Διαγραφή</button>
+                                </form>
                            </div>
                           </div> ';
 

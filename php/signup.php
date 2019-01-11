@@ -36,7 +36,7 @@
         <br />
         <!-- signup options -->
 
-        <form action="./postUser.php" method="post">
+        <form action="./postuser.php" method="post">
           <div class="row justify-content-center">
               <div class="col-5">
                 <div class="row justify-content-center">
@@ -94,13 +94,13 @@
                       <option value="publisher" id="pu" name="pub">
                         Εκδότης
                       </option>
-                      <option value="accesspoint" id="ac" name="acc">
+                      <option value="accesspoint" id="ac" name="acc" disabled="disabled">
                         Σημείο Διανομής
                       </option>
-                      <option value="notesprovider" id="no" name="not">
+                      <option value="notesprovider" id="no" name="not" disabled="disabled">
                         Διαθέτης Σημειώσεων
                       </option>
-                      <option value="userdepartment" id="us" name="use">
+                      <option value="userdepartment" id="us" name="use" disabled="disabled">
                         Ιδρύματα
                       </option>
                     </select>
@@ -114,7 +114,7 @@
                   <div style="border: 1px solid #e5e5e5; padding: 1%; width: 90%;">
                       <div id="student" class="idiothtes" style="display:none">
                           <div class="row">
-                            <select class="form-control" id="department" name="department" style="width:75%;margin-left:3%;">
+                            <select class="form-control" id="udepartment" name="udepartment" style="width:75%;margin-left:3%;">
                               <option disabled="disabled" selected="selected">
                                 Σχολή
                               </option>
@@ -126,10 +126,11 @@
                                     echo "Failed to connect to MySQL: " . mysqli_connect_error();
                                     die();
                                 }
-                                $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Departments, Universities where Universities.idUniversity = Departments.idDepartment";
+                                $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Universities, Departments where Departments.universityId = Universities.idUniversity";
+
                                 $res_data = mysqli_query($conn,$sql);
                                 while($row = mysqli_fetch_array($res_data)){
-                                    echo '<option value="'. $row[2] . '">' . $row[0] . ',&nbsp;' . $row[1] . '</option>';
+                                    echo '<option value="'. $row[2] . '">' . $row[0] . ',&nbsp;' . $row[1] . $row[2] .'</option>';
                                 }
                                 mysqli_close($conn);
                               ?>
@@ -186,18 +187,19 @@
                               </option>
                               <?php
                                 require_once 'db_connect.php';
-                                $conn1=new mysqli("$hn","$un","$pw","$db");
+                                $conn=new mysqli("$hn","$un","$pw","$db");
                                 // Check connection
                                 if (mysqli_connect_errno()){
                                     echo "Failed to connect to MySQL: " . mysqli_connect_error();
                                     die();
                                 }
-                                $sql1 = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Departments, Universities where Universities.idUniversity = Departments.idDepartment";
-                                $res_data1 = mysqli_query($conn1,$sql1);
-                                while($row1 = mysqli_fetch_array($res_data1)){
-                                    echo '<option value="'. $row1[2] . '">' . $row1[0] . ',&nbsp;' . $row1[1] . $row1[2] .'</option>';
+                                $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Universities, Departments where Departments.universityId = Universities.idUniversity";
+
+                                $res_data = mysqli_query($conn,$sql);
+                                while($row = mysqli_fetch_array($res_data)){
+                                    echo '<option value="'. $row[2] . '">' . $row[0] . ',&nbsp;' . $row[1] . $row[2] .'</option>';
                                 }
-                                mysqli_close($conn1);
+                                mysqli_close($conn);
                               ?>
                             </select>
                           </div>
@@ -284,11 +286,11 @@
           </div>
           <br />
           <div class="row justify-content-center">
-              <button type="submit" class="btn" tyle="color: white;background-color: #FE8946;">Ολοκλήρωση
+              <button type="submit" class="btn" style="color: white; background-color: #FE8946;">Ολοκλήρωση
                 Εγγραφής
               </button>
           </div>
-          <div class="row justify-content-center" style="margin-top:2%;margin-bottom: 4%;">
+          <div class="row justify-content-center" style="margin-top:1%;margin-bottom: 4%;">
               <a href="login.php">Έχω λογαριασμό, Σύνδεση</a>
           </div>
         </form>
