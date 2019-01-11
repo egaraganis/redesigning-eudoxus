@@ -377,31 +377,37 @@
                          echo "Failed to connect to MySQL: " . mysqli_connect_error();
                          die();
                      }
+                     $userId = $_SESSION['userID'];
                      mysqli_query($conn, "SET NAMES 'utf8'");
-                     $total_pages_sql = "SELECT COUNT(*) FROM Announcements";
+                     $total_pages_sql = "SELECT COUNT(*) FROM Books WHERE Books.PublisherId = $userId";
                      $result = mysqli_query($conn,$total_pages_sql);
                      $total_rows = mysqli_fetch_array($result)[0];
                      $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-                     $sql = "SELECT * FROM Announcements LIMIT $offset, $no_of_records_per_page";
+                     $sql = "SELECT Books.idBook, Books.title, Books.author, Books.category FROM Books WHERE Books.PublisherId = $userId LIMIT $offset, $no_of_records_per_page";
                      $res_data = mysqli_query($conn,$sql);
                      while($row = mysqli_fetch_array($res_data)){
-                         echo
-                           '<div class="card">
-                             <div class="card-body">
-                               <h5 class="card-title">' . $row["title"] . '</h5>
-                               <h6 class="card-subtitle mb-2 text-muted">'. $row["date"] .'</h6>
-                               <p class="card-text" style="color:#4c4d51;">' . $row["content"] . ' </p>
-                               <a href="#" class="card-link" style="color:red;">Διαγραφή</a>
-                             </div>
-                            </div> ';
+                        $bookId = $row["idBook"];
+                       echo
+                         '<div class="card">
+                           <div class="card-body">
+                             <h5 class="card-title">' . $row["title"] . '</h5>
+                             <h6 class="card-subtitle mb-2 text-muted">'. $row["category"] .'</h6>
+                             <h6 class="card-subtitle mb-2 text-muted">'. $row["author"] .'</h6>
+                             <form method ="post" action="./deleteBook.php">
+                                <input class="form-control" type="text" id="bookId" name="bookId" value='. $bookId . ' hidden/>
+                                <button type="submit" class="btn btn-danger btn-sm">Διαγραφή</button>
+                              </form>
+                           </div>
+                          </div> ';
 
-                         }
+                       }
                      mysqli_close($conn);
                  ?>
              </div>
             </div>
            </div>
+           <?php if ($total_pages_sql > 0): ?>
            <div class="row row-horizon justify-content-center" style="margin-bottom: 3%;">
                <nav aria-label="Page navigation example">
                    <ul class="pagination">
@@ -417,7 +423,10 @@
 
                </nav>
            </div>
+         <?php endif; ?>
+
         </div>
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
