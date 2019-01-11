@@ -56,6 +56,12 @@
 		} else {
 		    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 		}
+		// store in session that user is logged in
+	    $_SESSION['mail'] = $email;
+	    $_SESSION['userID'] = $id;
+	    $_SESSION['loggedin'] = true;
+	    $_SESSION['typeofuser'] = 1;
+		mysqli_close($conn); // close connection
 	  	header('Location: '."index.php");
 	}
 	if($typeofuser == "publisher") {
@@ -81,6 +87,12 @@
 		} else {
 		    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 		}
+				// store in session that user is logged in
+	    $_SESSION['mail'] = $email;
+	    $_SESSION['userID'] = $id;
+	    $_SESSION['loggedin'] = true;
+	    $_SESSION['typeofuser'] = 2;
+		mysqli_close($conn); // close connection
 	  	header('Location: '."index.php");
 
 	}
@@ -93,5 +105,4 @@
 	if($typeofuser == "userdepartment") {
 		//accesspoint disabled
 	}
-	mysqli_close($conn); // close connection
 ?>
