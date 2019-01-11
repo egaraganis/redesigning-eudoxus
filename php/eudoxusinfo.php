@@ -64,7 +64,7 @@
                           <a class="dropdown-item" href="./eudoxusinfo.php#section1"> Τι προσφέρει ο Εύδοξος </a>
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="./bookseason1.php"> Δήλωση Συγγραμμάτων </a>
-                          <a class="dropdown-item" href="#"> Ανταλλαγή Συγγραμμάτων </a>
+                          <a class="dropdown-item" href="./underconstruction.php"> Ανταλλαγή Συγγραμμάτων </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -76,7 +76,7 @@
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="./
                           "> Προσθήκη Συγγράμματος </a>
-                          <a class="dropdown-item" href="#"> Επισκόπηση Συγγραμάτων </a>
+                          <a class="dropdown-item" href="./underconstruction.php"> Ανταλλαγή Συγγραμμάτων </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -86,8 +86,8 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#"> Προσθήκη Σημείου Διανομής </a>
-                          <a class="dropdown-item" href="#"> Διανομή Σε Φοιτητές  </a>
+                          <a class="dropdown-item" href="./underconstruction.php"> Προσθήκη Σημείου Διανομής </a>
+                          <a class="dropdown-item" href="./underconstruction.php"> Διανομή Σε Φοιτητές  </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -97,8 +97,8 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#"> Ανέβασμα Σημειώσεων </a>
-                          <a class="dropdown-item" href="#"> Επισκόπηση Συγγραμάτων </a>
+                          <a class="dropdown-item" href="./underconstruction.php"> Ανέβασμα σημειώσεων </a>
+                          <a class="dropdown-item" href="./underconstruction.php"> Ανταλλαγή Συγγραμμάτων </a>
                       </div>
                   </li>
                   <li class="nav-item dropdown">
@@ -108,14 +108,14 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
                           <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#"> Τροποποίηση Προγράμματος Σπουδών </a>
+                          <a class="dropdown-item" href="./underconstruction.php"> Τροποποίηση Προγράμματος Σπουδών </a>
                       </div>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="./eudoxusinfo.php" style="position:absolute;right:12%;"> Τι είναι ο Εύδοξος </a>
                   </li>
                   <li class="nav-item" style="position:absolute;right:2%;">
-                      <a class="nav-link" href="#"> Επικοινωνία </a>
+                      <a class="nav-link" href="./underconstruction.php"> Επικοινωνία </a>
                   </li>
               </ul>
           </div>
