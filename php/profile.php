@@ -375,7 +375,9 @@
             </div>
           </div>
           <div class="row" style="margin-top:0.5%;">
+            <div class="col">
             <a href="editprofile.php" style="padding-left:5.8%;"> Επεξεργασία Στοιχείων </a>
+            </div>
           </div>
           <!-- 3rd level -->
           <div class="row" style="color: grey;margin-top:2.6%;">
@@ -383,19 +385,36 @@
               <h6 style="margin-left: 16.3%;"> Συγγράμματα </h6> 
             </div>
           </div>
+          <?php 
+            if (isset($_GET['pageno'])) {
+               $pageno = $_GET['pageno'];
+           } else {
+               $pageno = 1;
+           }
+           $no_of_records_per_page = 3;
+           $offset = ($pageno-1) * $no_of_records_per_page;
+
+            require_once 'db_connect.php';
+             $conn=new mysqli("$hn","$un","$pw","$db");
+             // Check connection
+             if (mysqli_connect_errno()){
+                 echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                 die();
+             }
+
+             $userId = $_SESSION['userID'];
+             mysqli_query($conn, "SET NAMES 'utf8'");
+             $total_pages_sql = "SELECT COUNT(*) FROM Books WHERE Books.PublisherId = $userId";
+             $result = mysqli_query($conn,$total_pages_sql);
+             $total_rows = mysqli_fetch_array($result)[0];
+             $total_pages = ceil($total_rows / $no_of_records_per_page);
+          ?>
+          <?php if ($total_rows > "0"): ?>
            <div class="row justify-content-center" style="width:80;">
              <!--  Get books from backend -->
              <div class="col-11">
                 <div class="card-group" style="margin-left:2%;margin-right:2%;">
                  <?php
-                     if (isset($_GET['pageno'])) {
-                         $pageno = $_GET['pageno'];
-                     } else {
-                         $pageno = 1;
-                     }
-                     $no_of_records_per_page = 3;
-                     $offset = ($pageno-1) * $no_of_records_per_page;
-
                      require_once 'db_connect.php';
                      $conn=new mysqli("$hn","$un","$pw","$db");
                      // Check connection
@@ -404,12 +423,7 @@
                          die();
                      }
                      $userId = $_SESSION['userID'];
-                     mysqli_query($conn, "SET NAMES 'utf8'");
-                     $total_pages_sql = "SELECT COUNT(*) FROM Books WHERE Books.PublisherId = $userId";
-                     $result = mysqli_query($conn,$total_pages_sql);
-                     $total_rows = mysqli_fetch_array($result)[0];
-                     $total_pages = ceil($total_rows / $no_of_records_per_page);
-
+                      mysqli_query($conn, "SET NAMES 'utf8'");
                      $sql = "SELECT Books.idBook, Books.title, Books.author, Books.category FROM Books WHERE Books.PublisherId = $userId LIMIT $offset, $no_of_records_per_page";
                      $res_data = mysqli_query($conn,$sql);
                      while($row = mysqli_fetch_array($res_data)){
@@ -433,9 +447,6 @@
              </div>
             </div>
            </div>
-           <div style="margin-bottom:4%;">
-           </div>
-           <?php if ($total_pages_sql > 0): ?>
            <div class="row row-horizon justify-content-center" style="margin-bottom: 3%;">
                <nav aria-label="Page navigation example">
                    <ul class="pagination">
@@ -451,9 +462,24 @@
 
                </nav>
            </div>
-         <?php endif; ?>
 
+        <?php else: ?>
+        <div class="row justify-content-center" style="width:80;">
+          <div class="col-11">
+            <div class="card-group" style="margin-left:2%;margin-right:2%;"> 
+              <div class="card">
+                <div class="card-body" style="color:#4f4f4f;">
+                  <h5 class="card-title">Δεν έχετε προσθέσει ακόμα συγγράμματα, προσθέστε <a href="./bookinsertion.php"> εδώ!</a></h5>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <?php endif; ?>
+        <div style="margin-bottom:4%;">
+        </div>
+        </div>
+
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

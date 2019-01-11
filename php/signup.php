@@ -126,7 +126,7 @@
                                     echo "Failed to connect to MySQL: " . mysqli_connect_error();
                                     die();
                                 }
-                                $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Departments, Universities where Universities.idUniversity = Departments.idDepartment";
+                                $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Universities, Departments wHERE Departments.universityId = Universities.idUniversity";
                                 $res_data = mysqli_query($conn,$sql);
                                 while($row = mysqli_fetch_array($res_data)){
                                     echo '<option value="'. $row[2] . '">' . $row[0] . ',&nbsp;' . $row[1] . '</option>';
