@@ -68,22 +68,41 @@
             </div>
           <?php endif; ?>
         <?php endif; ?>
+        <?php
+          $id=$_SESSION['userID'];
+          require_once 'db_connect.php';
+          $conn=new mysqli("$hn","$un","$pw","$db");
+          // Check connection
+          if (mysqli_connect_errno()){
+              echo "Failed to connect to MySQL: " . mysqli_connect_error();
+              die();
+          }
+          mysqli_query($conn, "SET NAMES 'utf8'");
+          $sql = "SELECT Publishers.brandName, Publishers.telephone, Publishers.website
+                  FROM Publishers
+                  where Publishers.idPublisher= '$id' ";
+          $res_data = mysqli_query($conn,$sql);
+          $row = mysqli_fetch_array($res_data);
+          $bn = $row['brandName'];
+          $tel = $row['telephone'];
+          $wp = $row['website'];
+        ?>
         <form action="updateuser.php" method="post">
           <div id="upperPart" class="container">
               <div class="row justify-content-center" style="margin-top:2%;">
                   <div style="border: 1px solid #e5e5e5;padding: 10px; width: 550px;">
                       <div class="row text-center" style="margin:3%;">
                           <div class="col-4"><label for="brandname">Επωνυμία</label></div>
-                          <div class="col-6"><input type="text" name="brandname" class="form-control" id="brandname"></div>
+                          <div class="col-6"><input type="text" name="brandname" class="form-control" id="brandname" value="<?php echo $bn; ?>"></div>
                       </div>
                       <div class="row text-center" style="margin:3%;">
                           <div class="col-4"><label for="telephone">Τηλέφωνο</label></div>
                           <div class="col-6"><input name="telephone" type="text" class="form-control" 
-                            id="telephone"></div>
+                            id="telephone" value="<?php echo $tel; ?>"></div>
                       </div>
                       <div class="row text-center" style="margin:3%;">
                           <div class="col-4"><label for="website">Ιστοσελίδα</label></div>
-                          <div class="col-6"><input name="website" type="text" class="form-control" id="website"></div>
+                          <div class="col-6"><input name="website" type="text" class="form-control" id="website" value="<?php echo $wp; ?>"></div>
                       </div>
                     </div>
               </div>
@@ -91,7 +110,7 @@
           <div id="finalButtons" class="container" style="margin-top:2%;">
               <div class="row align-items-center justify-content-center">
                   <div><button type="submit" class="btn btn-info">Αποθήκευση Αλλαγών</button></div>
-                  <div style="margin-left:3%;"><a class="button" href="#">Ακύρωση</a></div>
+                  <div style="margin-left:3%;"><a class="button" href="./profile.php">Ακύρωση</a></div>
               </div>
           </div>
         </form>
