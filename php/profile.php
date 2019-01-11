@@ -45,7 +45,15 @@
             <h3 style="color:#2AA2DE;"> Προφίλ Χρήστη </h3>
           </div>
           <!-- 2nd level -->
-          <div class="row justify-content-center" style="margin-top:2%;">
+          <div class="row" style="color: grey;margin-top:1.6%;">
+            <div class="col-5">
+              <h6 style="margin-left: 12.3%;"> Βασικά Στοιχεία</h6> 
+            </div>
+            <div class="col-5">
+              <h6 style="margin-left: 25.3%;"> Επιπρόσθετα Στοιχεία </h6> 
+            </div>
+          </div>
+          <div class="row justify-content-center" style="margin-top:0.4%;">
             <div class="col-5 profilediv">
               <?php
                 $id=$_SESSION['userID'];
@@ -144,7 +152,7 @@
               </div>
             </div>
           </div>
-            <div class="col-5 profilediv" style="margin-left:5%;">
+          <div class="col-5 profilediv" style="margin-left:5%;">
               <div class="row">
                 <div class="col-9">
                   <p style="padding-top:3%;"> Αριθμός Παρηληφθέντων Συγγραμμάτων </p>
@@ -179,8 +187,16 @@
               </div>
             </div>
           </div>
-           <!-- 3rd level -->
-          <div class="row justify-content-center" style="margin-top: 5%;margin-bottom:5%;">
+          <!-- 3rd level -->
+          <div class="row" style="color: grey;margin-top:3.6%;">
+            <div class="col-5">
+              <h6 style="margin-left: 12.3%;"> Δυνατές Ενέργειες </h6> 
+            </div>
+            <div class="col-5">
+              <h6 style="margin-left: 25.3%;"> Ιστορικό Κινήσεων </h6> 
+            </div>
+          </div>
+          <div class="row justify-content-center" style="margin-bottom:5%;">
              <div class="col-5 profilediv" style="overflow:auto;">
                  <div class="row justify-content-center" style="font-size:23px;color:#008FD7;margin:2%;">
                    <a href="./bookseason1.php"> Δήλωση Συγγραμμάτων </a>
@@ -256,7 +272,15 @@
             <h3 style="color:#2AA2DE;"> Προφίλ Χρήστη </h3>
           </div>
           <!-- 2nd level -->
-          <div class="row justify-content-center" style="margin-top:2%;">
+          <div class="row" style="color: grey;margin-top:1.6%;">
+            <div class="col-5">
+              <h6 style="margin-left: 12.3%;"> Βασικά Στοιχεία</h6> 
+            </div>
+            <div class="col-5">
+              <h6 style="margin-left: 25.3%;"> Επιπρόσθετα Στοιχεία </h6> 
+            </div>
+          </div>
+          <div class="row justify-content-center" style="margin-top:0.5%;">
             <div class="col-5 profilediv">
               <?php
                 $id=$_SESSION['userID'];
@@ -353,11 +377,16 @@
           <div class="row" style="margin-top:0.5%;">
             <a href="editprofile.php" style="padding-left:5.8%;"> Επεξεργασία Στοιχείων </a>
           </div>
-           <!-- 3rd level -->
-           <div class="row row-horizon justify-content-center" style="margin-top:4%;width:80;">
-             <!--  Get announcements from backend -->
+          <!-- 3rd level -->
+          <div class="row" style="color: grey;margin-top:2.6%;">
+            <div class="col-5">
+              <h6 style="margin-left: 16.3%;"> Συγγράμματα </h6> 
+            </div>
+          </div>
+           <div class="row justify-content-center" style="width:80;">
+             <!--  Get books from backend -->
              <div class="col-11">
-                <div class="card-group" style="margin-left:2%;margin-right:2%;margin-top:1%;">
+                <div class="card-group" style="margin-left:2%;margin-right:2%;">
                  <?php
                      if (isset($_GET['pageno'])) {
                          $pageno = $_GET['pageno'];
@@ -403,6 +432,8 @@
                  ?>
              </div>
             </div>
+           </div>
+           <div style="margin-bottom:4%;">
            </div>
            <?php if ($total_pages_sql > 0): ?>
            <div class="row row-horizon justify-content-center" style="margin-bottom: 3%;">
