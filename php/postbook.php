@@ -32,5 +32,5 @@
       // close connection
       mysqli_close($conn);
   }
-  header('Location: '."bookinsertion.php");
+  header('Location: '."profile.php");
   ?>
