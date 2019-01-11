@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="../css/index.css" type="text/css" />
     <link rel="stylesheet" href="/bower_components/bootstrap-horizon/bootstrap-horizon.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="../js/check_email.js"></script>
 </head>
 
 <body style="font-family: 'Alegreya Sans', sans-serif;">
@@ -114,7 +116,7 @@
                   <div style="border: 1px solid #e5e5e5; padding: 1%; width: 90%;">
                       <div id="student" class="idiothtes" style="display:none">
                           <div class="row">
-                            <select class="form-control" id="udepartment" name="udepartment" style="width:75%;margin-left:3%;">
+                            <select class="form-control" id="department" name="department" style="width:75%;margin-left:3%;">
                               <option disabled="disabled" selected="selected">
                                 Σχολή
                               </option>
@@ -126,11 +128,10 @@
                                     echo "Failed to connect to MySQL: " . mysqli_connect_error();
                                     die();
                                 }
-                                $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Universities, Departments where Departments.universityId = Universities.idUniversity";
-
+                                $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Departments, Universities where Universities.idUniversity = Departments.idDepartment";
                                 $res_data = mysqli_query($conn,$sql);
                                 while($row = mysqli_fetch_array($res_data)){
-                                    echo '<option value="'. $row[2] . '">' . $row[0] . ',&nbsp;' . $row[1] . $row[2] .'</option>';
+                                    echo '<option value="'. $row[2] . '">' . $row[0] . ',&nbsp;' . $row[1] . '</option>';
                                 }
                                 mysqli_close($conn);
                               ?>
@@ -299,8 +300,6 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" type="text/javascript">
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" type="text/javascript">
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous" type="text/javascript">

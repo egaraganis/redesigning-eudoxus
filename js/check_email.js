@@ -16,7 +16,7 @@ $(document).ready(function(){
          else if(data == "fail")
           {
             var email = document.getElementById("email")
-            email.setCustomValidity("To email χρήστη είναι διαθέσιμο");
+            email.setCustomValidity("To email δεν είναι διαθέσιμο");
           }
       }
     });

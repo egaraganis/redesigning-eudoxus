@@ -50,8 +50,78 @@
               </div>
             <?php endif; ?>
           </div>
-        </div>
-        <h2 align="center" style="color:#2AA2DE;margin-bottom:2%"> Καταχώρηση Συγγράμματος </h2>
+          <!-- 2nd level (navbar) -->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+                  <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Φοιτητές
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="./bookseason1.php"> Δήλωση Συγγραμμάτων </a>
+                              <a class="dropdown-item" href="#"> Ανταλλαγή Συγγραμμάτων </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section1"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Εκδότες
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="./bookinsertion.php"> Προσθήκη Συγγράμματος </a>
+                              <a class="dropdown-item" href="#"> Επισκόπηση Συγγραμάτων </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
+
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Σημεία Διανομής
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#"> Προσθήκη Σημείου Διανομής </a>
+                              <a class="dropdown-item" href="#"> Διανομή Σε Φοιτητές  </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Διαθέτες Σημειώσεων
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#"> Ανέβασμα Σημειώσεων </a>
+                              <a class="dropdown-item" href="#"> Επισκόπηση Συγγραμάτων </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Υπηρεσίες Ιδρυμάτων
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#"> Τροποποίηση Προγράμματος Σπουδών </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="./eudoxusinfo.php" style="position:absolute;right:12%;"> Τι είναι ο Εύδοξος </a>
+                      </li>
+                      <li class="nav-item" style="position:absolute;right:2%;">
+                          <a class="nav-link" href="#"> Επικοινωνία </a>
+                      </li>
+                  </ul>
+              </div>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          </nav>
+        <h2 align="center" style="color:#2AA2DE;margin-bottom:2%;margin-top:3%;"> Καταχώρηση Συγγράμματος </h2>
         <!-- if user tried to submit a book, display a status message -->
         <?php if(isset($_SESSION['bookinsertion'])): ?>
           <?php if(($_SESSION['bookinsertion']) == true ): ?>
@@ -73,35 +143,20 @@
               <div class="row" style="margin-top:2%;">
                   <div class="col-8">
                       <label class="col-8 control-label"><h6>Στοιχεία Συγγράμματος</h6></label>
-                        <div style="border: 1px solid #e5e5e5; height: 500px; width: 700px; overflow: auto; padding: 10px;">
-                            <div class="row text-center">
+                        <div style="border: 1px solid #e5e5e5; height: 500px; width: 700px; padding: 10px;">
+                            <div class="row text-center" style="margin-top:8%;">
                                 <div class="col-4"><label for="title">Τίτλος</label></div>
                                 <div class="col-6"><input required="required" type="text" name="title" class="form-control" id="title"></div>
-                                <div class="col-2"><p> ? * </p></div>
                             </div>
-                            <div class="row text-center">
+                            <div class="row text-center" style="margin-top:2%;">
                                 <div class="col-4"><label for="authors">Συγγραφείς</label></div>
                                 <div class="col-6"><input required="required" type="text" name="authors"  class="form-control" id="authors"></div>
-                                <div class="col-2"><p> ? * </p></div>
                             </div>
-                            <div class="row text-center">
+                            <div class="row text-center" style="margin-top:2%;">
                                 <div class="col-4"><label for="subtitle">Υπότιτλος</label></div>
                                 <div class="col-6"><input required="required" type="text" name="subtitle" class="form-control" id="subtitle"></div>
-                                <div class="col-2"><p> ? * </p></div>
                             </div>
-                            <div class="row text-center">
-                                <div class="col-4"><label for="quality">Κατάσταση</label></div>
-                                <div class="col-6">
-                                    <select name="quality" class="form-control custom-select" style="width:325px" id="quality">
-                                        <option value="Άριστη" >Άριστη</option>
-                                        <option value="Καλή">Καλή</option>
-                                        <option value="Μέτρια">Μέτρια</option>
-                                        <option value="Κακή">Κακή</option>
-                                    </select>
-                                </div>
-                                <div class="col-2"><p> ? * </p></div>
-                            </div>
-                            <div class="row text-center">
+                            <div class="row text-center" style="margin-top:2%;">
                                 <div class="col-4"><label for="category">Είδος</label></div>
                                 <div class="col-6">
                                     <select class="form-control custom-select" style="width:325px" name="category" id="category">
@@ -112,23 +167,19 @@
                                         <option value="Λογοτεχνία">Λογοτεχνία</option>
                                     </select>
                                 </div>
-                                <div class="col-2"><p> ? * </p></div>
                             </div>
-                            <div class="row text-center">
+                            <div class="row text-center" style="margin-top:2%;">
                                 <div class="col-4"><label for="dimensions">Διαστάσεις</label></div>
                                 <div class="col-3"><input required="required" name="size1" type="text" class="form-control" id="dimensions" placeholder="Ύψος σε εκ."></div>
                                 <div class="col-3"><input required="required" name="size2" type="text" class="form-control" id="dimensions" placeholder="Πλάτος σε εκ."></div>
-                                <div class="col-2"><p> ? * </p></div>
                             </div>
-                            <div class="row text-center">
+                            <div class="row text-center" style="margin-top:2%;">
                                 <div class="col-4"><label for="firstPublishingYear">Έτος 1ης Έκδοσης</label></div>
                                 <div class="col-6"><input name="firstpublishingyear" type="text" class="form-control" id="firstPublishingYear"></div>
-                                <div class="col-2"><p> ? * </p></div>
                             </div>
-                            <div class="row text-center">
+                            <div class="row text-center" style="margin-top:2%;">
                                 <div class="col-4"><label for="pricetag">Τιμή Κοστολόγησης</label></div>
                                 <div class="col-6"><input name="pricetag" type="text" class="form-control" id="pricetag"></div>
-                                <div class="col-2"><p> ? * </p></div>
                             </div>
                       </div>
                   </div>
@@ -270,8 +321,8 @@
           <!-- form butoons-->
           <div id="finalButtons" class="container" style="margin-top:2%;">
               <div class="row align-items-center justify-content-center">
-                  <div class="col-4"><button type="submit" class="btn btn-info btn-lg">Καταχώρηση Συγγράμματος</button></div>
-                  <div class="col-2"><a class="button" href="#">Ακύρωση</a></div>
+                  <div class="col-3"><button type="submit" class="btn btn-info btn-lg">Καταχώρηση Συγγράμματος</button></div>
+                  <div class="col-2"><a class="button" href="./bookinsertion.php">Ακύρωση</a></div>
               </div>
               <br></br><br></br>
           </div>

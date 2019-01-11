@@ -54,7 +54,78 @@
             <?php endif; ?>
           </div>
         </div>
-        <h2 align="center" style="color:#2AA2DE;margin-bottom:2%"> Επεξεργασία Στοιχείων </h2>
+        <!-- 2nd level (navbar) -->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+                  <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Φοιτητές
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="./bookseason1.php"> Δήλωση Συγγραμμάτων </a>
+                              <a class="dropdown-item" href="#"> Ανταλλαγή Συγγραμμάτων </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section1"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Εκδότες
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="./bookinsertion.php"> Προσθήκη Συγγράμματος </a>
+                              <a class="dropdown-item" href="#"> Επισκόπηση Συγγραμάτων </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
+
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Σημεία Διανομής
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#"> Προσθήκη Σημείου Διανομής </a>
+                              <a class="dropdown-item" href="#"> Διανομή Σε Φοιτητές  </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Διαθέτες Σημειώσεων
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#"> Ανέβασμα Σημειώσεων </a>
+                              <a class="dropdown-item" href="#"> Επισκόπηση Συγγραμάτων </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Υπηρεσίες Ιδρυμάτων
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#"> Τροποποίηση Προγράμματος Σπουδών </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="./eudoxusinfo.php" style="position:absolute;right:12%;"> Τι είναι ο Εύδοξος </a>
+                      </li>
+                      <li class="nav-item" style="position:absolute;right:2%;">
+                          <a class="nav-link" href="#"> Επικοινωνία </a>
+                      </li>
+                  </ul>
+              </div>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          </nav>
+        <h2 align="center" style="color:#2AA2DE;margin-bottom:2%;margin-top:3%;"> Επεξεργασία Στοιχείων </h2>
         <?php if(isset($_SESSION['profiledited'])): ?>
           <?php if(($_SESSION['bookinsertion']) == true ): ?>
             <div class="row align-items-center justify-content-center alert alert-success alert-dismissable" style="width:30%;margin-top:2%;margin-left:35%;">
