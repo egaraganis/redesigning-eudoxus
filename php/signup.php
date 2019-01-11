@@ -61,21 +61,21 @@
                     <div class="form-group row">
                       <label for="staticEmail" class="col col-form-label">Email</label>
                       <div class="col">
-                        <input required="required" placeholder="Πληκτρολογήστε την διέθυνσή σας" class="form-control" id="email" name="email"/>
+                        <input required="required" placeholder="Πληκτρολογήστε την διέθυνσή σας" class="form-control" id="email" type="email" name="email"/>
                       </div>
                     </div>
 
                     <div class="form-group row">
-                      <label for="inputPassword" class="col col-form-label">Κωδικός Πρόσβασης</label>
+                      <label for="password" class="col col-form-label">Κωδικός Πρόσβασης</label>
                       <div class="col">
-                        <input required="required" placeholder="Πλητρκολογήστε τον κωδικό σας" type="password" class="form-control" id="password" name="password"/>
+                        <input required="required" minlength="8" placeholder="Πλητρκολογήστε τον κωδικό σας" type="password" class="form-control" id="password" name="password"/>
                       </div>
                     </div>
 
                     <div class="form-group row">
-                      <label for="inputPassword" class="col col-form-label">Επιβεβαίωση Κωδικού</label>
+                      <label for="confirm_password" class="col col-form-label">Επιβεβαίωση Κωδικού</label>
                       <div class="col">
-                        <input required="required" placeholder="Επαναλάβετε τον κωδικό σας" type="password" class="form-control" id="password1" name="password1"/>
+                        <input required="required" minlength="8" placeholder="Επαναλάβετε τον κωδικό σας" type="password" class="form-control" id="confirm_password" name="confirm_password"/>
                       </div>
                     </div>
 
@@ -114,7 +114,7 @@
                   <div style="border: 1px solid #e5e5e5; padding: 1%; width: 90%;">
                       <div id="student" class="idiothtes" style="display:none">
                           <div class="row">
-                            <select class="form-control" id="sdepartment" name="sdepartment" style="width:75%;margin-left:3%;">
+                            <select class="form-control" id="department" name="department" style="width:75%;margin-left:3%;">
                               <option disabled="disabled" selected="selected">
                                 Σχολή
                               </option>
@@ -126,7 +126,7 @@
                                     echo "Failed to connect to MySQL: " . mysqli_connect_error();
                                     die();
                                 }
-                                $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Universities, Departments wHERE Departments.universityId = Universities.idUniversity";
+                                $sql = "SELECT Departments.name, Universities.name, Departments.idDepartment, Universities.idUniversity FROM Departments, Universities where Universities.idUniversity = Departments.idDepartment";
                                 $res_data = mysqli_query($conn,$sql);
                                 while($row = mysqli_fetch_array($res_data)){
                                     echo '<option value="'. $row[2] . '">' . $row[0] . ',&nbsp;' . $row[1] . '</option>';
@@ -140,13 +140,13 @@
                           <div class="form-group row">
                             <label for="staticEmail" class="col col-form-label">Επωνυμία</label>
                             <div class="col">
-                              <input placeholder="Πληκτρολογήστε την επωνυμία σας" class="form-control" type="text" id="pbrandname" name="pbrandname"/>
+                              <input placeholder="Πληκτρολογήστε την επωνυμία σας" class="form-control" type="text" id="brandname" name="brandname"/>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
                               <div class="col">
-                                <input placeholder="Πληκτρολογήστε το τηλέφωνο σας" class="form-control" type="text" id="ptelephone" name="ptelephone"/>
+                                <input placeholder="Πληκτρολογήστε το τηλέφωνο σας" class="form-control" type="text" id="telephone" name="telephone"/>
                               </div>
                             </div>
                           <div class="form-group row">
@@ -284,7 +284,7 @@
           </div>
           <br />
           <div class="row justify-content-center">
-              <button type="submit" class="btn" style="color: white;background-color: #FE8946;">Ολοκλήρωση
+              <button type="submit" class="btn" tyle="color: white;background-color: #FE8946;">Ολοκλήρωση
                 Εγγραφής
               </button>
           </div>
@@ -292,6 +292,8 @@
               <a href="login.php">Έχω λογαριασμό, Σύνδεση</a>
           </div>
         </form>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src="../js/password_match.js"></script>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
