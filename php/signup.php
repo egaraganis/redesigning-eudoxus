@@ -154,7 +154,7 @@
                           <div class="form-group row">
                             <label for="staticSite" class="col col-form-label">Ιστοσελίδα</label>
                             <div class="col">
-                              <input placeholder="Πληκτρολογήστε την διεύθυνση της σελίδας σας" class="form-control" type="text" id="pwebpage" name="pwebpage"/>
+                              <input placeholder="Πληκτρολογήστε την διεύθυνση της σελίδας σας" class="form-control" type="text" id="webpage" name="webpage"/>
                             </div>
                           </div>
                         </div>
