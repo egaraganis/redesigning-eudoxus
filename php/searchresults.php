@@ -120,135 +120,126 @@
                   <span class="navbar-toggler-icon"></span>
               </button>
           </nav>
-          <!--searchbar-->
-          <div class="container-fluid" style="margin-top: 3%;">
-            <div class="row justify-content-center" style="padding-top: 10%;">    
-              <div class="col-7">
-                <form action="./searchresults.php" method="post">
-                  <div class="form-group">
-                      <div class="input-group">
-                      <input id="1" class="form-control" type="text" name="search" id="search" placeholder="Αναζητήστε τα συγγράμματα που σας ενδιαφέρουν"/>
-                        <span class="input-group-btn">
-                          <button class="btn" style="color: white; background-color: #FE8946;" type="submit">
-                            <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Αναζήτηση
-                          </button>
-                        </span>
+          <?php
+
+            if (isset($_GET['pageno'])) {
+               $pageno = $_GET['pageno'];
+           } else {
+               $pageno = 1;
+           }
+           $no_of_records_per_page = 3;
+           $offset = ($pageno-1) * $no_of_records_per_page;
+
+            require_once 'db_connect.php';
+            $conn = new mysqli($hn,$un,$pw,$db);
+            if ($conn->connect_error) die ($conn->connect_error);
+            $search = mysqli_real_escape_string($conn, $_POST['search']);
+            // support greek
+            mysqli_query($conn, "SET NAMES 'utf8'");
+            $sql = "SELECT Books.idBook, Books.title, Books.author, Books.category, Books.coverPage, Books.subtitle, Books.firstYearPublished, Books.dimensions FROM Books WHERE Books.title ='$search'";
+            if($res_data = mysqli_query($conn, $sql)){
+                //echo "search success!!.";
+            } else {
+                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+            }
+            $row_cnt = $res_data->num_rows;
+            if($row_cnt == 0) {
+              echo '<div class="row justify-content-center" >
+                      <div class="col-9">
+                        <div class="jumbotron" style="margin-top:6%; background-color:#F8F9FA;">
+                          <h1 class="display-4" align="center">Δεν βρέθηκαν αποτελέσματα!</h1>
+                          <p class="lead" align="center">Δεν βρέθηκαν αποτελέσματα αναζήτησης με τίτλο: <h4 align="center">' .$search . '</h4></p>
+                          <hr class="my-4">
+                          <p align="center">Μεταβείτε στην αρχική.</p>
+                          <a class="btn btn-primary btn-lg" href="./index.php" role="button" style="margin-left:47%;">Αρχική</a>
+                        </div>
                       </div>
-                    </div>
-                </form>
-              </div>
-            </div>          
-          </div>
-
-          <!-- 3rd level (book season,search bar,exchange) -->
-          <div class="row justify-content-center" style="margin-top: 7%;">
-              <div class="col contain center-block text-center" style="margin-left:0%;">
-                  <img src="../img/dhlwsh2.png" href="./bookseason1.php"> </img>
-                  <button type="button" class="btn btn-info"> Μάθετε Περισσότερα </button>
-              </div>
-              <div class="col search center-block text-center" style="margin-left:4%;">
-                  <img src="../img/anazhthsh2.png" style="padding-top:1%;"> </img>
-                  <div class="input-group search bar">
-                      <div class="input-group-btn search-panel" style="margin-top:3%;">
-                          <button type="button" class="btn search btn-default dropdown-toggle" data-toggle="dropdown" style="  margin-left:1%;  -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px;">
-                              <span id="search_concept">Ψάχνω για</span> <span class="caret"></span>
-                          </button>
-                          <ul class="dropdown-menu filters" role="menu">
-                              <li><a href="#contains" style="color:#008FD7;"> Σημειώσεις </a></li>
-                              <li><a href="#its_equal" style="color:#008FD7;"> Σύγγραμμα </a></li>
-                              <div class="dropdown-divider"></div>
-                              <li><a href="#all" style="color:#008FD7;"> Οτιδήποτε </a></li>
-                          </ul>
-                      </div>
-                      <input type="hidden" name="search_param" value="all" id="search_param">
-                      <input type="text" class="form-control searchbar" name="x" placeholder="Αναζήτηση..." style="margin-top:3%;margin-left:2%;  -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px;">
-                  </div>
-              </div>
-              <div class="col contain center-block text-center" style="margin-left:5%;">
-                  <img src="../img/antallagh2.png"> </img>
-                  <button type="button" class="btn btn-outline-info">Eudoxus+</button>
-              </div>
-          </div>
-          <!-- 4th level (news) -->
-          <div class="row row-horizon justify-content-center" style="margin-top: 11%;">
-              <h2 style="color:#64686d;"> Ανακοινώσεις </h2>
-          </div>
-          <div class="row row-horizon justify-content-center">
-            <!--  Get announcements from backend -->
-            <div class="card-group" style="margin-left:2%;margin-right:2%;margin-top:1%;">
-                <?php
-                    if (isset($_GET['pageno'])) {
-                        $pageno = $_GET['pageno'];
-                    } else {
-                        $pageno = 1;
-                    }
-                    $no_of_records_per_page = 3;
-                    $offset = ($pageno-1) * $no_of_records_per_page;
-
-                    require_once 'db_connect.php';
-                    $conn=new mysqli("$hn","$un","$pw","$db");
-                    // Check connection
-                    if (mysqli_connect_errno()){
-                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                        die();
-                    }
-                    mysqli_query($conn, "SET NAMES 'utf8'");
-                    $total_pages_sql = "SELECT COUNT(*) FROM Announcements";
-                    $result = mysqli_query($conn,$total_pages_sql);
-                    $total_rows = mysqli_fetch_array($result)[0];
-                    $total_pages = ceil($total_rows / $no_of_records_per_page);
-
-                    $sql = "SELECT * FROM Announcements LIMIT $offset, $no_of_records_per_page";
-                    $res_data = mysqli_query($conn,$sql);
-                    while($row = mysqli_fetch_array($res_data)){
-                        echo
-                          '<div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title">' . $row["title"] . '</h5>
-                              <h6 class="card-subtitle mb-2 text-muted">'. $row["date"] .'</h6>
-                              <p class="card-text" style="color:#4c4d51;">' . $row["content"] . ' </p>
+                    </div>';
+            }
+            else {
+              echo '<div class="row justify-content-center" style="margin-top:3%;">
+                      <h2 style="color:grey;"> Αποτελέσματα Αναζήτησης </h2>
+                    </div>';
+              echo '<div class="container">';
+              echo '<div class="card-columns" style="margin-top:3%;">';
+              while($row = mysqli_fetch_array($res_data)){
+                $bookId = $row["idBook"];
+                echo
+                 '<div class="card">
+                   <div class="card-body">
+                      <h5 class="card-title">' . $row["title"] . '</h5>
+                       <h6 class="card-subtitle mb-2 text-muted">'. $row["category"] .'</h6>
+                       <h6 class="card-subtitle mb-2 text-muted">'. $row["author"] .'</h6>
+                       <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#bookModal'.$bookId.'" >Περισσότερα</button>
+                       <!-- Modal -->
+                      <div class="modal fade" id="bookModal'.$bookId.'" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">' . $row["title"] . '</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
                             </div>
-                           </div> ';
+                            <div class="modal-body">
+                              <div class="row">
+                                <div class="col">
+                                  <img src="' . $row["coverPage"] . '" class="img-fluid" alt="Image not found" height="295" width="209">
+                                </div>
 
-                        }
-                    mysqli_close($conn);
-                ?>
-            </div>
-          </div>
-          <div class="row row-horizon justify-content-center">
-              <nav aria-label="Page navigation example">
-                  <ul class="pagination">
-                      <li><a class="page-link" href="?pageno=1">First</a></li>
-                      <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-                          <a class="page-link" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-                      </li>
-                      <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-                          <a class="page-link" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-                      </li>
-                      <li><a class="page-link" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-                  </ul>
+                                <div class="col">
+                                  <div class="row">
+                                    <p style="color:grey; font-style: italic;" > ' . $row["subtitle"] . '</p>
+                                  </div>
+                                  <div class="row" style="margin-top:10%;">
+                                  <div class="col">
+                                    <b>Συγγραφέας:</b>
+                                  </div>
+                                  <div class="col">
+                                  ' .  $row["author"] . '
+                                  </div>
+                                </div>
+                                  <div class="row" style="margin-top:5%;">
+                                    <div class="col">
+                                      <b>Είδος:</b>
+                                    </div>
+                                    <div class="col">
+                                    ' .  $row["category"] . '
+                                    </div>
+                                  </div>
 
-              </nav>
-          </div>
-          <!-- 5th level (footer) -->
-          <div class="row row-horizon justify-content-center" style="margin-top: 10%;padding-bottom: 5%;background-color:#f8f9fa;">
-              <div class="col" style="padding-top:4%; padding-left:4%;">
-                  <img src="../img/ee_1.png" class="rounded">
-              </div>
-              <div class="col" style="padding-top:4%; padding-left:4%;">
-                  <img src="../img/espa_1.png" class="rounded">
-              </div>
-              <div class="col" style="padding-top:4%; padding-left:4%;">
-                  <img src="../img/grnet_logo_1.png" class="rounded">
-              </div>
-              <div class="col" style="padding-top:4%; padding-left:4%;">
-                  <img src="../img/minedu2.png" class="rounded">
-              </div>
-              <div class="col" style="padding-top:4%; padding-left:4%;">
-                  <img src="../img/psifiaki_ellada_1.png" class="rounded">
-              </div>
-          </div>
-      </div>
+                                <div class="row" style="margin-top:5%;">
+                                  <div class="col">
+                                    <b>Έτος έκδοσης:</b>
+                                  </div>
+                                  <div class="col">
+                                  ' .  $row["firstYearPublished"] . '
+                                  </div>
+                                </div>
+                                <div class="row" style="margin-top:5%;">
+                                  <div class="col">
+                                    <b>Διαστάσεις:</b>
+                                  </div>
+                                  <div class="col">
+                                  ' .  $row["dimensions"] . '
+                                  </div>
+                                </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                   </div>
+                  </div> ';
+      
+              }
+              mysqli_close($conn);
+            }
+            echo '</div></div>';
+          ?>
+
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
