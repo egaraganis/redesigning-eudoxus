@@ -41,6 +41,54 @@
                     </div>
                 </div>
           </div>
+
+          <?php
+            $id = $_SESSION['userID'];
+            require_once 'db_connect.php';
+            $conn = new mysqli("$hn","$un","$pw","$db");
+            // Check connection
+            if (mysqli_connect_errno()){
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                die();
+            }
+            mysqli_query($conn, "SET NAMES 'utf8'");
+            $sql = "SELECT departmentId FROM Students WHERE idStudent =" .$id;
+            $res_data = mysqli_query($conn, $sql);
+            $depID = mysqli_fetch_array($res_data)[0];
+
+            $semesters = array();
+            $lessons = array(array());
+            $books = array(array(array()));
+            $booksExtra = array(array(array()));
+            // Retrieve Semesters
+            $sql = "SELECT idSemester, name FROM Semesters WHERE departmentId =" . $depID;
+            $res_data = mysqli_query($conn,$sql);
+            $semNum = 0;
+            while ($row = mysqli_fetch_array($res_data)){
+                $semesters[] = $row;
+                // Retrieve Lessons for current semester
+                $sql1 = "SELECT idLesson, name FROM Lessons WHERE semesterId =" . $row["idSemester"];
+                $res_data1 = mysqli_query($conn, $sql1);
+                $lesNum = 0;
+                while ($row1 = mysqli_fetch_array($res_data1)) {
+                    $lessons[$semNum][] = $row1;
+                    // Retrieve Books for current lesson
+                    $sql2 = "SELECT idBook, title, author, publisherId, accessPointId1, accessPointId2 FROM Books WHERE lessonId =" . $row1["idLesson"];
+                    $res_data2 = mysqli_query($conn, $sql2);
+                    while ($row2 = mysqli_fetch_array($res_data2)) {
+                        $books[$semNum][$lesNum][] = $row2;
+                        $sql3 = "SELECT AccessPoints.address, Publishers.brandName FROM AccessPoints, Publishers
+    	                     WHERE AccessPoints.idAccessPoint = " . $row2["accessPointId1"] . " and Publishers.idPublisher =" . $row2["publisherId"];
+                        $res_data3 = mysqli_query($conn, $sql3);
+                        $booksExtra[$semNum][$lesNum][] = mysqli_fetch_array($res_data3);
+                    }
+                    $lesNum++;
+                }
+                $semNum++;
+            }
+            mysqli_close($conn);
+          ?>
+
           <div class="mx-auto" style="width: 80%;">
               <!-- 2nd level navigation button -->
               <div class="row" style="margin-top:6%;">
@@ -57,269 +105,36 @@
               <div class="row">
                       <div style="border: 1px solid #e5e5e5; overflow: auto; padding: 1%; width: 90%;">
                           <ul id="myUL">
-                              <li><span class="caret">Η ΣΧΟΛΗ ΜΟΥ</span>
-                                  <ul class="nested">
-                                      <li><span class="caret">1ο ΕΞΑΜΗΝΟ</span>
-                                          <ul class="nested">
-                                              <li><span class="caret">Εισαγωγή στην Πληροφορική και στις Τηλεπικοινωνίες</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Λογική Σχεδίαση</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Γραμμική Άλγεβρα</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Εισαγωγή στον Προγραμματισμό</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Διακριτά Μαθηματικά</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                          </ul>
-                                      </li>
-                                      <li><span class="caret">3ο ΕΞΑΜΗΝΟ</span>
-                                          <ul class="nested">
-                                              <li><span class="caret">Εισαγωγή στην Πληροφορική και στις Τηλεπικοινωνίες</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Λογική Σχεδίαση</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Γραμμική Άλγεβρα</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Εισαγωγή στον Προγραμματισμό</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Διακριτά Μαθηματικά</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                          </ul>
-                                      </li>
-                                      <li><span class="caret">5ο ΕΞΑΜΗΝΟ</span>
-                                          <ul class="nested">
-                                              <li><span class="caret">Εισαγωγή στην Πληροφορική και στις Τηλεπικοινωνίες</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Λογική Σχεδίαση</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Γραμμική Άλγεβρα</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Εισαγωγή στον Προγραμματισμό</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Διακριτά Μαθηματικά</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                          </ul>
-                                      </li>
-                                      <li><span class="caret">7ο ΕΞΑΜΗΝΟ</span>
-                                          <ul class="nested">
-                                              <li><span class="caret">Εισαγωγή στην Πληροφορική και στις Τηλεπικοινωνίες</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Λογική Σχεδίαση</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Γραμμική Άλγεβρα</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Εισαγωγή στον Προγραμματισμό</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Διακριτά Μαθηματικά</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                          </ul>
-                                      </li>
-                                  </ul>
-                              </li>
+                              <?php
+                                  $semNum = 0;
+                                  foreach ($semesters as $sem) {
+                                    echo
+                                      '<li><span class="caret">' . $sem["name"] .'</span>
+                                          <ul class="nested">';
+                                            $lesNum = 0;
+                                            foreach ($lessons[$semNum] as $les) {
+                                              echo
+                                                '<li><span class="caret">' . $les["name"] . '</span>
+                                                    <ul class="nested">
+                                                        <form>';
+                                                        $bookNum = 0;
+                                                        foreach ($books[$semNum][$lesNum] as $book) {
+                                                            echo '<input type="radio" name="selection">' . $book["title"] .
+                                                                ', ' . $book["author"] . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["address"]
+                                                                . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["brandName"] . '<br>';
+                                                            $bookNum++;
+                                                        }
+                                                        echo '</form>
+                                                    </ul>
+                                                </li>';
+                                                $lesNum++;
+                                            }
+                                        echo '</ul>
+                                      </li>';
+                                      $semNum++;
+                                  }
+                              ?>
                               </br>
-                              <li><span class="caret">ΔΙΑΣΥΝΔΕΔΕΜΕΝΕΣ ΣΧΟΛΕΣ</span>
-                                  <ul class="nested">
-                                      <li><span class="caret">ΜΙΘΕ</span>
-                                          <ul class="nested">
-                                              <li><span class="caret">Εισαγωγή στην Πληροφορική και στις Τηλεπικοινωνίες</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                          </ul>
-                                      </li>
-                                      <li><span class="caret">ΦΠΨ</span>
-                                          <ul class="nested">
-                                              <li><span class="caret">Εισαγωγή στον Προγραμματισμό</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                              <li><span class="caret">Διακριτά Μαθηματικά</span>
-                                                  <ul class="nested">
-                                                      <form>
-                                                          <input type="radio" name="selection" value="s1"> s1
-                                                          <br>
-                                                          <input type="radio" name="selection" value="s2"> s2
-                                                          <br>
-                                                      </form>
-                                                  </ul>
-                                              </li>
-                                          </ul>
-                                      </li>
-                                  </ul>
-                              </li>
                           </ul>
                       </div>
               </div>

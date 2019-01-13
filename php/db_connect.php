@@ -3,5 +3,5 @@
 	$hn= 'localhost';
 	$db= 'eudoxus';
 	$un= 'root';
-	$pw= '';
+	$pw= 'root';
 ?>

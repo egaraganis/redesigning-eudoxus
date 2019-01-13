@@ -122,7 +122,7 @@
           </nav>
           <!--searchbar-->
           <div class="container-fluid" style="margin-top: 3%;">
-            <div class="row justify-content-center" style="padding-top: 10%;">    
+            <div class="row justify-content-center" style="padding-top: 10%;">
               <div class="col-7">
                 <form action="./searchresults.php" method="post">
                   <div class="form-group">
@@ -137,14 +137,14 @@
                     </div>
                 </form>
               </div>
-            </div>          
+            </div>
           </div>
 
           <!-- 3rd level (book season,search bar,exchange) -->
           <div class="row justify-content-center" style="margin-top: 7%;">
               <div class="col contain center-block text-center" style="margin-left:0%;">
-                  <img src="../img/dhlwsh2.png" href="./bookseason1.php"> </img>
-                  <button type="button" class="btn btn-info"> Μάθετε Περισσότερα </button>
+                  <img src="../img/dhlwsh2.png"> </img>
+                  <button type="button" class="btn btn-info" onclick="window.location='./bookseason1.php';"> Δήλωση Μαθημάτων </button>
               </div>
               <div class="col search center-block text-center" style="margin-left:4%;">
                   <img src="../img/anazhthsh2.png" style="padding-top:1%;"> </img>
