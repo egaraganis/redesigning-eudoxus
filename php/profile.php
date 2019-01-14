@@ -171,6 +171,11 @@
                 $numOfRecBooks = $row1['numOfReceivedBooks'];
                 $bookPoints = $row1['booksPoints'];
 
+                // Look for current declarations
+                $sql = "SELECT COUNT(*) FROM StudentHasBook WHERE studentId=" .$id ." and statementDate IS NULL;";
+                $res_data = mysqli_query($conn,$sql);
+                $numOfCurrentDeclarations = mysqli_fetch_array($res_data)[0];
+
                 //get declarations
                 $sql = "SELECT bookId, statementDate FROM StudentHasBook WHERE studentId=" .$id;
                 $res_data = mysqli_query($conn,$sql);
@@ -178,6 +183,7 @@
                 while ($row = mysqli_fetch_array($res_data)){
                   $declarations[] = $row;
                 }
+                $declarations = array_reverse($declarations);
                 mysqli_close($conn);
               ?>
               <div class="row">
@@ -243,7 +249,7 @@
                   <p > Αριθμός Διαθέσιμων </p>
                 </div>
                 <div class="col">
-                  <p style="padding-top:3%;font-weight:bold;"> 8 (karfwta)</p>
+                  <p style="padding-top:3%;font-weight:bold;"> 8</p>
                 </div>
               </div>
               <div class="row">
@@ -259,7 +265,7 @@
                   <p > Αριθμός Ανταλλαγών </p>
                 </div>
                 <div class="col">
-                  <p style="padding-top:3%;font-weight:bold;"> 3 (karfwta)</p>
+                  <p style="padding-top:3%;font-weight:bold;"> 3</p>
                 </div>
               </div>
             </div>
@@ -276,20 +282,34 @@
           <div class="row justify-content-center" style="margin-bottom:5%;">
              <div class="col-5 profilediv" style="overflow:auto;">
                  <div class="row justify-content-center" style="font-size:23px;color:#008FD7;margin:2%;">
-                   <a href="./bookseason1.php"> Δήλωση Συγγραμμάτων </a>
+                      <?php
+                        if($numOfCurrentDeclarations == 0) { ?>
+                          <button type="button" class="btn btn-info" onclick="window.location='./bookseason1.php';">Δήλωση Συγγραμμάτων</button>
+                        <?php } else { ?>
+                          <button type="button" class="btn btn-info" disabled="disabled">Τροποποίηση Δήλωσης</button>
+                      <?php }
+                      ?>
                  </div>
                  <div class="row justify-content-center" style="font-size:23px;color:#008FD7;margin:2%;">
-                   <a href="index.php"> Ανταλλαγή Συγγραμάτων </a>
+                   <button type="button" class="btn btn-info" onclick="window.location='./underconstruction.php';">Ανταλλαγή Συγγραμάτων</button>
                  </div>
              </div>
              <div class="col-5 profilediv" style="margin-left:5%">
-                 <?php
-                 foreach($declarations as $dec) {?>
-                  <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
-                   <a href="./index.php"> Δήλωση Συγγραμμάτων <?php echo $dec['statementDate'] ?> </a>
-                 </div>
-                 <?php }
-                 ?>
+                <form action="showDeclaration.php" method="post">
+                   <?php
+                   $foundCurrent = 0;
+                   foreach($declarations as $dec) {?>
+                      <?php if($dec['statementDate'] != NULL) { ?>
+                        <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
+                          <button type="submit" class="btn btn-info" name="date" value="<?php echo $dec['statementDate']; ?>"> Δήλωση Συγγραμμάτων <?php echo $dec['statementDate']; ?> </button>
+                        </div>
+                      <?php } elseif($foundCurrent == 0){ ?>
+                        <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;"> 
+                          <button type="submit" class="btn btn-danger" name="date" value="<?php echo $dec['statementDate']; ?>"> Επισκόπηση Τρέχουσας Δήλωσης</button>
+                        </div>
+                   <?php $foundCurrent = 1; } }
+                   ?>
+                </form>
              </div>
           </div>
         </div>
