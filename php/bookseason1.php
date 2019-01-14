@@ -92,6 +92,7 @@
             $semesters = array();
             $lessons = array(array());
             $books = array(array(array()));
+            $booksDeclared = array(array(array()));
             $booksExtra = array(array(array()));
             // Retrieve Semesters
             $sql = "SELECT idSemester, name FROM Semesters WHERE departmentId =" . $depID;
@@ -109,11 +110,16 @@
                     $sql2 = "SELECT idBook, title, author, publisherId, accessPointId1, accessPointId2 FROM Books WHERE lessonId =" . $row1["idLesson"];
                     $res_data2 = mysqli_query($conn, $sql2);
                     while ($row2 = mysqli_fetch_array($res_data2)) {
+                        $result = $row2;
                         $books[$semNum][$lesNum][] = $row2;
                         $sql3 = "SELECT AccessPoints.address, Publishers.brandName FROM AccessPoints, Publishers
     	                     WHERE AccessPoints.idAccessPoint = " . $row2["accessPointId1"] . " and Publishers.idPublisher =" . $row2["publisherId"];
                         $res_data3 = mysqli_query($conn, $sql3);
                         $booksExtra[$semNum][$lesNum][] = mysqli_fetch_array($res_data3);
+                        $sql4 = "SELECT Books.title, Books.idBook FROM Books, StudentHasBook
+                           WHERE Books.idBook = ". $result['idBook'] . " AND StudentHasBook.bookId = ". $result['idBook'] . " AND StudentHasBook.studentId = ". $id . " AND StudentHasBook.statementDate IS NOT NULL;";
+                        $res_data4 = mysqli_query($conn, $sql4);
+                        $booksDeclared[$semNum][$lesNum][] = mysqli_fetch_array($res_data4);
                     }
                     $lesNum++;
                 }
