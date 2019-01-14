@@ -124,10 +124,10 @@
           <div class="row" style="margin-top: 1%;">    
             <div class="col-3">
               <div>
-                <div class="row justify-content-center profilediv2" style="margin-top:30%;background-color: ; width: 350px;height:200px;margin-left: 35%;">
+                <div class="row justify-content-center profilediv2" style="margin-top:30%;width: 350px;height:200px;margin-left: 35%;">
                   <div class="col" style="margin-top:14%;"> 
                     <div class="row justify-content-center">
-                      <p> <b>Ψάχνω για</b> : </p> 
+                      <p style="color:white;"> <b>Ψάχνω για :</b> </p> 
                     </div>
                     <div class="row justify-content-center">
                       <select required="required" class="form-control" id="typeofuser" name="typeofuser" style="width:50%;">
@@ -187,7 +187,7 @@
                   <a href="./signup.php">
                     <img src="../img/ekdoths2.png" > </img>
                   </a>
-                  <button type="button" class="btn" style="color: white; background-color: #FE8946;" onclick="window.location='./signup.php';"> Εγγραφείτε τώρα </button>
+                  <button type="button" class="btn " style="color: white; background-color: #FE8946;" onclick="window.location='./signup.php';"> Εγγραφείτε τώρα </button>
               </div>
               
               <div class="col contain center-block text-center" style="margin:3%;">

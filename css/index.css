@@ -12,11 +12,21 @@
   padding-left: 25%;
 }
 
-.profilediv{
+.profilediv2{
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  background: rgba(255,177,82,1);
+  background: -moz-linear-gradient(left, rgba(255,177,82,1) 0%, rgba(255,147,15,0.56) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,177,82,1)), color-stop(100%, rgba(255,147,15,0.56)));
+  background: -webkit-linear-gradient(left, rgba(255,177,82,1) 0%, rgba(255,147,15,0.56) 100%);
+  background: -o-linear-gradient(left, rgba(255,177,82,1) 0%, rgba(255,147,15,0.56) 100%);
+  background: -ms-linear-gradient(left, rgba(255,177,82,1) 0%, rgba(255,147,15,0.56) 100%);
+  background: linear-gradient(to right, rgba(255,177,82,1) 0%, rgba(255,147,15,0.56) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb152', endColorstr='#ff930f', GradientType=1 );
+
+
 }
 
-.profilediv2{
+.profilediv{
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
 }
 
