@@ -198,6 +198,7 @@
                   <span class="navbar-toggler-icon"></span>
               </button>
           </nav>
+
           <form action="bookseason2.php" method="post">
               <div class="mx-auto" style="width: 80%;">
                   <!-- 2nd level navigation button -->
@@ -242,6 +243,13 @@
                           </ul>
                       </div>
                   </div>
+                  <div class="row justify-content-center" style="margin-top: 1%;">
+                    <div class="col-3">
+                      <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
                   <div class="row" style="margin-top: 1%;">
                     <div class="col-10"></div>
                     <div class="col-2">
@@ -250,6 +258,7 @@
                   </div>
               </div>
           </form>
+
       </div>
       <!-- tree view js -->
       <script>

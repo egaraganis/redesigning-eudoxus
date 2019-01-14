@@ -207,14 +207,17 @@
                     <input type="checkbox" name="vehicle1" value="Bike" required="required"> Αποδέχομαι τους όρους χρήσης
                 </div>
             </div>
+            
             <div class="row">
               <div class="col">
                 <button type="button" class="btn btn-info" onclick="window.location='./bookseason2.php';">Προηγούμενο Βήμα</button>
               </div>
-            </div>
-            <!-- complete the declaration procedure -->
-            <div class="row justify-content-center" style="margin-top:2%;margin-bottom:4%;">
-                <button type="submit" class="btn" style="color: white;background-color: #FE8946;">Ολοκλήρωση Δήλωσης</button>
+              <div class="col"></div>
+              <div class="col"></div>
+              <!-- complete the declaration procedure -->
+              <div class="col">
+                  <button type="submit" class="btn" style="color: white;background-color: #FE8946;">Ολοκλήρωση Δήλωσης</button>
+              </div>
             </div>
           </form>
       </div>

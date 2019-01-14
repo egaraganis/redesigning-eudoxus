@@ -183,6 +183,13 @@
                         </ul>
                     </div>
                 </div>
+                <div class="row justify-content-center" style="margin-top: 1%;">
+                  <div class="col-3">
+                    <div class="progress">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </div>
                 <div class="row" style="margin-top:1%;">
                     <div class="col-10">
                         <button type="button" class="btn btn-info" onclick="window.location='./bookseason1.php';">Προηγούμενο Βήμα</button>
