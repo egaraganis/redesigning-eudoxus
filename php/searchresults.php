@@ -237,11 +237,13 @@
                       </div>
                    </div>
                   </div> ';
-
               }
               mysqli_close($conn);
             }
             echo '</div></div>';
+            echo '<div class="row justify-content-center" style="margin-top:6%;">';
+            echo 'Αριθμός αποτελεσμάτων: '.$row_cnt;
+            echo '</div>';
           ?>
 
       <!-- Optional JavaScript -->
