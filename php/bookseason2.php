@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/treeview.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/button.css">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
@@ -35,6 +36,46 @@
                   </div>
                 </div>
         </div>
+
+        <?php
+            $selectedBooks = array();
+            if(!empty($_POST['check_list'])) {
+                foreach($_POST['check_list'] as $check) {
+                    //echo $check;
+                    $selectedBooks[] = $check;
+                }
+                $_SESSION['selectedBooks'] = $selectedBooks;
+            }
+
+            $id = $_SESSION['userID'];
+            require_once 'db_connect.php';
+            $conn = new mysqli("$hn","$un","$pw","$db");
+            // Check connection
+            if (mysqli_connect_errno()){
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                die();
+            }
+            mysqli_query($conn, "SET NAMES 'utf8'");
+            // Select book information
+            $books = array();
+            $accessPoints = array(array());
+            $numBooks = 0;
+            foreach ($selectedBooks as $bookId) {
+                $sql = "SELECT title, author, accessPointId1, accessPointId2 FROM Books WHERE idBook =" .$bookId;
+                $res_data = mysqli_query($conn, $sql);
+                $results = mysqli_fetch_array($res_data);
+                $books[] = $results;
+                // Check access points information
+                $sql = "SELECT brandName, address, map FROM AccessPoints WHERE idAccessPoint = " .$results["accessPointId1"];
+                $res_data = mysqli_query($conn, $sql);
+                $accessPoints[$numBooks][] = mysqli_fetch_array($res_data);
+                $sql = "SELECT brandName, address, map FROM AccessPoints WHERE idAccessPoint = " .$results["accessPointId2"];
+                $res_data = mysqli_query($conn, $sql);
+                $accessPoints[$numBooks][] = mysqli_fetch_array($res_data);
+                $numBooks++;
+            }
+            mysqli_close($conn);
+        ?>
         <!-- 2nd row, the second stop of books declaration -->
         <div class="mx-auto" style="width: 80%;">
             <!-- navigation bar -->
@@ -54,56 +95,31 @@
             <div class="row">
                 <div style="border: 1px solid #e5e5e5;overflow: auto; padding: 1%; width: 90%;">
                     <ul id="myUL">
-                        <li><span class="caret">ΣΥΓΓΡΑΜΜΑ 1</span>
-                            <ul class="nested">
-                                <form>
-                                    <input type="radio" name="selection" value="s1">ΜΕΣΩ ΣΗΜΕΙΟΥ ΠΑΡΑΛΑΒΗΣ
-                                    <br>
-                                    <br>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item" id="googleMap" style="width:25%;height:100px;">σπ1</li>
-                                        <li class="list-inline-item" id="googleMap" style="width:25%;height:100px;">σπ2</li>
-                                        <li class="list-inline-item" id="googleMap" style="width:25%;height:100px;">σπ3</li>
-                                    </ul>
-                                    <input type="radio" name="selection" value="s2">ΜΕΣΩ ΑΝΤΑΛΛΑΓΗΣ
-                                    <br>
-                                </form>
-                            </ul>
-                        </li>
-                        </br>
-                        <li><span class="caret">ΣΥΓΓΡΑΜΜΑ 2</span>
-                            <ul class="nested">
-                                <form>
-                                    <input type="radio" name="selection" value="s1">ΜΕΣΩ ΣΗΜΕΙΟΥ ΠΑΡΑΛΑΒΗΣ
-                                    <br>
-                                    <br>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item" id="googleMap" style="width:25%;height:100px;">σπ1</li>
-                                        <li class="list-inline-item" id="googleMap" style="width:25%;height:100px;">σπ2</li>
-                                        <li class="list-inline-item" id="googleMap" style="width:25%;height:100px;">σπ3</li>
-                                    </ul>
-                                    <input type="radio" name="selection" value="s2">ΜΕΣΩ ΑΝΤΑΛΛΑΓΗΣ
-                                    <br>
-                                </form>
-                            </ul>
-                        </li>
-                        </br>
-                        <li><span class="caret">ΣΥΓΓΡΑΜΜΑ 3</span>
-                            <ul class="nested">
-                                <form>
-                                    <input type="radio" name="selection" value="s1">ΜΕΣΩ ΣΗΜΕΙΟΥ ΠΑΡΑΛΑΒΗΣ
-                                    <br>
-                                    <br>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item" id="googleMap" style="width:25%;height:100px;">σπ1</li>
-                                        <li class="list-inline-item" id="googleMap" style="width:25%;height:100px;">σπ2</li>
-                                        <li class="list-inline-item" id="googleMap" style="width:25%;height:100px;">σπ3</li>
-                                    </ul>
-                                    <input type="radio" name="selection" value="s2">ΜΕΣΩ ΑΝΤΑΛΛΑΓΗΣ
-                                    <br>
-                                </form>
-                            </ul>
-                        </li>
+                        <?php $numBooks = 0;
+                          foreach ($books as $book) { ?>
+                            <li><span class="caret"> <?php echo $book["title"]; echo ",  "; echo $book["author"]; ?> </span>
+                                <ul class="nested">
+                                    <form>
+                                        <br>
+                                        <ul class="list-inline">
+                                            <input type="checkbox" name="selectedAccessPoint" value="<?php echo $book["accessPointId1"]; ?>">
+                                                <li class="list-inline-item" id="googleMap" style="width:25%; height:100px;">
+                                                <iframe src="<?php echo $accessPoints[$numBooks][0]["map"];?>" frameborder="0" style="border:0" ></iframe></li>
+                                                <li><?php echo $accessPoints[$numBooks][0]["brandName"]; echo ", "; echo $accessPoints[$numBooks][0]["address"];?></li>
+                                            <?php if ($book["accessPointId2"] != NULL) { ?>
+                                                <br><input type="checkbox" name="selectedAccessPoint" value="<?php echo $book["accessPointId2"]; ?>">
+                                                    <li class="list-inline-item" id="googleMap" style="width:25%; height:100px;">
+                                                    <iframe src="<?php echo $accessPoints[$numBooks][1]["map"];?>" frameborder="0" style="border:0" ></iframe></li>
+                                                    <li><?php echo $accessPoints[$numBooks][1]["brandName"]; echo ", "; echo $accessPoints[$numBooks][1]["address"];?></li>
+                                            <?php }
+                                            $numBooks++; ?>
+                                        </ul>
+                                        <br>
+                                    </form>
+                                </ul>
+                            </li>
+                            </br>
+                        <?php }?>
                     </ul>
                 </div>
             </div>

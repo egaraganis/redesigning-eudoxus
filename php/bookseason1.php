@@ -7,10 +7,12 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+                integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
       <link rel="stylesheet" href="../css/treeview.css">
       <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+                integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
       <link rel="stylesheet" href="../css/index.css">
       <title> Eudoxus </title>
   </head>
@@ -89,20 +91,21 @@
             mysqli_close($conn);
           ?>
 
-          <div class="mx-auto" style="width: 80%;">
-              <!-- 2nd level navigation button -->
-              <div class="row" style="margin-top:6%;">
-                  <div class="col"></div>
-                  <div class="col-6">
-                      <h3 style="color:#2AA2DE;margin-left: 14%">1.Επιλογή Συγγραμμάτων</h3>
+          <form action="bookseason2.php" method="post">
+              <div class="mx-auto" style="width: 80%;">
+                  <!-- 2nd level navigation button -->
+                  <div class="row" style="margin-top:6%;">
+                      <div class="col"></div>
+                      <div class="col-6">
+                          <h3 style="color:#2AA2DE;margin-left: 14%">1.Επιλογή Συγγραμμάτων</h3>
+                      </div>
+                      <div class="col">
+                          <input type="submit" class="btn btn-info" value="Επόμενο Βήμα"></a>
+                      </div>
                   </div>
-                  <div class="col">
-                      <a type="submit" class="btn btn-info" href="bookseason2.php">Επόμενο Βήμα</a>
-                  </div>
-              </div>
-              </br>
-              <!-- choose for each semester and lesson a book -->
-              <div class="row">
+                  </br>
+                  <!-- choose for each semester and lesson a book -->
+                  <div class="row">
                       <div style="border: 1px solid #e5e5e5; overflow: auto; padding: 1%; width: 90%;">
                           <ul id="myUL">
                               <?php
@@ -115,17 +118,15 @@
                                             foreach ($lessons[$semNum] as $les) {
                                               echo
                                                 '<li><span class="caret">' . $les["name"] . '</span>
-                                                    <ul class="nested">
-                                                        <form>';
-                                                        $bookNum = 0;
-                                                        foreach ($books[$semNum][$lesNum] as $book) {
-                                                            echo '<input type="radio" name="selection">' . $book["title"] .
-                                                                ', ' . $book["author"] . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["address"]
-                                                                . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["brandName"] . '<br>';
-                                                            $bookNum++;
-                                                        }
-                                                        echo '</form>
-                                                    </ul>
+                                                    <ul class="nested">';
+                                                    $bookNum = 0;
+                                                    foreach ($books[$semNum][$lesNum] as $book) {
+                                                        echo '<input type="checkbox" name="check_list[]" value="' . $book["idBook"] . '">' . $book["title"] .
+                                                        ', ' . $book["author"] . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["address"]
+                                                        . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["brandName"] . '<br>';
+                                                        $bookNum++;
+                                                    }
+                                                    echo '</ul>
                                                 </li>';
                                                 $lesNum++;
                                             }
@@ -137,8 +138,9 @@
                               </br>
                           </ul>
                       </div>
+                  </div>
               </div>
-          </div>
+          </form>
       </div>
       <!-- only students can get books -->
       <?php if($_SESSION['typeofuser'] != 1): ?>
