@@ -138,7 +138,7 @@
                           <option value="publishers" id="pu" name="pub">
                             Εκδότες
                           </option>
-                          <option value="accesspoint" id="ac" name="acc" disabled="disabled">
+                          <option value="accesspoint" id="ac" name="acc">
                             Σημεία Διανομής
                           </option>
                           <option value="notesprovider" id="no" name="not" disabled="disabled">

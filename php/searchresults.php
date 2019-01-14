@@ -248,6 +248,58 @@
               echo 'Αριθμός αποτελεσμάτων: '.$row_cnt;
               echo '</div>';
             }
+            elseif($searchitem == "accesspoint"){
+
+              require_once 'db_connect.php';
+              $conn = new mysqli($hn,$un,$pw,$db);
+              if ($conn->connect_error) die ($conn->connect_error);
+              // support greek
+              mysqli_query($conn, "SET NAMES 'utf8'");
+              $sql = "SELECT AccessPoints.idAccessPoint, AccessPoints.brandName, AccessPoints.telephone, AccessPoints.address, AccessPoints.map
+                      FROM AccessPoints WHERE AccessPoints.brandName ='$search'";
+              if($res_data = mysqli_query($conn, $sql)){
+                  //echo "search success!!.";
+              } 
+              else {
+                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+              }
+              $row_cnt = $res_data->num_rows;
+              if($row_cnt == 0) {
+                echo '<div class="row justify-content-center" >
+                        <div class="col-9">
+                          <div class="jumbotron" style="margin-top:6%; background-color:#F8F9FA;">
+                            <h1 class="display-4" align="center">Δεν βρέθηκαν αποτελέσματα!</h1>
+                            <p class="lead" align="center">Δεν βρέθηκαν αποτελέσματα αναζήτησης με τίτλο: <h4 align="center">' .$search . '</h4></p>
+                            <hr class="my-4">
+                            <p align="center">Μεταβείτε στην αρχική.</p>
+                            <a class="btn btn-primary btn-lg" href="./index.php" role="button" style="margin-left:47%;">Αρχική</a>
+                          </div>
+                        </div>
+                      </div>';
+              }
+              else {
+                echo '<div class="row justify-content-center" style="margin-top:3%;">
+                        <h2 style="color:grey;"> Αποτελέσματα Αναζήτησης </h2>
+                      </div>';
+                echo '<div class="container">';
+                echo '<div class="card-columns" style="margin-top:3%;">';
+                while($row = mysqli_fetch_array($res_data)){
+                  echo
+                   '<div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">' . $row["brandName"] . '</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">'. $row["telephone"] .'</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">'. $row["address"] .'</h6>
+                      </div>
+                     </div>';
+                }
+                mysqli_close($conn);
+              }
+              echo '</div></div>';
+              echo '<div class="row justify-content-center" style="margin-top:6%;">';
+              echo 'Αριθμός αποτελεσμάτων: '.$row_cnt;
+              echo '</div>';
+            }
             else {
               require_once 'db_connect.php';
               $conn = new mysqli($hn,$un,$pw,$db);
