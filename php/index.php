@@ -124,7 +124,7 @@
           <div class="row" style="margin-top: 1%;">    
             <div class="col-3">
               <div>
-                <div class="row justify-content-center profilediv" style="margin-top:30%;width: 350px;height:200px;margin-left: 35%;">
+                <div class="row justify-content-center profilediv2" style="margin-top:30%;background-color: ; width: 350px;height:200px;margin-left: 35%;">
                   <div class="col" style="margin-top:14%;"> 
                     <div class="row justify-content-center">
                       <p> <b>Ψάχνω για</b> : </p> 
