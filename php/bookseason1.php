@@ -207,7 +207,7 @@
                   </br>
                   <!-- choose for each semester and lesson a book -->
                   <div class="row">
-                      <div style="border: 1px solid #e5e5e5; overflow: auto; padding: 1%; width: 90%; height: 350px; width: 1200px;">
+                      <div style="border: 1px solid #e5e5e5; overflow: auto; padding: 1%;height: 350px;width:100%;">
                           <ul id="myUL">
                               <?php
                                   $semNum = 0;

@@ -158,7 +158,7 @@
                 </br>
                 <!-- for each book, choose receipt method -->
                 <div class="row">
-                    <div style="border: 1px solid #e5e5e5;overflow: auto; padding: 1%; height: 350px; width: 1200px;">
+                    <div style="border: 1px solid #e5e5e5;overflow: auto; padding: 1%;height: 350px;width:100%;">
                         <ul id="myUL">
                             <?php $numBooks = 0;
                               foreach ($books as $book) { ?>
