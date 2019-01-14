@@ -122,16 +122,12 @@
           </nav>
           <!--under construction-->
           <div class="row justify-content-center" style="margin-top:8%;">
-            <div class="col-5"></div>
-            <div class="col">
-                <img src="../img/underconstruction.png" style="width:45%;">
-              <div class="row" style="margin-top:2%; margin-left: 4%;">
-                Επιστροφή στην &nbsp; <a href="./index.php"> αρχική σελίδα </a>
-              </div>
-            </div>
-            <div class="col"></div>
+                <img src="../img/underconstruction.png" style="width:10%;">
           </div>
-        </div>
+
+          <div class="row justify-content-center" style="margin-top:2%;">
+           Επιστροφή στην &nbsp; <a href="./index.php"> αρχική σελίδα </a>
+          </div>
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

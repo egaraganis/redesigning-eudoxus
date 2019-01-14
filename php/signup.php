@@ -107,16 +107,16 @@
                       </option>
                     </select>
                     <br />
-                    <h4>
+                    <h4 id="moreinfoheader">
                       Επιπρόσθετα Στοιχεία
                     </h4>
                   </div>
                 </div>
                 <div class="row justify-content-center">
-                  <div style="border: 1px solid #e5e5e5; padding: 1%; width: 90%;">
+                  <div id="moreinfo" style="border: 1px solid #e5e5e5; padding: 1%; width: 90%;">
                       <div id="student" class="idiothtes" style="display:none">
                           <div class="row">
-                            <select class="form-control" id="department" name="department" style="width:75%;margin-left:3%;">
+                            <select class="form-control" id="department" name="department" style="width:93%;margin-left:3%;">
                               <option disabled="disabled" selected="selected">
                                 Σχολή
                               </option>
@@ -140,19 +140,19 @@
                         </div>
                       <div id="publisher" class="idiothtes" style="display:none">
                           <div class="form-group row">
-                            <label for="staticEmail" class="col col-form-label">Επωνυμία</label>
+                            <label for="staticEmail" class="col-4 col-form-label">Επωνυμία</label>
                             <div class="col">
                               <input placeholder="Πληκτρολογήστε την επωνυμία σας" class="form-control" type="text" id="brandname" name="brandname"/>
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="staticEmail" class="col col-form-label">Τηλέφωνο</label>
+                            <label for="staticEmail" class="col-4 col-form-label">Τηλέφωνο</label>
                               <div class="col">
                                 <input placeholder="Πληκτρολογήστε το τηλέφωνο σας" class="form-control" type="text" id="telephone" name="telephone"/>
                               </div>
                             </div>
                           <div class="form-group row">
-                            <label for="staticSite" class="col col-form-label">Ιστοσελίδα</label>
+                            <label for="staticSite" class="col-4 col-form-label">Ιστοσελίδα</label>
                             <div class="col">
                               <input placeholder="Πληκτρολογήστε την διεύθυνση της σελίδας σας" class="form-control" type="text" id="webpage" name="webpage"/>
                             </div>
@@ -307,10 +307,14 @@
     <script type="text/javascript">
         //<![CDATA[
         $(document).ready(function() {
+            $("#moreinfoheader").hide(),
+            $("#moreinfo").hide(),
             $('#typeofuser').on('change', function() {
 
                 //If publisher is selected, show publisher, hide accesspoints and notesprovider.
                 if (this.value == 'student') {
+                    $("#moreinfoheader").show();
+                    $("#moreinfo").show();
                     $("#student").show();
                     $("#publisher").hide();
                     $("#accesspoint").hide();
@@ -318,6 +322,8 @@
                     $("#userdepartment").hide();
                 }
                 if (this.value == 'publisher') {
+                    $("#moreinfoheader").show();
+                    $("#moreinfo").show();
                     $("#student").hide();
                     $("#publisher").show();
                     $("#accesspoint").hide();
