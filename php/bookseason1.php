@@ -14,8 +14,28 @@
       alert("Πρέπει να είστε συνδεδεμένος σαν φοιτητής! ");
       window.history.back();
     </script>
-  }
-<?php else: ?>
+<?php else:?>
+
+<?php 
+    $id = $_SESSION['userID'];
+    require_once 'db_connect.php';
+    $conn = new mysqli("$hn","$un","$pw","$db");
+    // Check connection
+    if (mysqli_connect_errno()){
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        die();
+    }
+    // Look for current declarations
+    $sql = "SELECT COUNT(*) FROM StudentHasBook WHERE studentId=" .$id ." and statementDate IS NULL;";
+    $res_data = mysqli_query($conn,$sql);
+    $numOfCurrentDeclarations = mysqli_fetch_array($res_data)[0];
+    if($numOfCurrentDeclarations != 0) {
+    echo  '<script>
+        alert("Έχετε ολοκληρώσει τη δήλωση (Η τροποίηση δήλωσης δεν έχει πραγματωθεί)");
+        window.history.back();
+      </script>';
+    }
+?>
 
 <!DOCTYPE html>
 <html>

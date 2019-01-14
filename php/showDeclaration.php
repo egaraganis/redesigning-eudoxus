@@ -41,16 +41,13 @@
               </div>
       </div>
       <?php
-        $selectedAccessPoints = array();
-        if(!empty($_POST['selectedAccessPoint'])) {
-            foreach($_POST['selectedAccessPoint'] as $check) {
-                echo $check;
-                $selectedAccessPoints[] = $check;
-            }
-            $_SESSION['selectedAccessPoint'] = $selectedAccessPoints;
+        $statementDate = '';
+        if(!empty($_POST['date'])) {
+          //echo $check;
+          $statementDate = $_POST['date'];
         }
-        $selectedBooks = $_SESSION['selectedBooks'];
-        //$id = $_SESSION['userID'];
+
+        $id = $_SESSION['userID'];
         require_once 'db_connect.php';
         $conn = new mysqli("$hn","$un","$pw","$db");
         // Check connection
@@ -60,10 +57,22 @@
         }
         mysqli_query($conn, "SET NAMES 'utf8'");
         // Select book information
+        $declaredBooks = array();
+        $sql = '';
+        if ($statementDate == NULL) {
+          $sql = "SELECT bookId FROM StudentHasBook WHERE studentId = ". $id ." and statementDate IS NULL;";
+        } else {
+          $sql = "SELECT bookId FROM StudentHasBook WHERE studentId = ". $id ." and statementDate = '" .$statementDate . "';";
+        }
+        $res_data = mysqli_query($conn,$sql);
+        while ($row = mysqli_fetch_array($res_data)) {
+          $declaredBooks[] = $row;
+        }
         $books = array();
+        $lessons = array();
         $accessPoints = array();
-        foreach ($selectedBooks as $bookId) {
-            $sql = "SELECT title, author, accessPointId1 FROM Books WHERE idBook =" .$bookId;
+        foreach ($declaredBooks as $bookId) {
+            $sql = "SELECT title, author, accessPointId1, lessonId FROM Books WHERE idBook =" .$bookId[0];
             $res_data = mysqli_query($conn, $sql);
             $results = mysqli_fetch_array($res_data);
             $books[] = $results;
@@ -71,6 +80,10 @@
             $sql = "SELECT brandName, address, map FROM AccessPoints WHERE idAccessPoint = " .$results["accessPointId1"];
             $res_data = mysqli_query($conn, $sql);
             $accessPoints[] = mysqli_fetch_array($res_data);
+            //get lessons for each book 
+            $sql = "SELECT name FROM Lessons WHERE idLesson=" . $results['lessonId'];
+            $res_data = mysqli_query($conn, $sql);
+            $lessons[] = mysqli_fetch_array($res_data);
         }
         mysqli_close($conn);
       ?>
@@ -92,8 +105,8 @@
                                 <dl>
                                     <?php $numBooks = 0;
                                       foreach ($books as $book) { ?>
-                                        <dt> <?php echo $book['title']; echo ",  "; echo $book['author']; ?> </dt>
-                                        <dd>- <?php echo $accessPoints[$numBooks]['address'];?> </dd>
+                                        <dt> <?php echo $lessons[$numBooks][0]; ?> </dt>
+                                        <dd>- <?php echo $book['title']; echo ",  "; echo $book['author']; ?> </dd>
                                     <?php 
                                         $numBooks++;
                                       } 
