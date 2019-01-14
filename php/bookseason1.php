@@ -121,23 +121,87 @@
             }
             mysqli_close($conn);
           ?>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+                  <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Φοιτητές
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="./bookseason1.php"> Δήλωση Συγγραμμάτων </a>
+                              <a class="dropdown-item" href="./underconstruction.php"> Ανταλλαγή Συγγραμμάτων </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section1"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Εκδότες
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="./bookinsertion.php"> Προσθήκη Συγγράμματος </a>
+                              <a class="dropdown-item" href="./underconstruction.php"> Ανταλλαγή Συγγραμμάτων </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
 
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Σημεία Διανομής
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="./underconstruction.php"> Προσθήκη Σημείου Διανομής </a>
+                              <a class="dropdown-item" href="./underconstruction.php"> Διανομή Σε Φοιτητές  </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section2"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Διαθέτες Σημειώσεων
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="./underconstruction.php"> Ανέβασμα σημειώσεων </a>
+                              <a class="dropdown-item" href="./underconstruction.php"> Ανταλλαγή Συγγραμμάτων </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                            Υπηρεσίες Ιδρυμάτων
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="./underconstruction.php"> Τροποποίηση Προγράμματος Σπουδών </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="./eudoxusinfo.php#section3"> Τι προσφέρει ο Εύδοξος </a>
+                          </div>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="./eudoxusinfo.php" style="position:absolute;right:12%;"> Τι είναι ο Εύδοξος </a>
+                      </li>
+                      <li class="nav-item" style="position:absolute;right:2%;">
+                          <a class="nav-link" href="./underconstruction.php"> Επικοινωνία </a>
+                      </li>
+                  </ul>
+              </div>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                        aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          </nav>
           <form action="bookseason2.php" method="post">
               <div class="mx-auto" style="width: 80%;">
                   <!-- 2nd level navigation button -->
-                  <div class="row" style="margin-top:6%;">
-                      <div class="col"></div>
-                      <div class="col-6">
-                          <h3 style="color:#2AA2DE;margin-left: 14%">1.Επιλογή Συγγραμμάτων</h3>
-                      </div>
-                      <div class="col">
-                          <button type="submit" class="btn btn-info" onclick="window.location='./bookseason2.php';">Επόμενο Βήμα</button>
-                      </div>
+                  <div class="row justify-content-center" style="margin-top:6%;">
+                    <h3 style="color:#2AA2DE;">1.Επιλογή Συγγραμμάτων</h3>
                   </div>
                   </br>
                   <!-- choose for each semester and lesson a book -->
                   <div class="row">
-                      <div style="border: 1px solid #e5e5e5; overflow: auto; padding: 1%; width: 90%;">
+                      <div style="border: 1px solid #e5e5e5; overflow: auto; padding: 1%; width: 90%; height: 350px; width: 1200px;">
                           <ul id="myUL">
                               <?php
                                   $semNum = 0;
@@ -171,6 +235,12 @@
                               </br>
                           </ul>
                       </div>
+                  </div>
+                  <div class="row" style="margin-top: 1%;">
+                    <div class="col-10"></div>
+                    <div class="col-2">
+                         <button type="submit" class="btn btn-info" onclick="window.location='./bookseason2.php';">Επόμενο Βήμα</button>
+                     </div>
                   </div>
               </div>
           </form>
