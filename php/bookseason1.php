@@ -1,5 +1,8 @@
 <?php
   session_start();
+  if(!isset($_SESSION['fail'])):
+    $_SESSION['fail'] = false;
+  endif;
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +103,7 @@
                           <h3 style="color:#2AA2DE;margin-left: 14%">1.Επιλογή Συγγραμμάτων</h3>
                       </div>
                       <div class="col">
-                          <input type="submit" class="btn btn-info" value="Επόμενο Βήμα"></a>
+                          <button type="submit" class="btn btn-info" onclick="window.location='./bookseason2.php';">Επόμενο Βήμα</button>
                       </div>
                   </div>
                   </br>
@@ -120,11 +123,13 @@
                                                 '<li><span class="caret">' . $les["name"] . '</span>
                                                     <ul class="nested">';
                                                     $bookNum = 0;
-                                                    foreach ($books[$semNum][$lesNum] as $book) {
+                                                    if(isset($books[$semNum][$lesNum])) {
+                                                      foreach ($books[$semNum][$lesNum] as $book) {
                                                         echo '<input type="checkbox" name="check_list[]" value="' . $book["idBook"] . '">' . $book["title"] .
                                                         ', ' . $book["author"] . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["address"]
                                                         . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["brandName"] . '<br>';
                                                         $bookNum++;
+                                                      }
                                                     }
                                                     echo '</ul>
                                                 </li>';

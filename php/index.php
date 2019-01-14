@@ -121,59 +121,87 @@
               </button>
           </nav>
           <!--searchbar-->
-          <div class="container-fluid" style="margin-top: 3%;">
-            <div class="row justify-content-center" style="padding-top: 10%;">
-              <div class="col-7">
-                <form action="./searchresults.php" method="post">
-                  <div class="form-group">
-                      <div class="input-group">
-                      <input id="1" class="form-control" type="text" name="search" id="search" placeholder="Αναζητήστε τα συγγράμματα που σας ενδιαφέρουν"/>
-                        <span class="input-group-btn">
-                          <button class="btn" style="color: white; background-color: #FE8946;" type="submit">
-                            <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Αναζήτηση
-                          </button>
-                        </span>
-                      </div>
+          <div class="row" style="margin-top: 2%;">    
+            <div class="col-3">
+              <div>
+                <div class="row justify-content-center profilediv" style="margin-top:30%;width: 350px;height:200px;margin-left: 35%;">
+                  <div class="col" style="margin-top:14%;"> 
+                    <div class="row justify-content-center">
+                      <p> <b>Ψάχνω για</b> : </p> 
                     </div>
-                </form>
+                    <div class="row justify-content-center">
+                      <select required="required" class="form-control" id="typeofuser" name="typeofuser" style="width:50%;">
+                        <option value="student" id="st" name="stu" selected="selected">
+                          Συγγράμματα
+                        </option>
+                        <option value="publisher" id="pu" name="pub">
+                          Εκδότες
+                        </option>
+                        <option value="accesspoint" id="ac" name="acc">
+                          Σημεία Διανομής
+                        </option>
+                        <option value="notesprovider" id="no" name="not" disabled="disabled">
+                          Σημειώσεις
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>   
+            <div class="col-9">
+              <div class="container-fluid" style="margin-top: 8%;margin-left:6%;">
+                <div class="row justify-content-center"> 
+                  <img src="../img/slogan2.png" style="width: 40%;"> </img>
+                </div>
+                <div class="row justify-content-center" style="margin-top: 3%;">    
+                  <div class="col-8">
+                    <form action="./searchresults.php" method="post">
+                      <div class="form-group">
+                          <div class="input-group">
+                          <input id="1" class="form-control" type="text" name="search" id="search" placeholder="Αναζητήστε λέξεις κλειδία για ό,τι ψάχνετε"
+                            <span class="input-group-btn">
+                              <button class="btn" style="color: white; background-color: #FE8946;" type="submit">
+                                <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Αναζήτηση
+                              </button>
+                            </span>
+                          </div>
+                        </div>
+                    </form>
+                  </div>
+                </div>        
               </div>
             </div>
           </div>
-
+        </div>
           <!-- 3rd level (book season,search bar,exchange) -->
-          <div class="row justify-content-center" style="margin-top: 7%;">
-              <div class="col contain center-block text-center" style="margin-left:0%;">
-                  <img src="../img/dhlwsh2.png"> </img>
+          <div class="row justify-content-center" style="margin-top: 5%;">
+              <div class="col contain center-block text-center" style="margin:3%;">
+                  <a href="./bookseason1.php">
+                    <img src="../img/dhlwsh2.png" > </img>
+                  </a>
                   <button type="button" class="btn btn-info" onclick="window.location='./bookseason1.php';"> Δήλωση Μαθημάτων </button>
               </div>
-              <div class="col search center-block text-center" style="margin-left:4%;">
-                  <img src="../img/anazhthsh2.png" style="padding-top:1%;"> </img>
-                  <div class="input-group search bar">
-                      <div class="input-group-btn search-panel" style="margin-top:3%;">
-                          <button type="button" class="btn search btn-default dropdown-toggle" data-toggle="dropdown" style="  margin-left:1%;  -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px;">
-                              <span id="search_concept">Ψάχνω για</span> <span class="caret"></span>
-                          </button>
-                          <ul class="dropdown-menu filters" role="menu">
-                              <li><a href="#contains" style="color:#008FD7;"> Σημειώσεις </a></li>
-                              <li><a href="#its_equal" style="color:#008FD7;"> Σύγγραμμα </a></li>
-                              <div class="dropdown-divider"></div>
-                              <li><a href="#all" style="color:#008FD7;"> Οτιδήποτε </a></li>
-                          </ul>
-                      </div>
-                      <input type="hidden" name="search_param" value="all" id="search_param">
-                      <input type="text" class="form-control searchbar" name="x" placeholder="Αναζήτηση..." style="margin-top:3%;margin-left:2%;  -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px;">
-                  </div>
+
+              <div class="col contain center-block text-center" style="margin:3%;">
+                  <a href="./signup.php">
+                    <img src="../img/ekdoths2.png" > </img>
+                  </a>
+                  <button type="button" class="btn" style="color: white; background-color: #FE8946;" onclick="window.location='./signup.php';"> Εγγραφείτε τώρα </button>
               </div>
-              <div class="col contain center-block text-center" style="margin-left:5%;">
+              
+              <div class="col contain center-block text-center" style="margin:3%;">
+                <a href="./underconstruction.php">
                   <img src="../img/antallagh2.png"> </img>
-                  <button type="button" class="btn btn-outline-info">Eudoxus+</button>
+                </a>
+                <button type="button" class="btn btn-info" onclick="window.location='./underconstruction.php';">Eudoxus+</button>
               </div>
           </div>
           <!-- 4th level (news) -->
-          <div class="row row-horizon justify-content-center" style="margin-top: 11%;">
+          <div class="row row-horizon justify-content-center" style="margin-top: 6%;">
               <h2 style="color:#64686d;"> Ανακοινώσεις </h2>
           </div>
-          <div class="row row-horizon justify-content-center">
+          <div class="row row-horizon justify-content-center" id="announcements">
             <!--  Get announcements from backend -->
             <div class="card-group" style="margin-left:2%;margin-right:2%;margin-top:1%;">
                 <?php
@@ -218,14 +246,14 @@
           <div class="row row-horizon justify-content-center">
               <nav aria-label="Page navigation example">
                   <ul class="pagination">
-                      <li><a class="page-link" href="?pageno=1">First</a></li>
+                      <li><a class="page-link" href="?pageno=1#announcements">First</a></li>
                       <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-                          <a class="page-link" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+                          <a class="page-link" href="<?php if($pageno <= 1){ echo '#announcements'; } else { echo "?pageno=".($pageno - 1)."#announcements"; } ?>">Prev</a>
                       </li>
                       <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-                          <a class="page-link" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+                          <a class="page-link" href="<?php if($pageno >= $total_pages){ echo '#announcements'; } else { echo "?pageno=".($pageno + 1)."#announcements"; } ?>">Next</a>
                       </li>
-                      <li><a class="page-link" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+                      <li><a class="page-link" href="?pageno=<?php echo $total_pages . "#announcements"; ?>">Last</a></li>
                   </ul>
 
               </nav>

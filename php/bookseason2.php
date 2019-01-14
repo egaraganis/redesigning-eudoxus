@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['fail'])):
+    $_SESSION['fail'] = false;
+  endif;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +54,7 @@
                 $_SESSION['selectedBooks'] = $selectedBooks;
             }
 
-            $id = $_SESSION['userID'];
+            //$id = $_SESSION['userID'];
             require_once 'db_connect.php';
             $conn = new mysqli("$hn","$un","$pw","$db");
             // Check connection
@@ -58,72 +65,64 @@
             mysqli_query($conn, "SET NAMES 'utf8'");
             // Select book information
             $books = array();
-            $accessPoints = array(array());
-            $numBooks = 0;
+            $accessPoints = array();
             foreach ($selectedBooks as $bookId) {
-                $sql = "SELECT title, author, accessPointId1, accessPointId2 FROM Books WHERE idBook =" .$bookId;
+                $sql = "SELECT title, author, accessPointId1 FROM Books WHERE idBook =" .$bookId;
                 $res_data = mysqli_query($conn, $sql);
                 $results = mysqli_fetch_array($res_data);
                 $books[] = $results;
                 // Check access points information
                 $sql = "SELECT brandName, address, map FROM AccessPoints WHERE idAccessPoint = " .$results["accessPointId1"];
                 $res_data = mysqli_query($conn, $sql);
-                $accessPoints[$numBooks][] = mysqli_fetch_array($res_data);
-                $sql = "SELECT brandName, address, map FROM AccessPoints WHERE idAccessPoint = " .$results["accessPointId2"];
-                $res_data = mysqli_query($conn, $sql);
-                $accessPoints[$numBooks][] = mysqli_fetch_array($res_data);
-                $numBooks++;
+                $accessPoints[] = mysqli_fetch_array($res_data);
             }
             mysqli_close($conn);
         ?>
         <!-- 2nd row, the second stop of books declaration -->
-        <div class="mx-auto" style="width: 80%;">
-            <!-- navigation bar -->
-            <div class="row" style="margin-top:6%;">
-                <div class="col">
-                    <a type="submit" class="btn btn-info" href="bookseason1.php">Προηγούμενο Βήμα</a>
+        <form action="bookseason3.php" method="post">
+            <div class="mx-auto" style="width: 80%;">
+                <!-- navigation bar -->
+                <div class="row" style="margin-top:6%;">
+                    <div class="col">
+                        <button type="button" class="btn btn-info" onclick="window.location='./bookseason1.php';">Προηγούμενο Βήμα</button>
+                    </div>
+                    <div class="col-6">
+                        <h3 style="color:#2AA2DE;margin-left:15%;">2.Επιλογή Τρόπου Παραλαβής</h3>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-info" onclick="window.location='./bookseason1.php';">Επόμενο Βήμα</button>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <h3 style="color:#2AA2DE;margin-left:15%;">2.Επιλογή Τρόπου Παραλαβής</h3>
-                </div>
-                <div class="col">
-                    <a type="submit" class="btn btn-info" href="bookseason3.php">Επόμενο Βήμα</a>
-                </div>
-            </div>
-            </br>
-            <!-- for each book, choose receipt method -->
-            <div class="row">
-                <div style="border: 1px solid #e5e5e5;overflow: auto; padding: 1%; width: 90%;">
-                    <ul id="myUL">
-                        <?php $numBooks = 0;
-                          foreach ($books as $book) { ?>
-                            <li><span class="caret"> <?php echo $book["title"]; echo ",  "; echo $book["author"]; ?> </span>
-                                <ul class="nested">
-                                    <form>
-                                        <br>
+                </br>
+                <!-- for each book, choose receipt method -->
+                <div class="row">
+                    <div style="border: 1px solid #e5e5e5;overflow: auto; padding: 1%; width: 90%;">
+                        <ul id="myUL">
+                            <?php $numBooks = 0;
+                              foreach ($books as $book) { ?>
+                                <li><span class="caret"> <?php echo $book["title"]; echo ",  "; echo $book["author"]; ?> </span>
+                                    <ul class="nested">
+                                        <p> Παραλαβή από:</p>
+                                        <input type="radio" checked="checked" >Σημείο Παραλαβής</br>
                                         <ul class="list-inline">
-                                            <input type="checkbox" name="selectedAccessPoint" value="<?php echo $book["accessPointId1"]; ?>">
                                                 <li class="list-inline-item" id="googleMap" style="width:25%; height:100px;">
-                                                <iframe src="<?php echo $accessPoints[$numBooks][0]["map"];?>" frameborder="0" style="border:0" ></iframe></li>
-                                                <li><?php echo $accessPoints[$numBooks][0]["brandName"]; echo ", "; echo $accessPoints[$numBooks][0]["address"];?></li>
-                                            <?php if ($book["accessPointId2"] != NULL) { ?>
-                                                <br><input type="checkbox" name="selectedAccessPoint" value="<?php echo $book["accessPointId2"]; ?>">
-                                                    <li class="list-inline-item" id="googleMap" style="width:25%; height:100px;">
-                                                    <iframe src="<?php echo $accessPoints[$numBooks][1]["map"];?>" frameborder="0" style="border:0" ></iframe></li>
-                                                    <li><?php echo $accessPoints[$numBooks][1]["brandName"]; echo ", "; echo $accessPoints[$numBooks][1]["address"];?></li>
-                                            <?php }
-                                            $numBooks++; ?>
+                                                <iframe src="<?php echo $accessPoints[$numBooks]["map"];?>" frameborder="0" style="border:0" ></iframe></li>
+                                                <li><?php echo $accessPoints[$numBooks]["brandName"]; echo ", "; echo $accessPoints[$numBooks]["address"];?></li>
+                                            <?php
+                                                $numBooks++;
+                                            ?>
                                         </ul>
                                         <br>
-                                    </form>
-                                </ul>
-                            </li>
-                            </br>
-                        <?php }?>
-                    </ul>
+                                        <input type="radio" disabled="disabled">Ανταλλαγή</br>
+                                    </ul>
+                                </li>
+                                </br>
+                            <?php }?>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <!-- tree view js -->
     <script>
@@ -147,6 +146,5 @@
             var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
 </body>
 </html>
