@@ -121,58 +121,58 @@
               </button>
           </nav>
           <!--searchbar-->
-          <div class="row" style="margin-top: 1%;">    
-            <div class="col-3">
-              <div>
-                <div class="row justify-content-center profilediv2" style="margin-top:30%;width: 350px;height:200px;margin-left: 35%;">
-                  <div class="col" style="margin-top:14%;"> 
-                    <div class="row justify-content-center">
-                      <p style="color:white;"> <b>Ψάχνω για :</b> </p> 
-                    </div>
-                    <div class="row justify-content-center">
-                      <select required="required" class="form-control" id="typeofuser" name="typeofuser" style="width:50%;">
-                        <option value="student" id="st" name="stu" selected="selected">
-                          Συγγράμματα
-                        </option>
-                        <option value="publisher" id="pu" name="pub">
-                          Εκδότες
-                        </option>
-                        <option value="accesspoint" id="ac" name="acc" disabled="disabled">
-                          Σημεία Διανομής
-                        </option>
-                        <option value="notesprovider" id="no" name="not" disabled="disabled">
-                          Σημειώσεις
-                        </option>
-                      </select>
+          <form action="./searchresults.php" method="post">
+            <div class="row" style="margin-top: 1%;">    
+              <div class="col-3">
+                <div>
+                  <div class="row justify-content-center profilediv2" style="margin-top:30%;width: 350px;height:200px;margin-left: 35%;">
+                    <div class="col" style="margin-top:14%;"> 
+                      <div class="row justify-content-center">
+                        <p style="color:white;"> <b>Ψάχνω για :</b> </p> 
+                      </div>
+                      <div class="row justify-content-center">
+                        <select required="required" class="form-control" id="searchitem" name="searchitem" style="width:50%;">
+                          <option value="books" id="bo" name="boo" selected="selected">
+                            Συγγράμματα
+                          </option>
+                          <option value="publishers" id="pu" name="pub">
+                            Εκδότες
+                          </option>
+                          <option value="accesspoint" id="ac" name="acc" disabled="disabled">
+                            Σημεία Διανομής
+                          </option>
+                          <option value="notesprovider" id="no" name="not" disabled="disabled">
+                            Σημειώσεις
+                          </option>
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>   
-            <div class="col-9">
-              <div class="container-fluid" style="margin-top: 8%;margin-left:6%;">
-                <div class="row justify-content-center"> 
-                  <img src="../img/slogan2.png" style="width: 40%;"> </img>
-                </div>
-                <div class="row justify-content-center" style="margin-top: 3%;">    
-                  <div class="col-8">
-                    <form action="./searchresults.php" method="post">
-                      <div class="form-group">
-                          <div class="input-group">
-                          <input id="1" class="form-control" type="text" name="search" id="search" placeholder="Αναζητήστε λέξεις κλειδία για ό,τι ψάχνετε"
-                            <span class="input-group-btn">
-                              <button class="btn" style="color: white; background-color: #FE8946;" type="submit">
-                                <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Αναζήτηση
-                              </button>
-                            </span>
+              </div>   
+              <div class="col-9">
+                <div class="container-fluid" style="margin-top: 8%;margin-left:6%;">
+                  <div class="row justify-content-center"> 
+                    <img src="../img/slogan2.png" style="width: 40%;"> </img>
+                  </div>
+                  <div class="row justify-content-center" style="margin-top: 3%;">    
+                    <div class="col-8">
+                        <div class="form-group">
+                            <div class="input-group">
+                            <input id="1" class="form-control" type="text" name="search" id="search" placeholder="Αναζητήστε λέξεις κλειδία για ό,τι ψάχνετε"
+                              <span class="input-group-btn">
+                                <button class="btn" style="color: white; background-color: #FE8946;" type="submit">
+                                  <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Αναζήτηση
+                                </button>
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                    </form>
-                  </div>
-                </div>        
+                    </div>
+                  </div>        
+                </div>
               </div>
             </div>
-          </div>
+        </form>
         </div>
           <!-- 3rd level (book season,search bar,exchange) -->
           <div class="row justify-content-center" style="margin-top: 5%;">

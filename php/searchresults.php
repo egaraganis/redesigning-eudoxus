@@ -1,5 +1,16 @@
 <?php
   session_start();
+  require_once 'db_connect.php';
+  $conn=new mysqli("$hn","$un","$pw","$db");
+  // Check connection
+  if (mysqli_connect_errno()){
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      die();
+  }
+  //get general info
+  $searchitem = mysqli_real_escape_string($conn, $_POST['searchitem']);
+  $search = mysqli_real_escape_string($conn, $_POST['search']);
+
 ?>
 
 <!doctype html>
@@ -124,126 +135,170 @@
               </button>
           </nav>
           <?php
-
-            if (isset($_GET['pageno'])) {
-               $pageno = $_GET['pageno'];
-           } else {
-               $pageno = 1;
-           }
-           $no_of_records_per_page = 3;
-           $offset = ($pageno-1) * $no_of_records_per_page;
-
-            require_once 'db_connect.php';
-            $conn = new mysqli($hn,$un,$pw,$db);
-            if ($conn->connect_error) die ($conn->connect_error);
-            $search = mysqli_real_escape_string($conn, $_POST['search']);
-            // support greek
-            mysqli_query($conn, "SET NAMES 'utf8'");
-            $sql = "SELECT Books.idBook, Books.title, Books.author, Books.category, Books.coverPage, Books.subtitle, Books.firstYearPublished, Books.dimensions
-                    FROM Books WHERE Books.title ='$search'";
-            if($res_data = mysqli_query($conn, $sql)){
-                //echo "search success!!.";
-            } else {
+            if($searchitem == "books") {
+              require_once 'db_connect.php';
+              $conn = new mysqli($hn,$un,$pw,$db);
+              if ($conn->connect_error) die ($conn->connect_error);
+              // support greek
+              mysqli_query($conn, "SET NAMES 'utf8'");
+              $sql = "SELECT Books.idBook, Books.title, Books.author, Books.category, Books.coverPage, Books.subtitle, Books.firstYearPublished, Books.dimensions
+                      FROM Books WHERE Books.title ='$search' OR Books.author ='$search' OR Books.category ='$search'";
+              if($res_data = mysqli_query($conn, $sql)){
+                  //echo "search success!!.";
+              } 
+              else {
                 echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-            }
-            $row_cnt = $res_data->num_rows;
-            if($row_cnt == 0) {
-              echo '<div class="row justify-content-center" >
-                      <div class="col-9">
-                        <div class="jumbotron" style="margin-top:6%; background-color:#F8F9FA;">
-                          <h1 class="display-4" align="center">Δεν βρέθηκαν αποτελέσματα!</h1>
-                          <p class="lead" align="center">Δεν βρέθηκαν αποτελέσματα αναζήτησης με τίτλο: <h4 align="center">' .$search . '</h4></p>
-                          <hr class="my-4">
-                          <p align="center">Μεταβείτε στην αρχική.</p>
-                          <a class="btn btn-primary btn-lg" href="./index.php" role="button" style="margin-left:47%;">Αρχική</a>
+              }
+              $row_cnt = $res_data->num_rows;
+              if($row_cnt == 0) {
+                echo '<div class="row justify-content-center" >
+                        <div class="col-9">
+                          <div class="jumbotron" style="margin-top:6%; background-color:#F8F9FA;">
+                            <h1 class="display-4" align="center">Δεν βρέθηκαν αποτελέσματα!</h1>
+                            <p class="lead" align="center">Δεν βρέθηκαν αποτελέσματα αναζήτησης με τίτλο: <h4 align="center">' .$search . '</h4></p>
+                            <hr class="my-4">
+                            <p align="center">Μεταβείτε στην αρχική.</p>
+                            <a class="btn btn-primary btn-lg" href="./index.php" role="button" style="margin-left:47%;">Αρχική</a>
+                          </div>
                         </div>
-                      </div>
-                    </div>';
-            }
-            else {
-              echo '<div class="row justify-content-center" style="margin-top:3%;">
-                      <h2 style="color:grey;"> Αποτελέσματα Αναζήτησης </h2>
-                    </div>';
-              echo '<div class="container">';
-              echo '<div class="card-columns" style="margin-top:3%;">';
-              while($row = mysqli_fetch_array($res_data)){
-                $bookId = $row["idBook"];
-                echo
-                 '<div class="card">
-                   <div class="card-body">
-                      <h5 class="card-title">' . $row["title"] . '</h5>
-                       <h6 class="card-subtitle mb-2 text-muted">'. $row["category"] .'</h6>
-                       <h6 class="card-subtitle mb-2 text-muted">'. $row["author"] .'</h6>
-                       <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#bookModal'.$bookId.'" >Περισσότερα</button>
-                       <!-- Modal -->
-                      <div class="modal fade" id="bookModal'.$bookId.'" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">' . $row["title"] . '</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="row">
-                                <div class="col">
-                                  <img src="' . $row["coverPage"] . '" class="img-fluid" alt="Image not found" height="295" width="209">
-                                </div>
+                      </div>';
+              }
+              else {
+                echo '<div class="row justify-content-center" style="margin-top:3%;">
+                        <h2 style="color:grey;"> Αποτελέσματα Αναζήτησης </h2>
+                      </div>';
+                echo '<div class="container">';
+                echo '<div class="card-columns" style="margin-top:3%;">';
+                while($row = mysqli_fetch_array($res_data)){
+                  $bookId = $row["idBook"];
+                  echo
+                   '<div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">' . $row["title"] . '</h5>
+                         <h6 class="card-subtitle mb-2 text-muted">'. $row["category"] .'</h6>
+                         <h6 class="card-subtitle mb-2 text-muted">'. $row["author"] .'</h6>
+                         <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#bookModal'.$bookId.'" >Περισσότερα</button>
+                         <!-- Modal -->
+                        <div class="modal fade" id="bookModal'.$bookId.'" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">' . $row["title"] . '</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="row">
+                                  <div class="col">
+                                    <img src="' . $row["coverPage"] . '" class="img-fluid" alt="Image not found" height="295" width="209">
+                                  </div>
 
-                                <div class="col">
-                                  <div class="row">
-                                    <p style="color:grey; font-style: italic;" > ' . $row["subtitle"] . '</p>
-                                  </div>
-                                  <div class="row" style="margin-top:10%;">
                                   <div class="col">
-                                    <b>Συγγραφέας:</b>
+                                    <div class="row">
+                                      <p style="color:grey; font-style: italic;" > ' . $row["subtitle"] . '</p>
+                                    </div>
+                                    <div class="row" style="margin-top:10%;">
+                                    <div class="col">
+                                      <b>Συγγραφέας:</b>
+                                    </div>
+                                    <div class="col">
+                                    ' .  $row["author"] . '
+                                    </div>
                                   </div>
-                                  <div class="col">
-                                  ' .  $row["author"] . '
-                                  </div>
-                                </div>
+                                    <div class="row" style="margin-top:5%;">
+                                      <div class="col">
+                                        <b>Είδος:</b>
+                                      </div>
+                                      <div class="col">
+                                      ' .  $row["category"] . '
+                                      </div>
+                                    </div>
+
                                   <div class="row" style="margin-top:5%;">
                                     <div class="col">
-                                      <b>Είδος:</b>
+                                      <b>Έτος έκδοσης:</b>
                                     </div>
                                     <div class="col">
-                                    ' .  $row["category"] . '
+                                    ' .  $row["firstYearPublished"] . '
+                                    </div>
+                                  </div>
+                                  <div class="row" style="margin-top:5%;">
+                                    <div class="col">
+                                      <b>Διαστάσεις:</b>
+                                    </div>
+                                    <div class="col">
+                                    ' .  $row["dimensions"] . '
                                     </div>
                                   </div>
 
-                                <div class="row" style="margin-top:5%;">
-                                  <div class="col">
-                                    <b>Έτος έκδοσης:</b>
                                   </div>
-                                  <div class="col">
-                                  ' .  $row["firstYearPublished"] . '
-                                  </div>
-                                </div>
-                                <div class="row" style="margin-top:5%;">
-                                  <div class="col">
-                                    <b>Διαστάσεις:</b>
-                                  </div>
-                                  <div class="col">
-                                  ' .  $row["dimensions"] . '
-                                  </div>
-                                </div>
-
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                   </div>
-                  </div> ';
+                     </div>
+                    </div> ';
+                }
+                mysqli_close($conn);
               }
-              mysqli_close($conn);
+              echo '</div></div>';
+              echo '<div class="row justify-content-center" style="margin-top:6%;">';
+              echo 'Αριθμός αποτελεσμάτων: '.$row_cnt;
+              echo '</div>';
             }
-            echo '</div></div>';
-            echo '<div class="row justify-content-center" style="margin-top:6%;">';
-            echo 'Αριθμός αποτελεσμάτων: '.$row_cnt;
-            echo '</div>';
+            else {
+              require_once 'db_connect.php';
+              $conn = new mysqli($hn,$un,$pw,$db);
+              if ($conn->connect_error) die ($conn->connect_error);
+              // support greek
+              mysqli_query($conn, "SET NAMES 'utf8'");
+              $sql = "SELECT Publishers.idPublisher, Publishers.brandname, Publishers.telephone, Publishers.website
+                      FROM Publishers WHERE Publishers.brandname ='$search'";
+              if($res_data = mysqli_query($conn, $sql)){
+                  //echo "search success!!.";
+              } 
+              else {
+                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+              }
+              $row_cnt = $res_data->num_rows;
+              if($row_cnt == 0) {
+                echo '<div class="row justify-content-center" >
+                        <div class="col-9">
+                          <div class="jumbotron" style="margin-top:6%; background-color:#F8F9FA;">
+                            <h1 class="display-4" align="center">Δεν βρέθηκαν αποτελέσματα!</h1>
+                            <p class="lead" align="center">Δεν βρέθηκαν αποτελέσματα αναζήτησης με τίτλο: <h4 align="center">' .$search . '</h4></p>
+                            <hr class="my-4">
+                            <p align="center">Μεταβείτε στην αρχική.</p>
+                            <a class="btn btn-primary btn-lg" href="./index.php" role="button" style="margin-left:47%;">Αρχική</a>
+                          </div>
+                        </div>
+                      </div>';
+              }
+              else {
+                echo '<div class="row justify-content-center" style="margin-top:3%;">
+                        <h2 style="color:grey;"> Αποτελέσματα Αναζήτησης </h2>
+                      </div>';
+                echo '<div class="container">';
+                echo '<div class="card-columns" style="margin-top:3%;">';
+                while($row = mysqli_fetch_array($res_data)){
+                  echo
+                   '<div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">' . $row["brandname"] . '</h5>
+                         <h6 class="card-subtitle mb-2 text-muted">'. $row["telephone"] .'</h6>
+                         <h6 class="card-subtitle mb-2 text-muted"><a href="'. $row["website"] .'">'. $row["website"] .'</a></h6>
+                     </div>
+                    </div> ';
+                }
+                mysqli_close($conn);
+              }
+              echo '</div></div>';
+              echo '<div class="row justify-content-center" style="margin-top:6%;">';
+              echo 'Αριθμός αποτελεσμάτων: '.$row_cnt;
+              echo '</div>';
+            }
           ?>
 
       <!-- Optional JavaScript -->
