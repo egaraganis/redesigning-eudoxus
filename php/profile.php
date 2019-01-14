@@ -30,7 +30,7 @@
               <div class="col" style="margin-left:6%;">
                 <div class="dropdown">
                   <a data-toggle="dropdown">
-                    <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496;padding-left:32%;">
+                    <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496; padding-left:32%;">
                       <i class="fas fa-user" style="margin-top:11%;"></i>
                     </span>
                   </a>
@@ -171,7 +171,13 @@
                 $numOfRecBooks = $row1['numOfReceivedBooks'];
                 $bookPoints = $row1['booksPoints'];
 
-
+                //get declarations
+                $sql = "SELECT bookId, statementDate FROM StudentHasBook WHERE studentId=" .$id;
+                $res_data = mysqli_query($conn,$sql);
+                $declarations = array();
+                while ($row = mysqli_fetch_array($res_data)){
+                  $declarations[] = $row;
+                }
                 mysqli_close($conn);
               ?>
               <div class="row">
@@ -277,18 +283,13 @@
                  </div>
              </div>
              <div class="col-5 profilediv" style="margin-left:5%">
-                 <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
-                   <a href="./index.php"> Δήλωση Συγγραμμάτων 26/11 </a>
+                 <?php
+                 foreach($declarations as $dec) {?>
+                  <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
+                   <a href="./index.php"> Δήλωση Συγγραμμάτων <?php echo $dec['statementDate'] ?> </a>
                  </div>
-                 <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
-                   <a href="./index.php"> Ανταλλαγή Συγγραμάτος 3/11 </a>
-                 </div>
-                 <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
-                   <a href="./index.php"> Ανταλλαγή Συγγραμάτος 3/11 </a>
-                 </div>
-                 <div class="row justify-content-center" style="font-size:18px;color:#008FD7;margin:2%;">
-                   <a href="./index.php"> Ανταλλαγή Συγγραμάτος 3/11 </a>
-                 </div>
+                 <?php }
+                 ?>
              </div>
           </div>
         </div>
@@ -328,7 +329,7 @@
               <div class="col" style="margin-left:6%;">
                 <div class="dropdown">
                   <a data-toggle="dropdown">
-                    <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496;padding-left:32%;">
+                    <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496; padding-left:32%;">
                       <i class="fas fa-user" style="margin-top:11%;"></i>
                     </span>
                   </a>

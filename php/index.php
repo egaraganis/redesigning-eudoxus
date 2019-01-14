@@ -36,7 +36,7 @@
               <div class="col" style="margin-left:6%;">
                       <div class="dropdown">
                         <a data-toggle="dropdown">
-                          <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496;padding-left:32%;">
+                          <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496; padding-left:32%;">
                             <i class="fas fa-user" style="margin-top:11%;"></i>
                           </span>
                         </a>
@@ -121,7 +121,7 @@
               </button>
           </nav>
           <!--searchbar-->
-          <div class="row" style="margin-top: 2%;">    
+          <div class="row" style="margin-top: 1%;">    
             <div class="col-3">
               <div>
                 <div class="row justify-content-center profilediv" style="margin-top:30%;width: 350px;height:200px;margin-left: 35%;">
@@ -137,7 +137,7 @@
                         <option value="publisher" id="pu" name="pub">
                           Εκδότες
                         </option>
-                        <option value="accesspoint" id="ac" name="acc">
+                        <option value="accesspoint" id="ac" name="acc" disabled="disabled">
                           Σημεία Διανομής
                         </option>
                         <option value="notesprovider" id="no" name="not" disabled="disabled">
@@ -198,7 +198,7 @@
               </div>
           </div>
           <!-- 4th level (news) -->
-          <div class="row row-horizon justify-content-center" style="margin-top: 6%;">
+          <div class="row row-horizon justify-content-center" style="margin-top: 10%;">
               <h2 style="color:#64686d;"> Ανακοινώσεις </h2>
           </div>
           <div class="row row-horizon justify-content-center" id="announcements">

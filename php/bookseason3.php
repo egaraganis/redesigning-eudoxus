@@ -29,7 +29,7 @@
           <div class="col" style="margin-left:6%;">
                   <div class="dropdown">
                     <a data-toggle="dropdown">
-                      <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496;padding-left:32%;">
+                      <span class="dropdown" data-toggle="dropdown" style="font-size: 2.5em; color:#138496; padding-left:32%;">
                         <i class="fas fa-user" style="margin-top:11%;"></i>
                       </span>
                     </a>
