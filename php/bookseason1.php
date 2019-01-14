@@ -4,6 +4,10 @@
     $_SESSION['fail'] = false;
   endif;
 ?>
+<!-- User should be authorized to submit a book -->
+<?php if(!isset($_SESSION['mail'])): ?>
+  <? header('Location: '."./login.php"); ?>
+<?php endif; ?>
 <!-- only students can get books -->
 <?php if($_SESSION['typeofuser'] != 1): ?>
     <script>
@@ -12,6 +16,7 @@
     </script>
   }
 <?php else: ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,10 +32,6 @@
       <title> Eudoxus </title>
   </head>
   <body style="font-family: 'Alegreya Sans', sans-serif;">
-    <!-- User should be authorized to get books -->
-      <?php if(!isset($_SESSION['mail'])): ?>
-        <? header('Location: '."./login.php"); ?>
-      <?php endif; ?>
       <div class="container-fluid">
           <!-- 1rst level (logo,login,signup) -->
           <div class="row" style="margin-bottom:1%;">
