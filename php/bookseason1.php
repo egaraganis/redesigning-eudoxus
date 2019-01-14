@@ -107,7 +107,7 @@
                 while ($row1 = mysqli_fetch_array($res_data1)) {
                     $lessons[$semNum][] = $row1;
                     // Retrieve Books for current lesson
-                    $sql2 = "SELECT idBook, title, author, publisherId, accessPointId1, accessPointId2 FROM Books WHERE lessonId =" . $row1["idLesson"];
+                    $sql2 = "SELECT idBook, title, author, publisherId, accessPointId1, accessPointId2, coverPage, subtitle, category, firstYearPublished, dimensions FROM Books WHERE lessonId =" . $row1["idLesson"];
                     $res_data2 = mysqli_query($conn, $sql2);
                     while ($row2 = mysqli_fetch_array($res_data2)) {
                         $result = $row2;
@@ -224,9 +224,69 @@
                                                     $bookNum = 0;
                                                     if(isset($books[$semNum][$lesNum])) {
                                                       foreach ($books[$semNum][$lesNum] as $book) {
-                                                        echo '<input type="checkbox" name="check_list[]" value="' . $book["idBook"] . '">' . $book["title"] .
-                                                        ', ' . $book["author"] . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["address"]
-                                                        . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["brandName"] . '<br>';
+                                                        echo '<input type="checkbox" name="check_list[]" value="' . $book["idBook"] . '">  ' 
+                                                        .'<a href="#bookModal" style="color:black;" data-toggle="modal" data-target="#bookModal'. $book["idBook"]
+                                                        .'">'. $book["title"] . ', ' . $book["author"] . ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["address"]. ', ' . $booksExtra[$semNum][$lesNum][$bookNum]["brandName"] . '<br>'
+                                                        .'</a>'.
+                                                        '<div class="modal fade" id="bookModal'.$book["idBook"].'" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel" aria-hidden="true">
+                                                          <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                              <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">' . $book["title"] . '</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                  <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                              </div>
+                                                              <div class="modal-body">
+                                                                <div class="row">
+                                                                  <div class="col">
+                                                                    <img src="' . $book["coverPage"] . '" class="img-fluid" alt="Image not found" height="295" width="209">
+                                                                  </div>
+
+                                                                  <div class="col">
+                                                                    <div class="row">
+                                                                      <p style="color:grey; font-style: italic;" > ' . $book["subtitle"] . '</p>
+                                                                    </div>
+                                                                    <div class="row" style="margin-top:10%;">
+                                                                    <div class="col">
+                                                                      <b>Συγγραφέας:</b>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                    ' .  $book["author"] . '
+                                                                    </div>
+                                                                  </div>
+                                                                    <div class="row" style="margin-top:5%;">
+                                                                      <div class="col">
+                                                                        <b>Είδος:</b>
+                                                                      </div>
+                                                                      <div class="col">
+                                                                      ' .  $book["category"] . '
+                                                                      </div>
+                                                                    </div>
+
+                                                                  <div class="row" style="margin-top:5%;">
+                                                                    <div class="col">
+                                                                      <b>Έτος έκδοσης:</b>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                    ' .  $book["firstYearPublished"] . '
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="row" style="margin-top:5%;">
+                                                                    <div class="col">
+                                                                      <b>Διαστάσεις:</b>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                    ' .  $book["dimensions"] . '
+                                                                    </div>
+                                                                  </div>
+
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>';
                                                         $bookNum++;
                                                       }
                                                     }
@@ -272,6 +332,11 @@
               });
           }
       </script>
+            <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>
 <?php endif; ?>

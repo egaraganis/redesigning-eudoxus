@@ -135,6 +135,7 @@
                     echo "Failed to connect to MySQL: " . mysqli_connect_error();
                     die();
                 }
+                mysqli_query($conn, "SET NAMES 'utf8'");
                 $sql = "SELECT Users.email, Users.name, Users.surname
                         FROM Users
                         where Users.idUser =" . $id ;
