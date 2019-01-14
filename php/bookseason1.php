@@ -4,7 +4,14 @@
     $_SESSION['fail'] = false;
   endif;
 ?>
-
+<!-- only students can get books -->
+<?php if($_SESSION['typeofuser'] != 1): ?>
+    <script>
+      alert("Πρέπει να είστε συνδεδεμένος σαν φοιτητής! ");
+      window.history.back();
+    </script>
+  }
+<?php else: ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -147,14 +154,6 @@
               </div>
           </form>
       </div>
-      <!-- only students can get books -->
-      <?php if($_SESSION['typeofuser'] != 1): ?>
-          <script>
-            alert("Πρέπει να είστε συνδεδεμένος σαν φοιτητής! ");
-            window.history.back();
-          </script>
-        }
-      <?php endif; ?>
       <!-- tree view js -->
       <script>
           var toggler = document.getElementsByClassName("caret");
@@ -169,3 +168,4 @@
       </script>
   </body>
 </html>
+<?php endif; ?>
