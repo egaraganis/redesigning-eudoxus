@@ -1,20 +1,19 @@
-# redesigning-eudoxus
+## Redesigning Eudoxus
+Our team was given the task to completely evaluate and redesign an academic platform that handles academic books and papers to students in favor of universities.
 
-Γκαραγκάνης Ευάγγελος sdi1400033
+ - In **Redesigning Eudoxus** pdf, you will find our usability evaluation analysis based on Nielsen Rules.
 
-Κωνσταντίνος Κοτρώνης sdi1400074
+ - In **Redesigning Eudoxus Part 2** pdf, you will the design phase for our redesigning of the platform. It contains the Personas of the users to capture the core pain points, a diagrammatic case analysis and a table of Requirements and Specifications of what is going to be implemented
 
-Γαρμπής Παναγιώτης Ορέστης sdi1400025
+ - The whole repo contains at last the implementaion of the platform that was designed above. The whole platform was implemented in PHP with the help of lampp.
 
-Οι ομάδες χρηστών που επιλέξαμε ειναι οι φοιτητές και οι εκδότες, συνεπώς η λειτουργικοτήτα υλοποιήθηκε γύρω απο αυτές. 
+## To Run Locally
+Make sure that xampp is installed and that our repo folder is in htdocs folders. Then:
 
-Γενικά, δίνεται η δυνατότητα στο χρήστη να περιηγηθεί στην ιστοσελίδα, να μάθει πληροφορίες για τον εύδοξο και να κάνει σύνδεση και εγγραφή.
-Γίνονται όλοι οι δυνατοί έλεγχοι σχετικά με τους κωδικούς, τα email των χρηστών.
+    ❯ sudo /opt/lampp/lampp start
+In your terminal.
+    
 
-Σε όλη την σελίδα υπάρχει authorization για τις κινήσεις του χρήστη μαζί με σχετικά μηνύματα, που τον ενημερώνουν για τις πιθανές του κινήσεις.
+Preview of our platform:
+[Eudoxus On Heroku](https://blooming-ravine-45688.herokuapp.com/php/index.php)
 
-Ο χρήστης έχει δικό του, ειδικά διαμορφωμένο προφίλ, για την επισκόπηση τόσο γενικών, όσο και εξατομικευμένων πληροφοριών. Μπορεί επίσης να επεξεργάζεται το προφίλ του και αυτό να ενημερώνεται αυτομάτως.
-
-Έχουν υλοποιηθεί σαν βασικές ενέργειες η δήλωση συγγραμμάτων για φοιτητές και η προσθήκη συγγραμμάτων για εκδότες, μαζί με την απαραίτητη λειτουργικότητα που απαιτείται  για την ορθή εκτέλεση τους ( όπως επισκόπηση των κινήσεων, ανάκαμψη απο λάθη, ελευθερία χρηστών όπως η  διαγραφή κτλπ ).
-
-Τέλος, υπάρχει η δυνατότητα αναζήτησης συγγραμμάτων/εκδοτών απο την αρχική σελίδα, μαζι με την σελίδα αποτελεσμάτων κάτω απο την οποία εμφανίζονται τα αποτελέσματα και δυνατότητα προεπισκόπησης αυτών.
